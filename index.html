@@ -1,0 +1,1336 @@
+﻿<!DOCTYPE html>
+
+<!--Copyright 2011, 2012, 2013, 2014 Brian Millar
+    This file is part of eXastum.
+    eXastum is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    eXastum is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with eXastum.  If not, see <http://www.gnu.org/licenses/> -->
+
+
+<!--Under Section 7 of the GNU General Public Licence Version 3 
+	I require that you give me credit for the original project
+	in all forks and modified versions. For example if you
+	wish to create "Bob's HTML5 OS" you must include
+	"based on eXastum by Brian Millar" in the project credits -->
+
+<html>
+
+<!--eXastum build 2000 is dedicated to the really cute girl in Starbucks, DKIT who is always on her Mac and reading books by herself...
+	Did I really write that?
+	Nobody reads this anyway...
+	Wait why are you reading this?
+	If you're here to fork please get the licencing right! -->
+
+<head>
+<script>
+        /*    
+        @licstart  The following is the entire license notice for the 
+        JavaScript code in this page.
+
+        Copyright (C) 2014  Brian Millar
+
+        The JavaScript code in this page is free software: you can
+        redistribute it and/or modify it under the terms of the GNU
+        General Public License (GNU GPL) as published by the Free Software
+        Foundation, either version 3 of the License, or (at your option)
+        any later version.  The code is distributed WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS
+        FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+        As additional permission under GNU GPL version 3 section 7, you
+        may distribute non-source (e.g., minimized or compacted) forms of
+        that code without the copy of the GNU GPL normally required by
+        section 4, provided you include this license notice and a URL
+        through which recipients can access the Corresponding Source.   
+
+		
+        @licend  The above is the entire license notice
+        for the JavaScript code in this page.
+        */
+</script>
+
+<!-- Please don't remove my name here, if you are going to fork at least give some credit for the base system, so many people are stealing credit and I worked hard on this... -->
+
+<meta name="author" content="Brian Millar"/>
+<!-- Search Terms in Case System is ever Hosted on a Web Server being Indexed by a Search Engine -->
+<meta name="keywords" content="exastum, exast, HTML5, html, css, js, javascript, operating, system, browser, web, 2014, open, source, free, software, ontropy, brian, millar" />
+<!-- Site description for search engines -->
+<meta name="description" content="eXastum is the world's first HTML5 desktop environment for your browser." />
+<!-- Page Title (updated during use as when music plays) -->
+<title id="SystemTitle">eXastum 2.0</title>
+<!-- CSS Load -->
+<link id="Sheet" rel="stylesheet" type="text/css" href="Themes/Nova/Nova.css"/>
+
+<!-- Load attitional custom CSS rules as defined in settings app -->
+<style id="CustomStyles"></style>
+
+<!-- Favicon removed in this release to prevent system connecting to the network without the user requesting it -->
+<!-- End of Head Section -->
+</head>
+
+
+<body onload="Load();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
+
+<!-- Make sure we has JS enabled, you never know... -->
+<noscript><h1 id="NoJSWarning">WARNING: eXastum cannot run without JavaScript!</h1></noscript>
+
+<!-- Save File link and Input File Button, never seen, only called by .click() function -->
+<a id="eXastumFileSaveLink"></a>
+<input id="eXastumFileInput" type="file"/>
+
+<!-- Display Div to control Filters and other whole screen actions -->
+<div id="DisplayDraw">
+
+<!-- A nice little loading splash... -->
+<div id="eXastumWait">
+<h3 style="text-shadow:3px 3px 8px #000000;">Please Wait...</h3><br/>
+<p class="Shadowed" id="PleaseWaitMsg"></p>
+</div>
+
+<!-- Appliction Splash Screen -->
+<img id="SplashScreen" src="Themes/Nova/Images/Splashes/DivDesignerSplash.png" width="400" height="250" alt="SplashScreen" draggable="false"/>
+
+<!-- Used for loading images in background -->
+<img src="" id="eXastumImageSystem" style="display:none;"/>
+
+<div id="Notifications" onmouseover="document.getElementById('DesktopMove').style.webkitTransform='translateX(200px)'; getElementById('SystemInfoBaseBar').innerHTML='Notifications';" onmouseout="document.getElementById('DesktopMove').style.webkitTransform='translateX(0px)'; getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';"><br/><br/><h2 class="SideCenter">Notifications</h2>
+<div id="NotificationList">
+<p id="NotificationsSubText"><br/><br/>No Notifications To Display<br/><br/></p>
+</div>
+</div>
+
+<div id="TaskManager" onmouseover="document.getElementById('DesktopMove').style.webkitTransform='translateX(-200px)'; getElementById('SystemInfoBaseBar').innerHTML='Task Manager';" onmouseout="document.getElementById('DesktopMove').style.webkitTransform='translateX(0px)'; getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';"><br/><br/>
+<h2 class="SideCenter">Task Manager</h2><br/><br/>
+<p id="MemoryUsageInfo">
+JS Heap Memory Usage: <br/>
+<em style="margin-left:20px;" id="MemoryUsageData">Waiting for Data...</em><br/><br/>
+<strong style="margin-left:15px;">Running Tasks:</strong>
+<br/>
+<br/>
+<p>Multitasking Here Now!</p>
+</p>
+</div>
+
+<div id="Setup" onclick="getElementById('menu').style.display='none'; getElementById('RightClick').style.display='none';">
+
+<div id="SetupPage1">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Welcome to eXastum</em></h2>
+<br/><br/>
+<p class="Shadowed">Thank you for downloading eXastum 2.0! Your interest in the project is of great importance. This is setup. Setup will guide you through configuring eXastum to make it work right for you. It will allow you to create an account for yourself and set your default settings. You will get the chance to make eXastum suit your style and your way of working. eXastum is an open source project, you can contribute code if you wish, just send an email to brianmillar9@yahoo.com. You can also send me feedback, suggestions or anything else you want. eXastum is designed to be open, free and fun and will hopefully soon be community driven. If you are seeing this after already running setup please file a bug report.</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('SetupPage1').style.display='none'; getElementById('SetupPage2').style.display='block'; getElementById('Setup').style.backgroundImage='url(Themes/Nova/Images/Setup2Bg.png)';">Next Step</p>
+</div>
+
+<div id="SetupPage2">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Technical System Setup</em></h2>
+<br/><br/>
+<p class="Shadowed">If you are not running eXastum from a localhost server please close the browser now, set up your server and then reload eXastum from it. You can continue however the file system and some other features will not work properly. If you do not know how to set up or get a localhost server please search for "XAMPP" on Google. When you are ready to create the file system and setup all the default system settings please click the "Setup System Now" button below.</p><br/><br/>
+<br/><p class="Shadowed">*The space you give will not be used now but will fill up as you add files to eXastum. Once the limit has been reached file writes will fail.</p>
+<br/><br/><br/>
+<p class="Button" onclick="eXastumSystemReset()">Setup System Now</p>&#160;&#160;<p class="Button" onclick="getElementById('SetupPage2').style.display='none'; getElementById('SetupPage3').style.display='block'; getElementById('Setup').style.backgroundImage='url(Themes/Nova/Images/Setup3Bg.png)';">Next</p>&#160;&#160;<p style="color:red; text-shadow:1px 1px 1px #000000; display:none;" id="SetupSystemInfo">System Setup Failed!</p>
+</div>
+
+<div id="SetupPage3">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Create a User Account</em></h2>
+<br/><br/>
+<p class="Shadowed">It's time to create a user account. This is used to log in to eXastum. All of your information is stored locally so you don't need to worry about sending anything to the internet.</p>
+<br/><br/>
+<input type="text" spellcheck="false" class="text" id="SetupUsername" placeholder="Username"/><br/><input spellcheck="false" class="text" id="SetupPassword" type="password" placeholder="Password"/><br/>
+<br/><p class="Shadowed">Profile Pic:</p> &#160;&#160; <input type="file" class="file" accept="image/*" id="SetupUserPic"/>
+<br/>
+<br/><br/>
+<p class="Button" onclick="eXastumSetUsername(getElementById('SetupUsername').value); eXastumSetPassword(getElementById('SetupPassword').value); getElementById('SetupPage3').style.display='none'; getElementById('SetupPage4').style.display='block'; getElementById('Setup').style.backgroundImage='url(Themes/Nova/Images/Setup4Bg.png)'; eXastumFileDuplicate('/eXastumSystem/User/Pic.jpg', getElementById('SetupUserPic').files[0]); eXastumSetUserPic('filesystem:http://localhost/persistent/eXastumSystem/User/Pic.jpg');">Next</p>
+</div>
+
+<div id="SetupPage4">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Get the Best Experience on eXastum</em></h2>
+<br/><br/>
+<br/><p class="Shadowed">To get the most out of eXastum please follow the tips below:</p>
+<br/>
+<br/><p class="Shadowed">- Set up a good Localhost Server</p>
+<br/><p class="Shadowed">- Use Google Chrome and keep it up to date</p>
+<br/><p class="Shadowed">- Update eXastum when updates are available</p>
+<br/><p class="Shadowed">- Download and Install the Arial Font</p>
+<br/><p class="Shadowed">- Have a connection to the Internet</p>
+<br/><p class="Shadowed">- Send Bug Reports and Feature Requests to brianmillar9@yahoo.com</p>
+<br/><p class="Shadowed">- Engadge with the community on Facebook.com/exastum</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('SetupPage4').style.display='none'; getElementById('SetupPage5').style.display='block'; getElementById('Setup').style.backgroundImage='url(Themes/Nova/Images/Setup5Bg.png)';">Next</p>
+
+</div>
+
+<div id="SetupPage5">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Personalise eXastum</em></h2>
+<br/>
+<br/><p class="Shadowed">Make yourself feel at home using eXastum:</p>
+<br/>
+<br/>
+<p>Set your Wallpaper: </p> <input type="file" class="file" accept="image/*" id="SetupUserWallpaper"/>
+<br/><br/><br/>
+<p class="Button" onclick="getElementById('SetupPage5').style.display='none'; getElementById('SetupPage6').style.display='block'; getElementById('Setup').style.backgroundImage='url(Themes/Nova/Images/Setup6Bg.png)'; eXastumFileDuplicate('/eXastumSystem/Wallpaper/Wallpaper.jpg', getElementById('SetupUserWallpaper').files[0]); eXastumSetWallpaper('filesystem:http://localhost/persistent/eXastumSystem/Wallpaper/Wallpaper.jpg');">Next</p>
+
+</div>
+
+<div id="SetupPage6">
+<h2 style="text-shadow:3px 3px 8px #000000;"><em>Finished</em></h2>
+<br/><br/><br/>
+<br/><p class="Shadowed">You have completed setup! Enjoy using eXastum!</p>
+<br/><br/>
+<br/><p class="Shadowed">Your settings have been saved into HTML5 Local Storage. You can close the browser or even delete your history and your settings will be kept.
+<br/><br/>
+Click "Finish" to complete Setup and restart eXastum.</p>
+<br/><br/><br/>
+<p class="Button" onclick="getElementById('Setup').style.display='none'; window.location.reload();">Finish</p>
+</div>
+</div>
+
+
+<p onclick="eXastumOpen('Browser'); getElementById('Browserwindow').src='http://www.duckduckgo.com';" id="openbrowser"></p>
+<p onclick="eXastumOpen('AudioPlayer');" id="openaudio"></p>
+<p onclick="eXastumOpen('VideoPlayer');" id="openvideo"></p>
+<p onclick="eXastumOpen('Terminal');" id="openterminal"></p>
+<p onclick="eXastumOpen('Calculator');" id="opencalculator"></p>
+<p onclick="eXastumOpen('Gallery');" id="opengallery"></p>
+<p onclick="eXastumOpen('CodingSuite');" id="opendev"></p>
+<p onclick="eXastumOpen('InfoTests');" id="openinfo"></p>
+<p onclick="eXastumOpen('Settings');" id="opensettings"></p>
+<p onclick="eXastumOpen('Tools');" id="openutilities"></p>
+<p onclick="eXastumMusicPlay();" id="playtrack"></p><p onclick="eXastumMusicStop();" id="pausetrack"></p>
+
+<div id="RightClick" onclick="getElementById('menu').style.display='none'; getElementById('RightClick').style.display='none';">
+<p class="RightClickMenuItem" onclick="eXastumMusicPlay(); getElementById('RightClick').style.display='none';">New Shortcut</p>
+<br/>
+<p class="RightClickMenuItem" onclick="getElementById('RightClick').style.display='none';">New Folder</p>
+<br/>
+<p class="RightClickMenuItem" onclick="eXastumMusicPlay(); getElementById('RightClick').style.display='none';">Play Music</p>
+<br/>
+<p class="RightClickMenuItem" onclick="eXastumMusicStop(); getElementById('RightClick').style.display='none';">Pause Music</p>
+<br/>
+<p class="RightClickMenuItem" onclick="getElementById('AllWindows').style.display='none'; getElementById('RightClick').style.display='none';">Hide Windows</p>
+<br/>
+<p class="RightClickMenuItem" onclick="getElementById('AllWindows').style.display='block'; getElementById('RightClick').style.display='none';">Show Windows</p>
+<br/>
+<p class="RightClickMenuItem" onclick="eXastumOpen('Terminal'); getElementById('RightClick').style.display='none';">Terminal</p>
+<br/>
+<p class="RightClickMenuItem" onclick="eXastumOpen('Settings'); getElementById('RightClick').style.display='none';">Settings</p>
+<br/>
+<p class="RightClickMenuItem" onclick="window.location.reload()">Reload</p>
+<br/>
+<p class="RightClickMenuItem" onclick="window.close()">Exit</p>
+</div>
+
+<img draggable="false" alt="Image Not Found" onmouseover="getElementById('Menubutton').src='Themes/Nova/Icons/MenuButtonHover.png';" onmouseout="getElementById('Menubutton').src='Themes/Nova/Icons/MenuButton.png';" onmousedown="getElementById('Menubutton').src='Themes/Nova/Icons/MenuButtonPressed.png';" onmouseup="getElementById('Menubutton').src='Themes/Nova/Icons/MenuButtonHover.png';" onclick="getElementById('menu').style.display='block';" src="Themes/Nova/Icons/MenuButton.png" id="Menubutton" height="21" width="45" />
+
+<div id="Overlay" oncontextmenu="return false;" onclick="getElementById('RightClick').style.display='none';">
+<div id="BootInfo"><p class="bootinfo"> eXastum 2.0 Nova</p><br/><p class="bootinfo"> Screen Resolution: &#160;<script>document.write(screen.width);</script>&#160;x&#160;<script>document.write(screen.height);</script></p><br/><p class="bootinfo">Settings in Local Storage: <script>document.write(window.localStorage.length);</script></p><br/><p class="bootinfo"> System: &#160;<script>document.write(navigator.platform);</script></p></div>
+<div id="HTML5BADGE"><a href="http://www.w3.org/html/logo/"><img id="w3logo" src="Themes/Nova/Images/html5badge.jpg" width="200" height="40" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage"></a></div>
+<img draggable="false" alt="Image Load Failed" id="BootPic" src="Themes/Nova/Images/BootUp.jpg" width="100%" height="100%"/>
+</div>
+
+<div id="OverlayLogin" onclick="getElementById('RightClick').style.display='none';"><img  alt="Image Load Failed" id="loginbg" src="Themes/Nova/Images/LoginBG.png" draggable="false" width="100%" height="100%" />
+<p id="LockedNotice"><em>System Locked</em></p>
+<p id="LoginClock">00:00</p>
+<div id="Login">
+<img draggable="false" alt="Image Load Failed" onerror="this.src='Themes/Nova/Images/Picture.jpg';" id="UserPicture" class="Frame" src="Themes/Nova/Images/Picture.jpg" height="82" width="82"/>
+<h2 id="UserNameText">Administrator</h2><br/>
+<input autofocus="autofocus" class="text" id="PassField" type="password" onkeypress="LoginKeyCheck()" placeholder="Password"/>
+<p id="LogInButton" class="Button" onclick="Check()"> Log In </p>
+</div>
+</div>
+
+
+<div id="Desktop" onclick="getElementById('RightClick').style.display='none';">
+
+<!-- START OF APPS AND WINDOW SYSTEM -->
+
+<div id="AllWindows" onclick="getElementById('RightClick').style.display='none'; getElementById('menu').style.display='none';" onmouseover="getElementById('VolControl').style.display='none';">
+
+
+<div class="app" id="AlarmBox" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Alarm Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="getElementById('AlarmBox').style.display='none';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Icon.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Alarm</div>
+<br/><h1>ALARM</h1><br/><br/><br/><br/><p id="AlarmInfo">The alarm has sounded!</p><br/><br/><p class="Button" onclick="getElementById('AlarmSound').pause();">Dismiss</p></div>
+
+
+<!-- Start of eXastum Apps -->
+
+
+<!-- Alarm Clock App -->
+<div class="app" id="Alarm" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Alarm Clock';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Alarm','Alarm Clock');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Alarm');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18" />
+<div class="TitleTextMini" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Alarm Clock</div><br/><br/>
+<p class="Shadowed">Current Time: </p><p class="Shadowed" id="TheAlarmClock"></p><br/><br/><input class="text" type="text" spellcheck="false" placeholder="00:00:00" id="AlarmTime"/><p onclick="AlarmClock();" class="ButtonMarginFive">Set</p><br/><br/><input class="text" type="text" spellcheck="false" id="AlarmInfoSet" placeholder="Text to be Displayed" x-webkit-speech />
+<br/><br/>
+<p class="Button" onclick="clearTimeout(AlarmTimer); document.getElementById('AlarmIcon').style.display='none';">Cancel Alarm</p><br/>
+</div>
+<!-- End of Alarm Clock App -->
+
+
+<!-- Audio Player App -->
+<div class="app" id="AudioPlayer" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='eXastum Music';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('AudioPlayer','eXastum Music');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('AudioPlayer'); eXastumMusicStop();"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Music.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">eXastum Music</div><br/>
+<ul class="eXastumTabList" id="MusicTabs">
+<li class="normal" onclick="getElementById('Interface').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('WallpaperSettings').style.display='block';">HTML5 Player</li>
+<li onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('Interface').style.display='block';" class="normal">Plugin Player</li>
+<li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Interface').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('Performance').style.display='block';">Grooveshark</li>
+<li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('Interface').style.display='none'; getElementById('Performance').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('ChromeSettings').style.display='block';">Mixer</li>
+<li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('Interface').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='block';">Recorder</li></ul>
+<div id="MusicPlayer">
+<canvas id="MusicVisuals"></canvas>
+
+<div id="MusicSideBar">
+<div id="TrackList">
+<p style="text-shadow:1px 1px 4px #000000; color:#838383;"><strong><em>Track Playlist:</em></strong></p><br/><br/>
+<br/>
+</div><br/>
+<p class="Button">Add</p>&#160;<p class="Button">Clear</p>
+</div>
+
+<div id="MusicBaseBar">
+<div style="width:295px; height:0px; margin-left:10px;"><marquee><p id="TrackName"></p></marquee></div><br/>
+<input class="text" type="text" oncontextmenu="return;" id="AudioFile" spellcheck="false" placeholder="Stream or File URL" onkeyup="AudioAdd()" x-webkit-speech />
+<p class="Button" onclick="getElementById('RadioDialog').style.display='block';">Radio</p>
+<p id="MusicPlayTime">0:00 / 0:00</p>
+<p id="AudioLoad">Done</p>
+<div id="AudioButtons">
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Open.png'" onmouseout="this.src='Themes/Nova/Images/Open.png'" src="Themes/Nova/Images/Open.png" id="OpenMusicButton" onclick="getElementById('MusicDialog').style.display='block';" width="40" height="40"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Images/Play.png" onmouseover="this.src='Themes/Nova/Images/Lite/Play.png'" onmouseout="this.src='Themes/Nova/Images/Play.png'" id="PlayAudioButton" width="50" height="50" onclick="eXastumMusicPlay();"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Images/Pause.png" onmouseover="this.src='Themes/Nova/Images/Lite/Pause.png'" onmouseout="this.src='Themes/Nova/Images/Pause.png'" id="PauseAudioButton" width="50" height="50" onclick="eXastumMusicStop();"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Loop.png'" onmouseout="this.src='Themes/Nova/Images/Loop.png'" src="Themes/Nova/Images/Loop.png" id="LoopAudioButton" onclick="getElementById('Music1').setAttribute('loop','loop'); getElementById('LoopAudioButton').style.display='none'; getElementById('LoopAudioButton2').style.display='inline';" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Loop.png'" onmouseout="this.src='Themes/Nova/Images/Loop.png'" src="Themes/Nova/Images/Loop.png" id="LoopAudioButton2" onclick="getElementById('Music1').removeAttribute('loop'); getElementById('LoopAudioButton2').style.display='none'; getElementById('LoopAudioButton').style.display='inline';" width="40" height="40"/>
+</div>
+<p style="color:#000000; margin-left:430px; position:absolute; margin-top:-65px;">Speed: </p><input class="text" type="text" style="width:25px; margin-left:480px; position:absolute; margin-top:-35px;" oncontextmenu="return;" id="AudioSkipper" spellcheck="false" placeholder="0" onkeyup="getElementById('Music1').currentTime=this.value;"/>
+<p style="color:#000000; margin-left:430px; position:absolute; margin-top:-35px;">Skip: </p><input class="text" type="text" style="width:25px; margin-left:480px; position:absolute; margin-top:-65px;" oncontextmenu="return;" id="AudioSpeed" spellcheck="false" placeholder="1.0" onkeyup="getElementById('Music1').playbackRate=this.value;"/>
+<img draggable="false" onclick="MusicSeek()" id="MusicTimeAlong" src="Themes/Nova/Images/Along.png"/><img draggable="false" onclick="MusicSeek()" id="MusicTimeAlongBacker" width="500" height="5" src="Themes/Nova/Images/AlongBG.png"/>
+<audio id="Music1" onloadstart="getElementById('AudioLoad').innerHTML='Loading...';" oncanplay="getElementById('AudioLoad').innerHTML='Done';" onplay="MusicTimer(); getElementById('PlayScroll').style.display='inline'; getElementById('MiniSongInfo').style.display='block'; getElementById('SystemInfoBaseBar').style.display='none'; getElementById('PlayAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='none'; getElementById('PauseAudioButton').style.display='inline'; getElementById('MiniPauseAudioButton').style.display='block'; document.title='▶ eXastum 2.0';"  onpause="getElementById('PlayScroll').style.display='none'; getElementById('SystemInfoBaseBar').style.display='inline'; getElementById('PlayAudioButton').style.display='inline'; getElementById('PauseAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='block'; getElementById('MiniPauseAudioButton').style.display='none'; document.title='eXastum 2.0'; getElementById('MiniSongInfo').style.display='none';" onended="getElementById('PlayAudioButton').style.display='inline'; getElementById('PauseAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='block'; getElementById('MiniPauseAudioButton').style.display='none'; getElementById('MiniSongInfo').style.display='none';" ></audio>
+</div>
+</div>
+</div>
+<!-- End of Audio Player App -->
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Music Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="MusicDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('MusicDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Music.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">eXastum Music</p></div>
+<br/><br/>
+<p class="Shadowed">Open Music File:</p><br/><br/>
+<input type="file" accept="audio/*" class="file" onchange="eXastumMusicSetTrack(window.URL.createObjectURL(this.files[0])); getElementById('PlayScroll').innerHTML='▶ Now Playing: '+'  '+this.files[0].name; eXastumMusicPlay(); getElementById('MiniSongInfo').innerHTML='▶ Now Playing:  ' + ' ' + this.files[0].name; getElementById('TrackName').innerHTML=this.files[0].name; eXastumClose('MusicDialog');"/>
+<br/><br/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Radio Stations Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="RadioDialog">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('RadioDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Music.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Radio Stations</p></div>
+<br/><br/><br/>
+<div style="float:left; margin-left:7px; width:100px;">
+<p class="Button" onclick="getElementById('Music1').src='http://109.123.116.114:7000/;audio.mp3'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 1</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://str30.creacast.com/radio_star'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 2</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://live.nsbradio.co.uk:8904/;'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 3</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://live-de-dkr-1.media.gwradio.net:8000/main/fmt/opus/hq.opus'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 4</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://repeater.xiph.org:8000/clock.opus'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 5</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://kxleamfm.com:8000/kxlefm.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 6</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://94.199.181.143:10000/live.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 7</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://stream.100000000000000.com:8000/CLASSICS.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 8</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://dubfun.lobocast.org.es:8003/dubfun112.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 9</p>
+</div>
+<div style="float:right; width:100px; margin-right:20px; margin-bottom:10px;">
+<p class="Button" onclick="getElementById('Music1').src='http://live.lora924.de:8000/loramagazin.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 10</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://amp1.cesnet.cz:8000/cro-plus.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 11</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://radio1190.colorado.edu:8000/high.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 12</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://stream-tx4.radioparadise.com/ogg-96'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 13</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://rbg.online.radiobreizh.net:10018/live-ori.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 14</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://amp1.cesnet.cz:8000/cro-radio-wave.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 15</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://streamer.radiocampusbruxelles.org:8000/stream_hi.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 16</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://xylem.aegean.gr:8000/stream.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 17</p>
+<br/><br/>
+<p class="Button" onclick="getElementById('Music1').src='http://62.149.13.129:8500/radioplus_low.ogg'; eXastumMusicPlay(); eXastumClose('RadioDialog');">Station 18</p>
+</div>
+<br/><br/>
+</div>
+
+
+
+<!-- Web Brower App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Web Browser';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Browser">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Browser','Web Browser');" />
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Browser'); getElementById('Browserwindow').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Browser.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" id="BrowserTitleBar" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Web Browser</div><br/>
+<ul class="eXastumTabList" id="BrowserTabs">
+&#160;<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Left.png'" onmouseout="this.src='Themes/Nova/Images/Left.png'" src="Themes/Nova/Images/Left.png" width="25" height="25" onclick="Browserwindow.history.back()"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Right.png'" onmouseout="this.src='Themes/Nova/Images/Right.png'" src="Themes/Nova/Images/Right.png" width="25" height="25" onclick="Browserwindow.history.forward()"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Home.png'" onmouseout="this.src='Themes/Nova/Images/Home.png'" src="Themes/Nova/Images/Home.png" width="25" height="25" onclick="getElementById('Browserwindow').src='http://www.duckduckgo.com';"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Refresh.png'" onmouseout="this.src='Themes/Nova/Images/Refresh.png'" src="Themes/Nova/Images/Refresh.png" width="25" height="25" onclick="Browserwindow.location.reload()"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/FullScreen.png'" onmouseout="this.src='Themes/Nova/Images/FullScreen.png'" src="Themes/Nova/Images/FullScreen.png" width="25" height="25" onclick="getElementById('Browserwindow').webkitRequestFullScreen();"/>&#160;&#160;
+<input class="text" type="text" id="ProtocolBar" value="http://" style="width:45px; margin-top:2px; position:absolute;" placeholder="Protocol" spellcheck="false" onkeypress="BrowserKeyCheck()"/>
+<input class="text" type="text" id="AddressBar" style="width:250px; margin-top:2px; position:absolute; margin-left:65px;" placeholder="Type URL or Local Path" spellcheck="false" onkeypress="BrowserKeyCheck()" x-webkit-speech/>
+<p class="Button" onclick="go();" style="position:absolute; margin-top:2px; margin-left:330px;">Go</p>&#160;&#160;
+<img draggable="false" style="margin-left:357px;" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Open.png'" onmouseout="this.src='Themes/Nova/Images/Open.png'" src="Themes/Nova/Images/Open.png" width="25" height="25" onclick="eXastumOpen('BrowserDialog')"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Edit.png'" onmouseout="this.src='Themes/Nova/Images/Edit.png'" src="Themes/Nova/Images/Edit.png" width="25" height="25" onclick="eXastumSplash('Themes/Nova/Images/Splashes/DivDesignerSplash.png','CodingSuite'); document.getElementById('DevToolsRenderWindow').src=document.getElementById('Browserwindow').src"/>&#160;&#160;
+<p class="Button" style="margin-top:2px; position:absolute; margin-left:2px;" onclick="getElementById('Browserwindow').src='System/Extras/google.html';">Google Search</p></ul>
+<br/>
+<iframe id="Browserwindow" onmousedown="document.getElementById('BrowserTitleBar').innerHTML='<em>Browser - Loading...</em>';" onload="getElementById('BrowserTitleBar').innerHTML='<em>Web Browser</em>';"></iframe>
+<br/>
+<h5 style="position:absolute; width:180px; background-color:transparent; color:#000000; font-size:10px; margin-top:-26px; border-bottom-left-radius:4px; border-bottom-right-radius:4px; margin-left:-6px; text-shadow:1px 1px 6px #000000;"><u>URLs:</u><em>&#160;<script>document.write(history.length);</script></em>&#160;&#160;<u>Cookies:</u>&#160;<em><script>document.write(navigator.cookieEnabled);</script></em>&#160;&#160;<u>Online:</u>&#160;<em><script>document.write(navigator.onLine);</script></em></h5>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Web Page Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="BrowserDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('BrowserDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Browser.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Web Browser</p></div>
+<br/><br/>
+<p class="Shadowed">Open Web Document:</p><br/><br/>
+<input type="file" accept="text/*" class="file" onchange="document.getElementById('Browserwindow').src=window.URL.createObjectURL(this.files[0]); eXastumClose('BrowserDialog');"/>
+<br/><br/>
+</div>
+<!-- End of Web Browser App -->
+
+
+<!-- Calculator App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Calculator';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Calculator" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Calculator','Calculator');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Calculator'); CalcClear();"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Calculator</div><br/>
+<ul class="eXastumTabList" id="CalcTabs"><li class="normal" onclick="getElementById('UnitConverter').style.display='none'; eXastumSwitchUI('RandomNumbers','TheCalculator');">Calculator</li><li class="normal" onclick="getElementById('UnitConverter').style.display='none'; eXastumSwitchUI('TheCalculator','RandomNumbers');">Random Numbers</li><li class="normal" onclick="getElementById('TheCalculator').style.display='none'; eXastumSwitchUI('RandomNumbers','UnitConverter');">Unit Converter</li></ul>
+<div id="RandomNumbers"><br/>
+<p class="Shadowed"><strong>Random Numbers:</strong></p><br/><br/><br/>
+<p class="Shadowed"><strong>BTW 0 and 1:</strong></p>&#160;&#160;<p class="Shadowed"><script>document.write(Math.random());</script></p><br/><p class="Shadowed"><strong>BTW 0 and 10:</strong></p>&#160;&#160;<p class="Shadowed"><script>document.write(Math.floor(Math.random()*11));</script></p><br/><p class="Shadowed"><strong>BTW 0 and 50:</strong></p>&#160;&#160;<p class="Shadowed"><script>document.write(Math.floor(Math.random()*51));</script></p><br/><p class="Shadowed"><strong>BTW 0 and 100:</strong></p>&#160;&#160;<p class="Shadowed"><script>document.write(Math.floor(Math.random()*101));</script></p><br/><p class="Shadowed"><strong>BTW 0 and 1000:</strong></p>&#160;&#160;<p class="Shadowed"><script>document.write(Math.floor(Math.random()*1001));</script></p><br/><br/><br/><br/><br/><p class="Shadowed"><strong>Lotto Numbers:</strong></p><br/><br/><p class="Shadowed"><script>document.write(Math.floor(Math.random()*49))</script>&#160;<script>document.write(Math.floor(Math.random()*49))</script>&#160;<script>document.write(Math.floor(Math.random()*49))</script>&#160;<script>document.write(Math.floor(Math.random()*49))</script>&#160;<script>document.write(Math.floor(Math.random()*49))</script>&#160;<script>document.write(Math.floor(Math.random()*49))</script></p><br/><br/><p class="Shadowed"><strong>Bonus Number: </strong></p><br/><p class="Shadowed"><script>document.write(Math.floor(Math.random()*49))</script>
+</div>
+<div id="TheCalculator">
+<textarea type="text" class="text" id="CalculatorField" spellcheck="false" placeholder="Type an Equation"></textarea><br/><br/><h2 style="position:fixed; margin-top:-3px; text-shadow:1px 1px 3px #000000;" id="CalculatorAnswer"></h2><p class="Button" style="margin-left:318px; padding:5px;" onclick="Calculate()">&#160;&#160;=&#160;&#160;</p>
+<br/><br/><br/>
+<p class="Shadowed"><em>Scientific Functions:</em></p><br/>
+<div style="margin-top:8px;"><p class="Shadowed">Find Square Root: </p><input type="text" class="text2" id="Equation1" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate2()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer2"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Mutiply by PI: </p><input type="text" class="text2" id="Equation2" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate3()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer3"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Find: </p><input type="text" class="text2" id="Equation3" spellcheck="false"/>&#160;<p class="Shadowed">To the Power of: &#160;</p>&#160;<input type="text" class="text2" id="Equation4" spellcheck="false" />&#160;&#160;<p class="Button" onclick="Calculate4()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer4"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Find Log in base E: </p><input type="text" class="text2" id="Equation5" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate5()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer5"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Find Sin: </p><input type="text" class="text2" id="Equation6" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate6()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer6"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Find Tan: </p><input type="text" class="text2" id="Equation7" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate7()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer7"></p></div>
+<div style="margin-top:8px;"><p class="Shadowed">Find Cos: </p><input type="text" class="text2" id="Equation8" spellcheck="false"/>&#160;&#160;<p class="Button" onclick="Calculate8()">&#160;=&#160;</p><p class="CalcAnswerText" id="CalcAnswer8"></p></div>
+</div>
+<div id="UnitConverter">
+<br/><br/>
+<p class="Shadowed"><u>Warning:</u> This converter is part of a beta product and can produce errors or false results, please do not use this converter for an important measurement such as converting units for a dose of medication. Use this app at your own risk.</p><br/>
+<div id="UnitOptions"><br/><br/><br/>
+<p class="Button" onclick="eXastumSwitchUI('UnitOptions','DistanceUnits')" >Distance</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('UnitOptions','MassUnits')" >Mass</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('UnitOptions','VelUnits')" >Velocity</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('UnitOptions','VolUnits')" >Volume</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('UnitOptions','TemperUnits')" >Temperature</p><br/><br/></div>
+<div id="DistanceUnits"><br/><br/>
+<input type="text" spellcheck="false" onkeyup="DistanceCalc()" placeholder="0" id="distanceinput" class="unitstext"/>&#160;&#160;<p class="Shadowed">x</p>&#160;&#160;<input type="text" spellcheck="false" onkeyup="DistanceCalc()" placeholder="0" id="distanceinput2" class="unitstext" />&#160;<p class="Shadowed"> = </p>&#160;&#160;<p class="Shadowed" id="distresult">0</p><br/><br/><p class="Shadowed">1 Kilometer = 0.621371 Miles</p>&#160;&#160;&#160;<p class="Shadowed">1 Mile = 1.60934 Kilometers</p><br/><p class="Shadowed">1 Centimeter = 0.393701 Inches</p>&#160;&#160;&#160;<p class="Shadowed">1 Inch = 2.54 Centimeters</p><br/><p class="Shadowed">1 Meter = 3.28084 = Yards 1.09361 Yards</p><br/><p class="Shadowed">1 Foot = 0.3048 Meters = 0.333333 Yards</p><br/><p class="Shadowed">1 Yard = 0.9144 Meters = 3 Feet</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('DistanceUnits','UnitOptions')">Back</p></div>
+<div id="MassUnits"><br/><br/>
+<input type="text" spellcheck="false" onkeyup="MassCalc()" placeholder="0" id="massinput" class="unitstext"/>&#160;&#160;<p class="Shadowed">x</p>&#160;&#160;<input type="text" spellcheck="false" onkeyup="MassCalc()" placeholder="0" id="massinput2" class="unitstext" />&#160;<p class="Shadowed"> = </p>&#160;&#160;<p class="Shadowed" id="massresult">0</p><br/><br/><p class="Shadowed">1 Kilogram = 0.157473 Stones</p><br/><p class="Shadowed">1 Stone = 6.35029 Kilograms</p><br/><p class="Shadowed">1 Ounce = 28.3495 Grams = 0.0625 Pounds</p><br/><p class="Shadowed">1 Pound = 453.592 Grams = 16 Ounces</p><br/><p class="Shadowed">1 Gram = 0.00220462 Pounds = 0.035274 Ounces</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('MassUnits','UnitOptions')">Back</p></div>
+<div id="VelUnits"><br/><br/>
+<input type="text" spellcheck="false" onkeyup="SpeedCalc()" placeholder="0" id="speedinput" class="unitstext"/>&#160;&#160;<p class="Shadowed">x</p>&#160;&#160;<input type="text" spellcheck="false" onkeyup="SpeedCalc()" placeholder="0" id="speedinput2" class="unitstext" />&#160;<p class="Shadowed"> = </p>&#160;&#160;<p class="Shadowed" id="speedresult">0</p><br/><br/><p class="Shadowed">1 KM/H = 0.621371 M/H</p>&#160;&#160;&#160;<p class="Shadowed">1 M/H = 1.60934 K/H</p><br/><p class="Shadowed">1 Meters/Sec= 3.28084 Feet/Sec</p>&#160;&#160;&#160;<p class="Shadowed">1 Knot = 1.15078 M/H</p><br/><p class="Shadowed">1 Knot = 1.852 KM/H</p><br/><p class="Shadowed">1 KM/H = 0.277778 Meters/Sec = 0.911344 Feet/Sec</p><br/><p class="Shadowed">1 M/H = 0.44704 Meters/Sec = 1.46667 Feet/Sec</p><br/><br/><p class="Button" onclick="eXastumSwitchUI('VelUnits','UnitOptions')">Back</p></div>
+<div id="VolUnits"><br/><br/>
+<p class="Shadowed">Coming to eXastum soon...</p><br/><br/><br/><p class="Button" onclick="eXastumSwitchUI('VolUnits','UnitOptions')">Back</p></div>
+<div id="TemperUnits"><br/><br/>
+<p class="Shadowed">Coming to eXastum soon...</p><br/><br/><br/><p class="Button" onclick="eXastumSwitchUI('TemperUnits','UnitOptions')">Back</p></div></div>
+</div>
+<!-- End of Calculator App -->
+
+
+<!-- Calendar App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Calendar';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Calendar">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Calendar','Calendar');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Calendar');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Calendar</div><br/><br/>
+<p class="Button" onclick="eXastumOpen('Clock');">Clock</p> <p class="Button" onclick="eXastumOpen('Alarm');">Set Alarm</p> <p class="Button" onclick="eXastumOpen('Stopwatch');">Stopwatch</p><br/><br/><div id="TimeCode"><p class="Shadowed">Today is </p><p class="Shadowed" id="ClockApp2"></p><p class="Shadowed"> and it is currently </p><p class="Shadowed" id="ClockApp"> </p></div><br/></div>
+<!-- End of Calendar App -->
+
+
+<!-- Camera App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Camera';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Camera">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Camera','Camera');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Camera'); getElementById('CameraFrame').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Camera</div><br/><br/>
+<p class="Shadowed">*Note: This app requires an internet connection to work.</p><br/><br/><iframe width="500" height="400" src="" id="CameraFrame"></iframe><br/><br/>
+<p onclick="getElementById('CameraFrame').src='http://www.exastum.com/eXastumCamera.html';" class="Button">Start Camera</p> <p> Click Video to Capture a Photo</p></div>
+<!-- End of Camera App -->
+
+
+<!-- Text Tools App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Text Tools';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="TextTools">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('TextTools');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleTextMini" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Text Tools</div><br/><br/>
+<table id="CharacterMapContents"><tr><td>&quot;</td><td>&amp;</td><td>&lt;</td><td>&gt;</td><td>&larr;</td><td>&uarr;</td><td>&rarr;</td><td>&darr;</td><td>&harr;</td><td>&crarr;</td><td>&lArr;</td><td>&uArr;</td><td>&rArr;</td><td>&dArr;</td><td>&hArr;</td></tr><tr><td>&loz;</td><td>&spades;</td><td>&clubs;</td><td>&hearts;</td><td>&diams;</td><td>&#160;</td><td>&forall;</td><td>&part;</td><td>&exist;</td><td>&empty;</td><td>&nabla;</td><td>&isin;</td><td>&notin;</td><td>&ni;</td><td>&prod;</td></tr><tr><td>&sum;</td><td>&minus;</td><td>&lowast;</td><td>&radic;</td><td>&prop;</td><td>&infin;</td><td>&ang;</td><td>&and;</td><td>&or;</td><td>&cap;</td><td>&cup;</td><td>&int;</td><td>&there4;</td><td>&sim;</td><td>&cong;</td></tr><tr><td>&asymp;</td><td>&ne;</td><td>&equiv;</td><td>&le;</td><td>&ge;</td><td>&sub;</td><td>&sup;</td><td>&nsub;</td><td>&sube;</td><td>&supe;</td><td>&oplus;</td><td>&otimes;</td><td>&perp;</td><td>&sdot;</td><td>&iexcl;</td></tr><tr><td>&cent;</td><td>&euro;</td><td>&pound;</td><td>&curren;</td><td>&yen;</td><td>&brvbar;</td><td>&sect;</td><td>&uml;</td><td>&copy;</td><td>&reg;</td><td>&trade;</td><td>&ordf;</td><td>&laquo;</td><td>&raquo;</td><td>&not;</td></tr><tr><td>&macr;</td><td>&deg;</td><td>&plusmn;</td><td>&sup1;</td><td>&sup2;</td><td>&sup3;</td><td>&acute;</td><td>&micro;</td><td>&para;</td><td>&middot;</td><td>&cedil;</td><td>&ordm;</td><td>&frac14;</td><td>&frac12;</td><td>&iquest;</td></tr></table>
+<br/>
+<p class="Shadowed">Base64 Encoder:</p><br/>
+<textarea id="EncodedArea" placeholder="Text to Encode/Decode" spellcheck="false"></textarea><br/>
+<p class="Button" onclick="getElementById('EncodedArea').value=window.btoa(getElementById('EncodedArea').value);">Encode</p>&#160;<p class="Button" onclick="getElementById('EncodedArea').value=window.atob(getElementById('EncodedArea').value);">Decode</p>
+<br/>
+</div>
+<!-- End of Text Tools App -->
+
+
+<!-- Clock App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Clock';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Clock">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Clock','Clock');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Clock'); getElementById('TimeFrame').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Clock</div><br/><br/>
+<p class="Button" onclick="getElementById('TimeFrame').src='System/Extras/Time.html';">Load Time</p> <p class="Button" onclick="eXastumOpen('Calendar');">Calendar</p> <p class="Button" onclick="eXastumOpen('Alarm');">Set Alarm</p> <p class="Button" onclick="eXastumOpen('Stopwatch');">Stopwatch</p><br/><br/><iframe id="TimeFrame"></iframe><br/></div>
+<!-- End of Clock App -->
+
+
+<!-- Developer Center App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Developer Center';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="CodingSuite">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('CodingSuite','Dev Center');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('CodingSuite');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/DevTools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" ondblclick="getElementById('CodingSuite').style.left='0px'; getElementById('CodingSuite').style.top='21px'; getElementById('CodingSuite').style.bottom='21px'; getElementById('CodingSuite').style.width='calc(100% - 30px)'; getElementById('CodingSuite').style.height='calc(100% - 85px)';" onmouseup="dropwindow();">eXastum Dev Tools</div><br/><br/>
+&#160;&#160;<p class="Button" onclick="eXastumOpen('CodeDialog')">Open File</p>&#160;<p class="Button">Save File</p>&#160;<p class="Button" onclick="window.open(getElementById('DevToolsRenderWindow').src)">Launch Site</p>&#160;<p class="Button">Run As App</p>&#160;<p class="Button" onclick="getElementById('HTMLEditor').value=''; getElementById('CSSEditor').value=''; getElementById('JSScriptEditor').value=''; updatecodez();">Clear</p>&#160;&#160;&#160;<p style="color:#838383; text-shadow:1px 1px 3px #000000;">Scale: </p>&#160;<input type="text" class="text" style="width:20px;" spellcheck="false" placeholder="1.0"/>&#160;&#160;<input type="text" style="width:140px;" class="text" spellcheck="false" placeholder="Open Full Path or URL"/>&#160;&#160;&#160;<input type="text" style="width:110px;" class="text" spellcheck="false" id="JSScriptEditor" placeholder="Type Script Code"/>&#160;<p class="Button" onclick="updatecodez(); getElementById('DevToolsRenderWindow').eval(getElementById('DevToolsRenderWindow').document.getElementById('eXastumScriptIn').value);">Run</p><img draggable="false" style="position:absolute; margin-left:10px; margin-top:-5px;" src="Themes/Nova/Images/DevTools.png" height="35" width="220"/><br/>
+<table style="margin-top:10px; width:calc(100% - 10px;); height:calc(100% - 85px);"  border="0" cellspacing="0" cellpadding="3">
+  <tr>
+    <td><iframe src="" id="DevToolsRenderWindow" width="100%" height="100%"></iframe></td>
+    <td width="200"><textarea id="CSSEditor" onkeyup="updatecodez()" spellcheck="false" placeholder="CSS Code Field"></textarea></td>
+  </tr>
+  <tr>
+    <td height="200" colspan="2"><textarea onkeyup="updatecodez()" id="HTMLEditor" spellcheck="false" placeholder="HTML Code Field"></textarea></td>
+  </tr>
+</table>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Test App';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="TestApp">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('TestApp');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Icon.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">eXastum 2.0</div><br/>
+<div id="TestAppContent"></div></div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Code Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="CodeDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('CodeDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/DevTools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Open Site Code</p></div>
+<br/><br/>
+<p class="Shadowed">Open HTML Document:</p><br/><br/>
+<input type="file" class="file" onchange="var x = new FileReader(); x.readAsText(this.files[0], 'UTF-8'); x.onload = function (evt) {getElementById('HTMLEditor').value = evt.target.result; updatecodez(); eXastumClose('CodeDialog');}"/>
+<br/><br/>
+<p class="Shadowed">Open CSS File:</p><br/><br/>
+<input type="file" class="file" onchange="var x = new FileReader(); x.readAsText(this.files[0], 'UTF-8'); x.onload = function (evt) {getElementById('CSSEditor').value = evt.target.result; updatecodez(); eXastumClose('CodeDialog');}"/>
+<br/><br/>
+<p class="Shadowed">Open JavaScript File:</p><br/><br/>
+<input type="file" class="file" onchange="var x = new FileReader(); x.readAsText(this.files[0], 'UTF-8'); x.onload = function (evt) {getElementById('JSScriptEditor').value = evt.target.result; updatecodez(); eXastumClose('CodeDialog');}"/>
+<br/><br/>
+</div>
+<!-- End of Developer Center App -->
+
+
+<!-- File Browser App -->
+<div id="Files" class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='File System Browser';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Files','File Browser');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Files'); getElementById('FileBrowser').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Files.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">File System Browser</div>
+<div id="eXastumFiles">
+<table style="margin-left:-15px; margin-top:-15px; border-bottom-left-radius:4px; border-bottom-right-radius:4px; border-style:inset; border-color:#838383; outline:none; border-width:1px;" width="730" border="1" cellspacing="0" cellpadding="0">
+  <tr>
+<td width="150" class="ListBG" rowspan="2">
+<div class="FilesLink" onclick="eXastumTabSwitch9('WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','BookmarksFileWindow')">Bookmarks</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','WebDocumentsFileWindow')">Web Documents</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','eXScriptsFileWindow')">eXastum Scripts</div>
+<div class="FilesLink2">&#160;</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','PicturesFileWindow')">Pictures</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','VideosFileWindow')">Videos</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow','MusicFileWindow')">Music</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','ApplicationsFileWindow','WidgetsFileWindow','DocumentsFileWindow')">Documents</div>
+<div class="FilesLink2">&#160;</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','WidgetsFileWindow','ApplicationsFileWindow')">Applications</div>
+<div class="FilesLink" onclick="eXastumTabSwitch9('BookmarksFileWindow','WebDocumentsFileWindow','eXScriptsFileWindow','PicturesFileWindow','VideosFileWindow','MusicFileWindow','DocumentsFileWindow','ApplicationsFileWindow','WidgetsFileWindow')">Widgets</div>
+</td>
+<td class="ListBG" height="40" colspan="2">&#160;&#160;<p class="Button" onclick="eXastumOpen('AddFileDialog')">Add File</p>&#160;&#160;<p class="Button" onclick="eXastumCreateFolder('Bookmarks/Bob')">New Folder</p>&#160;&#160;<input type="text" id="FileBrowserPathInput" class="text" spellcheck="false" placeholder="URL or Folder Path"/>&#160;&#160;&#160;&#160;&#160;<p class="Shadowed">eXastum HTML5 File System</p></td>
+  </tr>
+  <tr>
+<td class="ListBG2" width="360" height="360">
+<div id="BookmarksFileWindow"><br/><p class="FilesHeader" onclick="ListDirBookmarks()">Bookmarks</p><br/><br/><div id="BookmarksFileList"></div></div>
+<div class="NoDisplay" id="WebDocumentsFileWindow"><br/><p class="FilesHeader" onclick="ListDirWebDocuments()">Web Documents</p><br/><br/><div id="WebDocsFileList"></div></div>
+<div class="NoDisplay" id="eXScriptsFileWindow"><br/><p class="FilesHeader" onclick="ListDirScripts()">eXastum Scripts</p><br/><br/><div id="eXScriptsFileList"></div></div>
+<div class="NoDisplay" id="PicturesFileWindow"><br/><p class="FilesHeader" onclick="ListDirPictures()">Pictures</p><br/><br/><div id="PicturesFileList"></div></div>
+<div class="NoDisplay" id="MusicFileWindow"><br/><p class="FilesHeader" onclick="ListDirMusic()">Music</p><br/><br/><div id="MusicFileList"></div></div>
+<div class="NoDisplay" id="VideosFileWindow"><br/><p class="FilesHeader" onclick="ListDirVideos()">Videos</p><br/><br/><div id="VideosFileList"></div></div>
+<div class="NoDisplay" id="DocumentsFileWindow"><br/><p class="FilesHeader" onclick="ListDirDocuments()">Documents</p><br/><br/><div id="DocumentsFileList"></div></div>
+<div class="NoDisplay" id="ApplicationsFileWindow"><br/><p class="FilesHeader" onclick="ListDirApplications()">Applications</p><br/><br/><div id="AppsFileList"></div></div>
+<div class="NoDisplay" id="WidgetsFileWindow"><br/><p class="FilesHeader" onclick="ListDirWidgets()">Widgets</p><br/><br/><div id="WidgetsFileList"></div></div>
+</td>
+<td class="ListBG"><div id="EmbeddedFilePreview" width="200" height="200"><img id="ImageFilePreview" src="Themes/Nova/Icons/Logo2.png"/><video src="" id="VideoFilePreview" autoplay="autoplay" loop="loop" onplay="this.volume='0.0';"></video><textarea width="200" height="200" id="TextFilePreview"></textarea></div></td>
+  </tr>
+  <tr>
+<td class="ListBG" height="25" colspan="3">&#160; <p class="Shadowed">Storage  &#160; &#160; File Name: <em onmouseover="this.innerHTML=fs.name;" id="FileNamePreview">Unknown</em>  &#160; &#160; File Type: <em id="FileTypePreview">Unknown</em>  &#160; &#160; File Size: <em id="FileSizePreview">Unknown</em></p></td>
+  </tr>
+</table>
+</div>
+</div>
+
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Add File Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="AddFileDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('AddFileDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Files.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Add File</p></div>
+<br/><br/>
+<p class="Shadowed">Add File to System:</p><br/><br/>
+<p class="Shadowed">Type the new file location, name and extension as shown below then open the file to add it to the system.</p>
+<br/><br/>
+<input type="text" class="text" id="FileAdderName" placeholder="/Music/Track1.mp3" spellcheck="false"/>
+<br/>
+<input type="file" class="file" onchange="var x = getElementById('FileAdderName').value; eXastumFileDuplicate(x, this.files[0]); eXastumClose('AddFileDialog'); eXastumListFiles();"/>
+<br/><br/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Add Folder Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="AddFolderDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('AddFolderDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Files.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Add Folder</p></div>
+<br/><br/>
+<p class="Shadowed">Add Folder to System:</p><br/><br/>
+<p class="Shadowed">Type the new folder location and name add it to the system.</p>
+<br/><br/>
+<input type="text" class="text" id="FolderAdderName" placeholder="/Music/Best Tracks" spellcheck="false"/>
+<br/>
+<input type="file" class="file" onchange="var x = getElementById('FileAdderName').value; eXastumFileDuplicate(x, this.files[0]); eXasrumClose('AddFileDialog');"/>
+<br/><br/>
+</div>
+
+<!-- End of File Browser App -->
+
+
+<!-- Picture Viewer App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Picture Viewer';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Gallery" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Gallery','Picture Viewer');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Gallery');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Pictures.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Picture Viewer</div>
+<ul class="eXastumTabList" id="GalleryTabs"><img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Open.png'" onmouseout="this.src='Themes/Nova/Images/Open.png'" src="Themes/Nova/Images/Open.png" width="25" height="25" style="margin-left:8px; margin-top:3px;" onclick="eXastumOpen('GalleryDialog')"/>&#160;<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Edit.png'" onmouseout="this.src='Themes/Nova/Images/Edit.png'" src="Themes/Nova/Images/Edit.png" width="25" height="25" onclick="eXastumSplash('Themes/Nova/Images/Splashes/AbbySplash.png','Abby'); var canvas = document.getElementById('AbbyCanvas'); var context = canvas.getContext('2d'); context.clearRect(0,0,700,500); var image = document.getElementById('GalleryImage'); var x = parseFloat(image.height/image.width); var y = 700*x; var c = 700;  if (y > 500) {var c = c/2; var y = y/2;} if (y > 700) {var c = c/3; var y = y/3;} var b = (700-c)/2; var k = (500-y)/2; context.drawImage(image,b,k,c,y);"/>&#160;<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Fullscreen.png'" onmouseout="this.src='Themes/Nova/Images/Fullscreen.png'" src="Themes/Nova/Images/Fullscreen.png" width="25" height="25" onclick="getElementById('GalleryImage').webkitRequestFullScreen();"/>&#160;<p class="Button" style="margin-left:10px; margin-top:5px; position:absolute;" onclick="eXastumFileDuplicate('/eXastumSystem/Wallpaper/Wallpaper.jpg', getElementById('GalleryInputAdder').files[0]); eXastumSetWallpaper('filesystem:http://localhost/persistent/eXastumSystem/Wallpaper/Wallpaper.jpg'); eXastumOpenWait('eXastum is copying the wallpaper into the File System...'); setTimeout(function Wait() {getElementById('WallpaperPic').src='filesystem:http://localhost/persistent/eXastumSystem/Wallpaper/Wallpaper.jpg'; eXastumCloseWait();}, 10000)">Set Wallpaper</p>&#160;<p style="margin-left:105px; margin-top:5px; position:absolute;" class="Button" onclick="SetWidgetPicture()">Set Widget</p>&#160;<input style="margin-left:183px; margin-top:5px; width:170px; position:absolute;" class="text" type="text" placeholder="Full Path or URL" spellcheck="false" onkeyup="getElementById('GalleryImage').src=this.value;"/><img draggable="false" style="width:140px; position:absolute; margin-top:-3px; margin-left:375px;" src="Themes/Nova/Images/Gallery.png" onerror="this.src='Themes/Nova/Icons/FallBack.png';"/></ul>
+<img draggable="false" class="gallery" id="GalleryImage" src="Themes/Nova/Images/DefaultImage.jpg" onerror="getElementById('GalleryImage').src='Themes/Nova/Icons/FallBack.png';"/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Image Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="GalleryDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('GalleryDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Pictures.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Picture Viewer</p></div>
+<br/><br/>
+<p class="Shadowed">Open Image File:</p><br/><br/>
+<input type="file" accept="image/*" class="file" id="GalleryInputAdder" onchange="getElementById('GalleryImage').src=(window.URL.createObjectURL(this.files[0])); eXastumClose('GalleryDialog');"/>
+<br/><br/>
+</div>
+
+<!-- End of Picture Viewer App -->
+
+
+<!-- Game Center App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Game Center';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="GameCenter">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('GameCenter','Game Center');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('GameCenter');"/>
+<img draggable="false" style="margin-left:6px;" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Games.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Game Center</div><br/>
+<div id="GameList" style="margin-top:2px;"><table width="500" height="100" border="0" cellspacing="0" cellpadding="0"><tr><td id="KurwaIcon" onclick="eXastumSwitchUI('GameList','Kurwa'); getElementById('KurwaFrame').src='System/Extras/Games/Kurwa.html';" class="GameIcon">&nbsp;</td><td id="DrunkenIcon" class="GameIcon" onclick="eXastumSwitchUI('GameList','DrunkenDrive'); getElementById('DriveFrame').src='System/Extras/Games/DrunkenDrive/index.html';">&nbsp;</td></tr></table>
+<div id="GamesList" style="margin-top:1px;">
+<h2 class="MenuTitle" style="margin-left:10px;"><strong><em>Installed Games:</em></strong></h2>
+<div id="TheGamesList">
+</div>
+</div>
+<br/><p class="Button" onclick="eXastumOpen('Store');" style="margin-left:15px;">Get More Games</p><br/><br/></div>
+<div id="Kurwa"><iframe width="475" height="510" id="KurwaFrame"></iframe><br/><br/><p class="Button" onclick="eXastumSwitchUI('Kurwa','GameList'); getElementById('KurwaFrame').src='';">Back</p></div>
+<div id="DrunkenDrive" style="margin-top:2px;"><iframe width="900" height="500" id="DriveFrame"></iframe></div>
+</div>
+<!-- End of Game Center App -->
+
+
+<!-- Info and Tests App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Info & Tests';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="InfoTests">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('InfoTests','Info & Tests');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('InfoTests');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/InfoTests.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Info & Tests</div>
+<ul class="eXastumTabList" id="InfoTabs"><li class="normal" onclick="getElementById('BrowserInfo').style.display='none'; getElementById('OSUITests').style.display='none'; getElementById('InfoNote').style.display='none'; getElementById('OSInfo').style.display='block';">Operating System Specs</li><li onclick="getElementById('BrowserInfo').style.display='block'; getElementById('OSUITests').style.display='none'; getElementById('InfoNote').style.display='none'; getElementById('OSInfo').style.display='none';" class="normal">Web Browser Specs</li><li class="normal" onclick="getElementById('BrowserInfo').style.display='none'; getElementById('OSUITests').style.display='block'; getElementById('InfoNote').style.display='none'; getElementById('OSInfo').style.display='none';">OS UI Components</li></ul>
+<div id="InfoNote"><br/><p class="Shadowed"><strong>Note: </strong></p><p><br/>These tests may not be accurate and errors<br/>or misleading information may be shown.<br/><br/>More info can be seen and more tests can be run<br/>by using the command terminal.</p><br/><br/></div>
+
+<div id="OSInfo"><div id="OSInformation"></div><br/></div>
+
+<div id="BrowserInfo"><div class="Shadowed" id="BrowserInformation"></div><br/></div>
+
+<div id="OSUITests"><p class="Shadowed"><strong>Cursors Test:</strong></p><br/><p><em id="CursorAuto">Auto</em>&#160;<em id="CursorDefault">Default</em>&#160;<em id="CursorCrosshair">Crosshair&#160;</em><em id="CursorPointer">Pointer</em>&#160;<em id="CursorMove">Move</em>&#160;<em id="CursorText">Text</em>&#160;<em id="CursorHelp">Help</em>&#160;<em id="CursorNorth">N-Resize</em><br/><em id="CursorSouth">S-Resize</em>&#160;<em id="CursorEast">E-Resize</em>&#160;<em id="CursorWest">W-Resize</em>&#160;<em id="CursorNE">NE-Resize</em>&#160;<em id="CursorNW">NW-Resize</em>&#160;<em id="CursorSE">SE-Resize</em><br/><em id="CursorSW">SW-Resize</em>&#160;<em id="CursorProgress">Progress</em>&#160;<em id="CursorWait">Wait</em></p><br/><br/><p class="Shadowed"><strong>Progress Bars Test:</strong><br/>0% Progress:  </p><progress onload value="0" max="100" ></progress><br/><p class="Shadowed">50% Progress:  </p><progress onload value="50" max="100" ></progress><br/><p class="Shadowed">100% Progress:  </p><progress onload value="100" max="100" ></progress><br/><br/><p class="Shadowed"><strong>Other Elements:</strong></p><br/><button type="button">Button</button><input type="file"/><br/></div>
+
+
+</div>
+<!-- End of Info and Tests App -->
+
+
+<!-- Google News App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='World News & Updates';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="News" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('News','World News');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('News');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" width="18" height="18" class="IconLink" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">World News & Updates</div><br/><br/>
+<iframe frameborder="0" width="300" height="250" marginwidth="0" marginheight="0" src="http://www.google.com/uds/modules/elements/newsshow/iframe.html?topic=h&rsz=small&format=300x250"></iframe></div>
+<!-- End of Google News App -->
+
+
+<!-- Google Maps App -->
+<div class="app" id="Maps" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Maps';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Maps','Maps');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Maps'); getElementById('TheMap').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Maps.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Maps</div><br/>
+<iframe id="TheMap" src=""></iframe>
+<div id="MapsOverlay">
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/Refresh.png'" onmouseout="this.src='Themes/Nova/Images/Refresh.png'" src="Themes/Nova/Images/Refresh.png" width="25" height="25" onclick="getElementById('TheMap').src='http://www.google.com/uds/modules/elements/mapselement/iframe.html?maptype=roadmap&element=true';"/>
+<img draggable="false" alt="Image Load Failed" onmouseover="this.src='Themes/Nova/Images/Lite/FullScreen.png'" onmouseout="this.src='Themes/Nova/Images/FullScreen.png'" src="Themes/Nova/Images/FullScreen.png" width="25" height="25" onclick="getElementById('TheMap').webkitRequestFullScreen();"/>
+</div>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Geolocation';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Geo" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Geo');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Maps.png" class="IconLink" width="18" height="18" />
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">HTML5 Geolocation</p></div>
+<br/><br/>
+<p class="Shadowed" id="GeoData">Waiting for Data...</p>
+<br/><br/>
+</div>
+<!-- End of Google Maps App -->
+
+
+<!-- Settings App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='System Settings';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Settings">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Settings','System Settings');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Settings');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Settings.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">System Settings</div>
+<ul class="eXastumTabList" id="SettingsTabs"><li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('AccountSettings').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('SkinSettings').style.display='block';">Skin</li><li onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('SkinSettings').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('AccountSettings').style.display='block';" class="normal">Accounts</li><li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('SkinSettings').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('AccountSettings').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('Performance').style.display='block';">Performance</li><li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('SkinSettings').style.display='none'; getElementById('AccountSettings').style.display='none'; getElementById('Performance').style.display='none'; getElementById('Advanced').style.display='none'; getElementById('ChromeSettings').style.display='block';">Chrome</li><li class="normal" onclick="getElementById('WallpaperSettings').style.display='none'; getElementById('SkinSettings').style.display='none'; getElementById('AccountSettings').style.display='none'; getElementById('Performance').style.display='none'; getElementById('ChromeSettings').style.display='none'; getElementById('Advanced').style.display='block';">Advanced</li></ul>
+
+<div id="SkinSettings">
+<p class="Shadowed"><em>*Some settings require you to restart eXastum</em></p><br/><br/><br/>
+<p class="Shadowed">Desktop Parallax Amount: </p>&#160;<input type="text" style="width:100px;" onkeyup="window.localStorage.setItem('Parallax',this.value); eXastumSettingNotify();" class="text" placeholder="0-100"/><br/><br/><p class="Shadowed">Typing 0 turns off Parallax, the default value is 18</p><br/><p class="Shadowed">A lower number gives more background movement</p><br/><br/>
+<input type="text" spellcheck="false" onkeyup="AddCssRules()" id="CustomCSS" style="width:260px;" placeholder="Type to Add Custom CSS Rules" class="text"/><br/><br/>
+<p class="Button" onclick="eXastumSwitchUI('SkinSettings','WallpaperSettings')">Change Wallpaper</p><br/><br/><p class="Shadowed">Interface Filters:</p><br/><br/>
+<p class="Button" onclick="body.style.webkitFilter='grayscale(1)'; boost();">Grayscale</p>&#160;<p class="Button" onclick="body.style.webkitFilter='sepia(1)'; boost();">Sepia</p>&#160;<p class="Button" onclick="body.style.webkitFilter='invert(1)'; boost();">Color Invert</p>&#160;<p class="Button" onclick="body.style.webkitFilter=''; boost();">Reset Filters</p>
+<br/><br/>
+</div>
+
+<div id="WallpaperSettings">
+<table width="290" height="200" border="0" cellspacing="4" cellpadding="0">
+  <tbody><tr>
+    <td id="Wall1" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/eXastum/Wallpaper1.jpg');">&nbsp;</td>
+    <td id="Wall2" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/eXastum/Wallpaper2.jpg');">&nbsp;</td>
+    <td id="Wall3" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/eXastum/Wallpaper3.jpg');">&nbsp;</td>
+    <td id="Wall4" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/eXastum/Wallpaper4.jpg');">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="Wall5" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Brian_Millar/Wallpaper1.jpg');">&nbsp;</td>
+    <td id="Wall6" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Brian_Millar/Wallpaper2.jpg');">&nbsp;</td>
+    <td id="Wall7" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Brian_Millar/Wallpaper3.jpg');">&nbsp;</td>
+    <td id="Wall8" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Brian_Millar/Wallpaper4.jpg');">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="Wall9" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Liam_Millar/Wallpaper1.jpg');">&nbsp;</td>
+    <td id="Wall10" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Liam_Millar/Wallpaper2.jpg');">&nbsp;</td>
+    <td id="Wall11" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Liam_Millar/Wallpaper3.jpg');">&nbsp;</td>
+    <td id="Wall12" onclick="eXastumSetWallpaper('Themes/Nova/Images/Wallpapers/Liam_Millar/Wallpaper4.jpg');">&nbsp;</td>
+  </tr>
+</tbody></table><p class="Shadowed">Rows 1 & 2 Copyright &copy; Brian Millar<br/>Row 3 Copyright &copy; Liam Millar</p><br/><br/>
+<p class="Button" onclick="eXastumSwitchUI('WallpaperSettings','SkinSettings')">Back</p>&#160;&#160;&#160;<p class="Shadowed">Custom:</p>&#160;&#160;<input type="file" style="width:164px;" id="WallpaperChanger" accept="image/*" onchange="eXastumSetWallpaper(window.URL.createObjectURL(this.files[0])); eXastumFileDuplicate('/eXastumSystem/Wallpaper/Wallpaper.jpg', this.files[0]); eXastumSetWallpaper('filesystem:http://localhost/persistent/eXastumSystem/Wallpaper/Wallpaper.jpg'); eXastumOpenWait('eXastum is copying the wallpaper into the File System...'); setTimeout(function Wait() {getElementById('WallpaperPic').src='filesystem:http://localhost/persistent/eXastumSystem/Wallpaper/Wallpaper.jpg'; eXastumCloseWait();}, 10000)" /><br/>
+</div>
+
+
+<div id="AccountSettings">
+<p class="Shadowed">Change Your eXastum Account Settings: </p><br/>
+<img id="UserPicPreview" width="80" height="80" style="position:absolute; margin-left:215px; margin-top:5px; width:70px; height:55px; border-radius:10px; border:none; outline:none; box-shadow:0px 0px 2px #000000;"/>
+<input spellcheck="false" placeholder="New Username - Type to Change" id="UsernamePreview" type="text" onkeyup="window.localStorage.setItem('Username', this.value); eXastumSettingNotify();" style="margin-top:6px; padding:4px; width:200px;" class="text"/><br/>
+<input spellcheck="false" placeholder="New Password - Type to Change" type="password" onkeyup="window.localStorage.setItem('Password', this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:200px;" class="text"/><br/>
+<input spellcheck="false" placeholder="Change Account Picture (Full Path/URL)" id="UserPicSetting" onkeyup="window.localStorage.setItem('UserPic', this.value); getElementById('UserPicPreview').src = window.localStorage.getItem('UserPic'); eXastumSettingNotify();" type="text" style="margin-top:3px; padding:4px; width:280px;" class="text"/><br/><br/>
+<p class="Shadowed">Other Accounts:</p>
+<br/><br/>
+<p class="Button" onclick="window.open('https://accounts.google.com/Login','_blank','width=750')">Google Sign-In</p>&#160;<p class="Button" onclick="window.open('https://twitter.com/login','_blank','width=750')">Twitter Sign-In</p>&#160;<p class="Button" onclick="window.open('http://login.yahoo.com','_blank','width=750')">Yahoo Sign-In</p>
+<br/><br/>
+<p class="Shadowed">Facebook Sign-In:</p>
+<br/>
+<iframe src="http://www.exastum.com/fbtest.html" width="290" height="85"></iframe>
+</div>
+
+
+<div id="ChromeSettings">
+<div id ="ChromeList">
+<h6>chrome://appcache-internals</h6><br/>
+<h6>chrome://blob-internals</h6><br/>
+<h6>chrome://bookmarks</h6><br/>
+<h6>chrome://cache</h6><br/>
+<h6>chrome://chrome-urls</h6><br/>
+<h6>chrome://crashes</h6><br/>
+<h6>chrome://credits</h6><br/>
+<h6>chrome://dns</h6><br/>
+<h6>chrome://downloads</h6><br/>
+<h6>chrome://extensions</h6><br/>
+<h6>chrome://flags</h6><br/>
+<h6>chrome://flash</h6><br/>
+<h6>chrome://gpu-internals</h6><br/>
+<h6>chrome://histograms</h6><br/>
+<h6>chrome://history</h6><br/>
+<h6>chrome://ipc</h6><br/>
+<h6>chrome://inspect</h6><br/>
+<h6>chrome://media-internals</h6><br/>
+<h6>chrome://memory</h6><br/>
+<h6>chrome://net-internals</h6><br/>
+<h6>chrome://view-http-cache</h6><br/>
+<h6>chrome://newtab</h6><br/>
+<h6>chrome://omnibox</h6><br/>
+<h6>chrome://plugins</h6><br/>
+<h6>chrome://policy</h6><br/>
+<h6>chrome://predictors</h6><br/>
+<h6>chrome://profiler</h6><br/>
+<h6>chrome://quota-internals</h6><br/>
+<h6>chrome://settings</h6><br/>
+<h6>chrome://stats</h6><br/>
+<h6>chrome://sync-internals</h6><br/>
+<h6>chrome://tasks</h6><br/>
+<h6>chrome://terms</h6><br/>
+<h6>chrome://tracing</h6><br/>
+<h6>chrome://version</h6><br/>
+<h6>chrome://conflicts</h6><br/>
+<h6>chrome://print</h6>
+<br/>
+</div>
+</div>
+
+<div id="Performance"><br/><p>Performance and Multitasking Options<br/>coming in 2.0.2</p><br/><br/></div>
+
+<div id="Advanced"><br/><p class="Button" onclick="eXastumSystemReset();">Reset System Settings to Default</p><br/><br/><br/>
+<p class="Shadowed">Add Custom Libraries to System (Three.js etc.):</p><br/>
+<input spellcheck="false" id="CustomLibSet1" placeholder="Full Path/URL of JS File" type="text" onkeyup="window.localStorage.setItem('CustomLibrary1',this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:290px;" class="text"/><br/>
+<input spellcheck="false" id="CustomLibSet2" placeholder="Full Path/URL of JS File" type="text" onkeyup="window.localStorage.setItem('CustomLibrary2',this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:290px;" class="text"/><br/>
+<input spellcheck="false" id="CustomLibSet3" placeholder="Full Path/URL of JS File" type="text" onkeyup="window.localStorage.setItem('CustomLibrary3',this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:290px;" class="text"/><br/>
+<input spellcheck="false" id="CustomLibSet4" placeholder="Full Path/URL of JS File" type="text" onkeyup="window.localStorage.setItem('CustomLibrary4',this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:290px;" class="text"/><br/>
+<input spellcheck="false" id="CustomLibSet5" placeholder="Full Path/URL of JS File" type="text" onkeyup="window.localStorage.setItem('CustomLibrary5',this.value); eXastumSettingNotify();" style="margin-top:3px; padding:4px; width:290px;" class="text"/><br/>
+</div>
+
+</div>
+<!-- End of Settings App -->
+
+
+<!-- Shire App -->
+<div class="app" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Shire AI';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Shire">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Shire');"/>
+<br/>
+<div id="ShireBox">
+</div>
+<input type="text" class="text" spellcheck="false" id="ShireInput" placeholder="Type to Talk" x-webkit-speech/>
+</div>
+<!-- End of Shire App -->
+
+
+<!-- Stopwatch App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Stopwatch';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Stopwatch">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Stopwatch','Stopwatch');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Stopwatch'); StopCounting();"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleTextMini" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Stopwatch</div>
+<br/><h1 id="Watch">0</h1><br/><br/><br/><br/><br/><p style="margin-left:35px;" class="ButtonMarginFive" onclick="StartWatch()">Start</p><p class="ButtonMarginFive" onclick="StopCounting()">Stop</p><p class="ButtonMarginFive" onclick="ResetWatch()">Reset</p></div>
+<!-- End of Stopwatch App -->
+
+
+<!-- eXastum Web Store -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='eXastum Web Store';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Store">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Store','Web Store');" />
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Store'); getElementById('StoreWindow').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Store.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">eXastum Web Store</div><br/><br/>
+<iframe id="StoreWindow"></iframe><img draggable="false" alt="Image Load Failed" id="StoreLogo" src="Themes/Nova/Images/Store.png" width="190" height="60"/><h5 id="StoreIntroText"><em>Welcome to the eXastum Web Store.<br/>You can download apps and content from Brian Millar and the eXastum Community here.<br/></em></h5></div>
+<!-- End of eXastum Web Store -->
+
+
+<!-- System App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='System App';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="SystemApp">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('SystemApp');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Icon.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">eXastum System</div><br/><br/>
+<h5 id="WelText"><em>Welcome to eXastum HTML5 OS v2.0</em></h5><br/><br/>
+<input id="QuickCommand" type="text" spellcheck="false" class="text" placeholder="Type a quick command..." />&#160;&#160;&#160;&#160;<p class="Button" onclick="RunScriptSys()">Run</p>&#160;&#160;<p class="Button" onclick="getElementById('Browserwindow').src='https://www.sourceforge.net/p/exastum'; eXastumOpen('Browser');">Updates</p>
+<br/><br/><img draggable="false" alt="Image Not Found" class="DevIcon" width="60" height="60" src="Themes/Nova/Icons/Terminal.png" onclick="eXastumOpen('Terminal')"/><img draggable="false" alt="Image Not Found" class="DevIcon" width="60" height="60" src="Themes/Nova/Icons/Files.png" onclick="eXastumOpen('Files')"/><img draggable="false" alt="Image Not Found" class="DevIcon" width="60" height="60" src="Themes/Nova/Icons/InfoTests.png" onclick="eXastumOpen('InfoTests')"/><img draggable="false" alt="Image Not Found" class="DevIcon" width="60" height="60" src="Themes/Nova/Icons/Settings.png" onclick="eXastumOpen('Settings')"/>
+</div>
+<!-- End of System App -->
+
+
+<!-- Terminal App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Terminal';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Terminal">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Terminal','Terminal');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Terminal');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Terminal.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">eXastum Terminal</div><br/><br/>
+<p class="Button" onclick="eval(getElementById('CmdTerm').value)">Run</p>
+&#160;<p class="Button" onclick="eXastumOpen('ScriptDialog');">Open</p>
+&#160;<p class="Button" onclick="eXastumSave(getElementById('CmdTerm').value);">Save Script</p>
+&#160;&#160;&#160;<p style="margin-left:50px;" class="Shadowed">Run Script At:  </p>&#160;
+<input class="text" type="text" spellcheck="false" placeholder="00:00:00" id="TerminalTime"/>&#160;&#160;
+<p class="Button" onclick="ScriptTimer()">Set</p><br/><textarea id="CmdTerm" onkeypress="TermKeyCheck()" spellcheck="false" onclick="focus()" placeholder="Copyright &copy; Brian Millar 2014 - eXastum Nova Build 2000"></textarea><br/><br/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Script Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="ScriptDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('ScriptDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Icon.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Open Script File</p></div>
+<br/><br/>
+<p class="Shadowed">Open Script File:</p><br/><br/>
+<input type="file" class="file" onchange="var x = new FileReader(); x.readAsText(this.files[0], 'UTF-8'); x.onload = function (evt) {getElementById('CmdTerm').value = evt.target.result; eXastumClose('ScriptDialog');}"/>
+<br/><br/>
+</div>
+
+<!-- End of Terminal App -->
+
+
+<!-- Text Pad App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Text Pad';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="TextPad">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('TextPad','Text Pad');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('TextPad');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Text Pad</div><br/>
+<div id="TextPadTools">
+<p class="Button" onclick="getElementById('Pad').select()">Select All</p>
+&#160;
+<input type="file" id="TextInputFile" onchange="var x = new FileReader(); x.readAsText(this.files[0], 'UTF-8'); x.onload = function (evt) {getElementById('Pad').value = evt.target.result;}"/><p id="OpenTextFile" class="Button">Open File</p>
+&#160;
+<p class="Button" id="PrintButton" onclick="TextPrint()">Print</p>
+&#160;
+<p class="Button" id="SaveTextButton" onclick="SaveText()">Generate File</p>
+&#160;
+<a id="SaveLink" download="eXastumTextDocument.txt"><p class="Button">Save File</p></a>
+&#160;&#160;&#160;
+<p class="Link" onclick="getElementById('Pad').style.fontFamily='calibri';"> Cali</p>
+<p class="Link" onclick="getElementById('Pad').style.fontFamily='verdana';"> Ver</p>
+<p class="Link" onclick="getElementById('Pad').style.fontFamily='arial';"> Ari</p>
+<p class="Link" onclick="getElementById('Pad').style.fontFamily='times new roman';"> Tim</p>
+<p class="Link" onclick="getElementById('Pad').style.fontFamily='tahoma';"> Tah</p>
+&#160;&#160;&#160;&#160;
+<p class="Link" onclick="getElementById('Pad').style.fontSize='smaller';"><strong>S</strong></p>&#160;
+<p class="Link" onclick="getElementById('Pad').style.fontSize='medium';"><strong>M</strong></p>&#160;
+<p class="Link" onclick="getElementById('Pad').style.fontSize='larger';"><strong>L</strong></p>&#160;
+&#160;&#160;&#160;&#160;&#160;&#160;
+<img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/White.png" onclick="getElementById('Pad').style.color='white';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Silver.png" onclick="getElementById('Pad').style.color='silver';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Black.png" onclick="getElementById('Pad').style.color='black';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Blue.png" onclick="getElementById('Pad').style.color='blue';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Red.png" onclick="getElementById('Pad').style.color='red';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Yellow.png" onclick="getElementById('Pad').style.color='yellow';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Green.png" onclick="getElementById('Pad').style.color='green';" width="10" height="10"/>&#160;&#160;&#160;&#160;&#160;&#160;<img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/White.png" onclick="getElementById('Pad').style.background='white';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Silver.png" onclick="getElementById('Pad').style.background='silver';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Black.png" onclick="getElementById('Pad').style.background='black';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Blue.png" onclick="getElementById('Pad').style.background='blue';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Red.png" onclick="getElementById('Pad').style.background='red';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Yellow.png" onclick="getElementById('Pad').style.background='yellow';" width="10" height="10"/><img draggable="false" alt="Image Load Failed" class="Link" src="Themes/Nova/Images/Green.png" onclick="getElementById('Pad').style.background='green';" width="10" height="10"/>&#160;&#160;&#160;&#160;&#160;<p><strong>SC: </strong></p><p class="Link" onclick="getElementById('Pad').spellcheck=true;" > On</p><p class="Link" onclick="getElementById('Pad').spellcheck=false;" > Off</p></div>
+<textarea id="Pad" onclick="focus()" placeholder="Type your text here" spellcheck="true"></textarea><br/><br/></div>
+<!-- End of Text Pad App -->
+
+
+<!-- Tools and Utilities App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Tools & Utilities';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Tools">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Tools','Tools & Utilities');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Tools');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Tools.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Tools & Utilities</div>
+<div id="ToolsList"><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Installer')">Installer</p><br/>
+<br/><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Alarm')">Alarm Clock</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Calculator')">Calculator</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Calendar')">Calendar</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Camera')">Camera</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Clock')">Clock</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Contacts')">Contacts</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('CodingSuite')">Dev Tools</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('News')">World News</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Stopwatch')">Stopwatch</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('Terminal')">Terminal</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('TextPad')">Text Pad</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('TextTools')">Text Tools</p><br/><br/></div>
+<img draggable="false" src="Themes/Nova/Icons/HD/Tools.png" alt="Preview" id="ToolsIconPreview" width="150" height="150"/>
+</div>
+<!-- End of Tools and Utilities App -->
+
+<!-- Application Installer -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Application Installer';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Installer">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Installer','App Installer');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Installer');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/FallBack.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"></div>
+<br/><br/><br/>
+<h2 style="text-shadow:3px 3px 8px #000000;">Application Installer</h2><br/>
+<br/><br/>
+<p class="Shadowed">Welcome to the eXastum Application Installer. You can install as many apps as you like using this installer.</p>
+<br/><br/>
+<p class="Shadowed">Load Application Manifest:</p><br/>
+<input type="file" class="file"/>
+<br/><br/>
+<p class="Shadowed">Input Path to App's HTML File in the Applications Folder:</p><br/>
+<input type="text" class="text" spellcheck="false" placeholder="App Name/App.html"/>
+<br/><br/><br/>
+<p class="Button" onclick="eXastumInstallApp()">Install App</p>
+</div>
+<!-- End of Application Installer -->
+
+
+<!-- Abby Photo Editor -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Abby Photo Editor';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="Abby">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('Abby','Abby');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('Abby');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Pictures.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Abby Photo Editor</div><br/>
+<table width="100%" height="580" border="0" cellpadding="7" cellspacing="0">
+  <tr>
+    <td width="100" rowspan="2">&nbsp;</td>
+    <td><canvas id="AbbyCanvas" style="box-shadow:0px 0px 15px #000000; background-color:transparent; background-image:URL('Themes/Nova/Images/Checker.png');" width="700" height="500"></canvas></td>
+  </tr>
+  <tr>
+    <td height="35">&#160;&#160;<p class="Shadowed">Open Image: </p>&#160;<input onchange="getElementById('eXastumImageSystem').src=window.URL.createObjectURL(this.files[0]); eXastumOpenWait('Loading Image into Abby Photo Editor...'); setTimeout(function LoadAbby() {var canvas = document.getElementById('AbbyCanvas'); var context = canvas.getContext('2d'); context.clearRect(0,0,700,500); var image = document.getElementById('eXastumImageSystem'); var x = parseFloat(image.height/image.width); var y = 700*x; var c = 700; if (y > 500) {var c = c/2; var y = y/2;} if (y > 700) {var c = c/3; var y = y/3;} var b = (700-c)/2; var k = (500-y)/2; context.drawImage(image,b,k,c,y); eXastumCloseWait();}, 10000)" type="file" style="width:140px;" class="file"/>&#160;&#160;<p class="Button">Save Image</p></td>
+  </tr>
+</table>
+</div>
+<!-- End of Abby Photo Editor -->
+
+
+<!-- Video Player App -->
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Video Player';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="VideoPlayer">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Min.png" class="MinButton" onmouseover="this.src='Themes/Nova/Icons/MinHover.png';" onmouseout="this.src='Themes/Nova/Icons/Min.png';" onmousedown="this.src='Themes/Nova/Icons/MinDown.png';" onmouseup="this.src='Themes/Nova/Icons/MinHover.png';" width="20" height="20" onclick="eXastumMin('VideoPlayer','Video Player');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Max.png" class="MaxButton" onmouseover="this.src='Themes/Nova/Icons/MaxHover.png';" onmouseout="this.src='Themes/Nova/Icons/Max.png';" onmousedown="this.src='Themes/Nova/Icons/MaxDown.png';" onmouseup="this.src='Themes/Nova/Icons/MaxHover.png';" width="20" height="20" onclick="eXastumMaxWin('VideoPlayer'); getElementById('VideoPlayer').style.height='calc(100% - 47px)'; getElementById('Video1').style.marginBottom='0px'; getElementById('Video1').style.height='calc(100% - 55px)';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('VideoPlayer'); eXastumVideoStop(); getElementById('Video1').src='';"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Video.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" ondblclick="getElementById('VideoPlayer').style.left='0px'; getElementById('VideoPlayer').style.top='21px'; getElementById('VideoPlayer').style.bottom='21px'; getElementById('VideoPlayer').style.width='calc(100% - 30px)'; getElementById('VideoPlayer').style.height='calc(100% - 47px)'; getElementById('VideoPlayer').style.borderRadius='0px';"  onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();">Video Player</div>
+<ul class="eXastumTabList" id="VideoTabs"><li class="normal" onclick="getElementById('YouTubeVid').style.display='none'; eXastumSwitchUI('EmbedVid','HTMLVid');">HTML5 Player</li><li class="normal" onclick="getElementById('HTMLVid').style.display='none'; eXastumSwitchUI('YouTubeVid','EmbedVid');">Plugin Player</li><li class="normal" onclick="getElementById('HTMLVid').style.display='none'; eXastumSwitchUI('EmbedVid','YouTubeVid');">YouTube Player</li>
+<img draggable="false" id="VideoLogo" src="Themes/Nova/Images/Video.png" width="90" height="28"/>
+<input type="text" spellcheck="false" onkeyup="eXastumVideoSetTrack(this.value); eXastumVideoPlay();" id="VideoFileURL" class="text" placeholder="Full Path or URL"/></ul>
+<p id="videofilename" onmouseover="getElementById('BottomVideoControls').style.display='block'; getElementById('videofilename').style.display='block';" onmouseout="getElementById('BottomVideoControls').style.display='none'; getElementById('videofilename').style.display='none';">Unknown Video Filename</p>
+<video id="Video1" oncanplay="getElementById('videofilename').innerHTML=getElementById('openvideobutton2').files[0].name" src="" onmouseover="getElementById('BottomVideoControls').style.display='block'; getElementById('videofilename').style.display='block';" onmouseout="getElementById('BottomVideoControls').style.display='none'; getElementById('videofilename').style.display='none';" poster="Themes/Nova/Images/VideoLoad.jpg" onplay="VideoTimer(); getElementById('PauseVideoButton').style.display='inline'; getElementById('PlayVideoButton').style.display='none'; VideoTimer();" onpause="getElementById('PauseVideoButton').style.display='none'; getElementById('PlayVideoButton').style.display='inline';" onended="getElementById('BottomVideoControls').style.display='block';" ondblclick="getElementById('Video1').webkitRequestFullScreen();"></video>
+<div id="BottomVideoControls" onmouseover="getElementById('BottomVideoControls').style.display='block'; getElementById('videofilename').style.display='block';" onmouseout="getElementById('BottomVideoControls').style.display='none'; getElementById('videofilename').style.display='none';">
+<div id="CenterVideoControls">
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Skip.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Skip.png'" src="Themes/Nova/Images/Lite/Skip.png" id="VideoSkipButton" onclick="eXastumOpen('VideoSkipDialog')" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Open.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Open.png'" src="Themes/Nova/Images/Lite/Open.png" id="OpenVideoButton" onclick="getElementById('openvideobutton2').click();" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/FullScreen.png'" onmouseout="this.src='Themes/Nova/Images/Lite/FullScreen.png'" src="Themes/Nova/Images/Lite/FullScreen.png" id="FullScreenVideoButton" onclick="getElementById('Video1').webkitRequestFullScreen();" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Play.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Play.png'" src="Themes/Nova/Images/Lite/Play.png" id="PlayVideoButton" onclick="eXastumVideoPlay();" width="50" height="50"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Pause.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Pause.png'" src="Themes/Nova/Images/Lite/Pause.png" id="PauseVideoButton" onclick="eXastumVideoStop();" width="50" height="50"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Enhance.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Enhance.png'" src="Themes/Nova/Images/Lite/Enhance.png" id="VideoEnhanceButton" onclick="eXastumOpen('VideoEnhancerDialog')" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Loop.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Loop.png'" src="Themes/Nova/Images/Lite/Loop.png" id="LoopVideoButton" onclick="getElementById('Video1').setAttribute('loop','loop'); getElementById('LoopVideoButton').style.display='none'; getElementById('LoopVideoButton2').style.display='inline';" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Loop.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Loop.png'" src="Themes/Nova/Images/Lite/Loop.png" id="LoopVideoButton2" onclick="getElementById('Video1').removeAttribute('loop'); getElementById('LoopVideoButton2').style.display='none'; getElementById('LoopVideoButton').style.display='inline';" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Speed.png'" onmouseout="this.src='Themes/Nova/Images/Lite/Speed.png'" src="Themes/Nova/Images/Lite/Speed.png" id="VideoSpeedButton" onclick="eXastumOpen('VideoSpeedDialog')" width="40" height="40"/>
+</div>
+<p id="VideoPlayTime">0:00/0:00</p><img draggable="false" onclick="VideoSeek()" id="VideoTimeAlong" src="Themes/Nova/Images/Along.png"/><img draggable="false" onclick="VideoSeek()" id="VideoTimeAlongBacker" src="Themes/Nova/Images/AlongBG.png"/>
+</div>
+
+<div id="YouTubeVid">
+<p id="YouTubePlayButton" onclick="getElementById('ytplayer').src='http://www.youtube.com/embed/' + getElementById('YouTubeID').value;" class="Button">Play</p>
+<br/><iframe id="ytplayer" width="640" height="385"></iframe></div>
+
+<div id="EmbedVid">
+<p id="YouTubePlayButton" onclick="getElementById('ytplayer').src='http://www.youtube.com/embed/' + getElementById('YouTubeID').value;" class="Button">Play</p>
+<br/><iframe id="ytplayer" width="640" height="385"></iframe></div>
+</div>
+
+
+<input id="openvideobutton2" style="display:none;" type="file" accept="video/*" class="file" onchange="eXastumVideoSetTrack(window.URL.createObjectURL(this.files[0])); getElementById('videofilename').innerHTML='Loading Video...'; eXastumVideoPlay();"/>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Enhancer Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="VideoEnhancerDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('VideoEnhancerDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Video.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Filter</p></div>
+<br/><br/>
+<p class="Button" onclick="EnhanceVideo()">Enhance Video</p>&#160;&#160;&#160;<p class="Button" onclick="UnenhanceVideo()">Unenhance Video</p>
+<br/><br/><br/>
+<p class="Shadowed">Video Filters:</p><br/><br/>
+<p class="Button" onclick="getElementById('Video1').style.webkitFilter='grayscale(1)';">Black and White</p><br/><br/>
+<p class="Button" onclick="getElementById('Video1').style.webkitFilter='sepia(1)';">Sepia Tone</p><br/><br/>
+<p class="Button" onclick="getElementById('Video1').style.webkitFilter='invert(1)';">Invert Colour</p><br/>
+<br/><br/>
+<p class="Button" onclick="getElementById('Video1').style.webkitFilter='grayscale(0)';">Clear All Effects</p>
+<br/><br/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Video Speed Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="VideoSpeedDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('VideoSpeedDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Video.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Speed</p></div>
+<br/><br/>
+<p class="Shadowed">Change Video Speed:</p><br/><br/>
+<input id="VideoSpeed" type="text" onkeyup="VideoSpeed()" spellcheck="false" class="text" placeholder="1.0"/>
+<br/><br/>
+</div>
+
+<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Video Skipper Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="VideoSkipDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('VideoSkipDialog');"/>
+<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Video.png" class="IconLink" width="18" height="18"/>
+<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">Skip</p></div>
+<br/><br/>
+<p class="Shadowed">Skip to Video Position:</p><br/><br/>
+<input id="VideoSkip" type="text" onkeyup="VideoSkip()" spellcheck="false" class="text" placeholder="0"/>
+<br/><br/>
+</div>
+
+<!-- End of Video Player App -->
+
+
+
+<!--END OF ALL WINDOWS-->
+</div>
+
+
+
+<!-- TOPBAR BASEBAR AND MENUS -->
+
+<div id="TopBar" onclick="getElementById('RightClick').style.display='none';">
+<div id="QuickLaunch">
+<img src="Themes/Nova/Icons/Mini/Terminal.png" width="19" height="19" onclick="eXastumOpen('Terminal')"/>
+<img src="Themes/Nova/Icons/Mini/Music.png" width="19" height="19" onclick="eXastumOpen('AudioPlayer')"/>
+<img src="Themes/Nova/Icons/Mini/Settings.png" width="19" height="19" onclick="eXastumOpen('Settings')"/>
+</div>
+<div id="MinArea">
+<p class="min" id="AlarmMin" onclick="eXastumOpen('Alarm');">Alarm</p>
+<p class="min" id="AudioPlayerMin" onclick="eXastumOpen('AudioPlayer');">Music</p>
+<p class="min" id="BrowserMin" onclick="eXastumOpen('Browser');">Browser</p>
+<p class="min" id="CalculatorMin" onclick="eXastumOpen('Calculator');">Calculator</p>
+<p class="min" id="CalendarMin" onclick="eXastumOpen('Calendar');">Calendar</p>
+<p class="min" id="CameraMin" onclick="eXastumOpen('Camera');">Camera</p>
+<p class="min" id="ClockMin" onclick="eXastumOpen('Clock');">Clock</p>
+<p class="min" id="ContactsMin" onclick="eXastumOpen('Contacts');">Contacts</p>
+<p class="min" id="CodingSuiteMin" onclick="eXastumOpen('CodingSuite');">Dev Tools</p>
+<p class="min" id="FilesMin" onclick="eXastumOpen('Files');">File Browser</p>
+<p class="min" id="GalleryMin" onclick="eXastumOpen('Gallery');">Picture Viewer</p>
+<p class="min" id="GameCenterMin" onclick="eXastumOpen('GameCenter');">Game Center</p>
+<p class="min" id="InfoTestsMin" onclick="eXastumOpen('InfoTests');">Info & Tests</p>
+<p class="min" id="MapsMin" onclick="eXastumOpen('Maps');">Maps</p>
+<p class="min" id="NewsMin" onclick="eXastumOpen('News');">World News</p>
+<p class="min" id="SettingsMin" onclick="eXastumOpen('Settings');">Settings</p>
+<p class="min" id="StopwatchMin" onclick="eXastumOpen('Stopwatch');">Stopwatch</p>
+<p class="min" id="StoreMin" onclick="eXastumOpen('Store'); getElementById('StoreWindow').src='http://sites.google.com/site/exastum/store/';">Web Store</p>
+<p class="min" id="TerminalMin" onclick="eXastumOpen('Terminal');">Terminal</p>
+<p class="min" id="TextPadMin" onclick="eXastumOpen('TextPad');">Text Pad</p>
+<p class="min" id="ToolsMin" onclick="eXastumOpen('Tools');">Tools</p>
+<p class="min" id="VideoPlayerMin" onclick="eXastumOpen('VideoPlayer');">Video Player</p>
+</div>
+<div id="NotifyArea">
+<img draggable="false" alt="Image Not Found" id="AlarmIcon" src="Themes/Nova/Icons/Mini/Alarm.png" width="16" height="16" onclick="eXastumOpen('Alarm')"/>
+<img draggable="false" alt="Image Not Found" id="StopwatchIcon" src="Themes/Nova/Icons/Mini/Watch.png" width="16" height="16" onclick="eXastumOpen('Stopwatch')"/>
+<img draggable="false" alt="Image Not Found" onmouseover="this.src='Themes/Nova/Icons/Mini/VolLite.png'; getElementById('VolControl').style.display='block';" onmouseout="this.src='Themes/Nova/Icons/Mini/Vol.png';" src="Themes/Nova/Icons/Mini/Vol.png" width="16" height="16" id="VolAdjButton"/>
+<img draggable="false" alt="Image Not Found" onmouseover="this.src='Themes/Nova/Icons/Mini/InternetLite.png';" onmouseout="this.src='https://0cb3720c-a-62cb3a1a-s-sites.googlegroups.com/site/exastum/Connected.png';" id="DataView" onclick="eXastumOpen('Browser')" src="https://0cb3720c-a-62cb3a1a-s-sites.googlegroups.com/site/exastum/Connected.png?attachauth=ANoY7crcK1I5CUoy28uaVUbY6wlrT5AWL7YI-gFoYHZ-6QzIcqxF2TcV8mqeeUmD0wZsK_Ln_PW6d_nYi9aonKjRzr-c9cwI8JHFedLje1TJ27kvcFJ7sXUSA9rpEIh-lA_R2MEQ8kRUksxU-nUv7UyZHCDWabWltv5Pw7iGYWZ4kR5MtjGY5ZNuldZTj1v66Urv2FF04yRMJk714KFnpH1w8FWkzFHV-Q%3D%3D&attredirects=0" onerror="getElementById('DataView').src='Themes/Nova/Icons/Mini/DisConnected.png';" width="16" height="16"/>
+</div>
+<div id="TopbarTime"><p><div id="TopBarDate" onclick="eXastumOpen('Calendar')"></div>&#160;&#160;&#160;<div id="TopBarClock" onclick="eXastumOpen('Clock')"></div></div>
+</div>
+
+<div id="VolControl" onmouseover="getElementById('VolControl').style.display='block';" onmouseout="getElementById('VolControl').style.display='none';">
+<img draggable="false" alt="Image Not Found" class="Link" src="Themes/Nova/Icons/Mini/Vol.png" width="20" height="20" onmouseover="eXastumSetVolume('0.9')" id="VolSet1"/>
+<img draggable="false" alt="Image Not Found" class="Link" id="VolSet2" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.8')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet3" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.7')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet4" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.6')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet5" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.5')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet6" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.4')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet7" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.3')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet8" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.2')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet9" class="Link" src="Themes/Nova/Images/VolSlider.png" width="10" height="10" onmouseover="eXastumSetVolume('0.1')"/>
+<img draggable="false" alt="Image Not Found" id="VolSet10" class="Link" src="Themes/Nova/Images/Mute.png" width="20" height="20" onmouseover="eXastumSetVolume('0.0')"/>
+</div>
+
+
+<div id="BaseBar" onclick="getElementById('RightClick').style.display='none';" onmouseover="getElementById('Dock').style.bottom='40px'; getElementById('Icons').style.bottom='65px';" onmouseout="getElementById('Dock').style.bottom='-200px';  getElementById('Icons').style.bottom='-180px';">
+<marquee id="Ticker"><p id="PlayScroll" onclick="eXastumOpen('AudioPlayer')">▶ Now Playing...</p></marquee><p id="SystemInfoBaseBar">eXastum 2.0</p><p id="BM9Copyrights"> &copy; Brian Millar 2014</p>
+<div id="BaseRight">
+<p id="UserNameText2">Administrator</p>
+</div>
+</div>
+
+
+<div id="menu">
+<ul class="eXastumTabList" id="MenuTabs">
+<li class="normal" style="margin-left:5px;" onclick="getElementById('MenuBase').style.display='block'; getElementById('SearchResults').style.display='none'; getElementById('AbouteXastum').style.display='none'; getElementById('WidgetList').style.display='none'; getElementById('InstalledList').style.display='none'; getElementById('AbouteXastumText').style.display='none'; getElementById('MenuIconPreview2').style.display='none'; getElementById('MenuIconPreview3').style.display='none'; getElementById('AppList').style.display='block'; getElementById('MenuIconPreview').style.display='block';">eXastum Apps</li>
+<li class="normal" onclick="getElementById('MenuBase').style.display='block'; getElementById('SearchResults').style.display='none'; getElementById('AbouteXastum').style.display='none'; getElementById('WidgetList').style.display='none'; getElementById('AppList').style.display='none'; getElementById('AbouteXastumText').style.display='none'; getElementById('MenuIconPreview').style.display='none'; getElementById('MenuIconPreview3').style.display='none'; getElementById('InstalledList').style.display='block'; getElementById('MenuIconPreview2').style.display='block';">Installed Apps</li>
+<li class="normal" onclick="getElementById('MenuBase').style.display='block'; getElementById('SearchResults').style.display='none'; getElementById('AbouteXastum').style.display='none'; getElementById('AppList').style.display='none'; getElementById('InstalledList').style.display='none'; getElementById('AbouteXastumText').style.display='none'; getElementById('MenuIconPreview').style.display='none'; getElementById('MenuIconPreview2').style.display='none'; getElementById('WidgetList').style.display='block'; getElementById('MenuIconPreview3').style.display='block';">Widgets</li>
+<li class="normal" onclick="getElementById('MenuBase').style.display='none'; getElementById('SearchResults').style.display='none'; getElementById('AppList').style.display='none'; getElementById('InstalledList').style.display='none'; getElementById('WidgetList').style.display='none'; getElementById('MenuIconPreview').style.display='none'; getElementById('MenuIconPreview2').style.display='none'; getElementById('MenuIconPreview3').style.display='none'; getElementById('AbouteXastum').style.display='block'; getElementById('AbouteXastumText').style.display='block';">About eXastum</li></ul>
+
+
+<div id="AppList">
+<br/>
+<br/>
+<h2 class="MenuTitle"><strong><em>eXastum Apps:</em></strong></h2>
+<br/>
+<br/>
+<div id="TheAppList">
+<br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Store.png';" onclick="eXastumOpen('Store'); getElementById('StoreWindow').src='http://sites.google.com/site/exastum/store/';"> Web Store</p>
+<br/><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Browser.png';" onclick="eXastumOpen('Browser'); getElementById('Browserwindow').src='http://www.duckduckgo.com';">Browser</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/DevTools.png';" onclick="eXastumSplash('Themes/Nova/Images/Splashes/DivDesignerSplash.png','CodingSuite')">Dev Tools</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Game.png';" onclick="eXastumOpen('GameCenter')">Game Center</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/InfoTests.png';" onclick="eXastumOpen('InfoTests')">Info & Tests</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Maps.png';" onclick="eXastumOpen('Maps'); get_location(); eXastumOpen('Geo');">Maps</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Music.png';" onclick="eXastumOpen('AudioPlayer');">Music</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Pictures.png';" onclick="eXastumOpen('Gallery')">Picture Viewer</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Settings.png';" onclick="eXastumOpen('Settings')">Settings</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Tools.png';" onclick="eXastumOpen('Tools')">Tools & Utilities</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview').src='Themes/Nova/Icons/HD/Video.png';" onclick="eXastumOpen('VideoPlayer')">Video Player</p><br/><br/>
+</div>
+<img draggable="false" src="Themes/Nova/Icons/Logo.png" alt="Preview" id="MenuIconPreview" width="150" height="150"/>
+</div>
+
+
+<div id="InstalledList">
+
+<br/>
+<br/>
+<h2 class="MenuTitle"><strong><em>Installed Apps:</em></strong></h2>
+<br/>
+<br/>
+<div id="TheInstalledList">
+</div>
+<img draggable="false" src="Themes/Nova/Icons/Logo.png" alt="Preview" id="MenuIconPreview2" width="150" height="150" />
+</div>
+
+
+
+<div id="WidgetList">
+<br/>
+<br/>
+<h2 class="MenuTitle"><strong><em>Widgets:</em></strong></h2>
+<br/>
+<br/>
+<div id="TheWidgetList"><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview3').src='Themes/Nova/Icons/HD/HTML5.png';" onclick="getElementById('HTML5Logo').style.display='block';">HTML5 Logo</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview3').src='Themes/Nova/Icons/HD/Music.png';" onclick="getElementById('MiniMusic').style.display='block';">Music Player</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview3').src='Themes/Nova/Icons/HD/Pictures.png';" onclick="getElementById('PhotoFrame').style.display='block';">Photo Frame</p><br/>
+<p class="MenuItemLink" onmouseover="getElementById('MenuIconPreview3').src='Themes/Nova/Icons/HD/Notes.png';" onclick="getElementById('NotesWidget').style.display='block';">Sticky Note</p><br/>
+<br/>
+</div>
+<img draggable="false" src="Themes/Nova/Icons/Logo.png" alt="Preview" id="MenuIconPreview3" width="150" height="150" />
+</div>
+
+<div id="SearchResults">
+<br/>
+<br/>
+<h2 class="MenuTitle"><strong><em>Search Results:</em></strong></h2>
+<br/>
+<br/>
+<div id="TheSearchList">
+<p class="MenuItemLink" style="display:none;" id="StoreSearchResult" onclick="eXastumOpen('Store'); getElementById('StoreWindow').src='http://sites.google.com/site/exastum/store/';">Web Store<br/></p>
+<p class="MenuItemLink" style="display:none;" id="BrowserSearchResult" onclick="eXastumOpen('Browser'); getElementById('Browserwindow').src='http://www.duckduckgo.com';">Browser<br/></p>
+<p class="MenuItemLink" style="display:none;" id="DevToolsSearchResult" onclick="eXastumSplash('Themes/Nova/Images/Splashes/DivDesignerSplash.png','CodingSuite')">Dev Tools<br/></p>
+<p class="MenuItemLink" style="display:none;" id="GamesSearchResult" onclick="eXastumOpen('GameCenter')">Game Center<br/></p>
+<p class="MenuItemLink" style="display:none;" id="InfoSearchResult" onclick="eXastumOpen('InfoTests')">Info & Tests<br/></p>
+<p class="MenuItemLink" style="display:none;" id="MapsSearchResult" onclick="eXastumOpen('Maps'); get_location(); eXastumOpen('Geo');">Maps<br/></p>
+<p class="MenuItemLink" style="display:none;" id="MusicPlayerSearchResult" onclick="eXastumOpen('AudioPlayer');">Music<br/></p>
+<p class="MenuItemLink" style="display:none;" id="PictureViewerSearchResult" onclick="eXastumOpen('Gallery')">Picture Viewer<br/></p>
+<p class="MenuItemLink" style="display:none;" id="SettingsSearchResult" onclick="eXastumOpen('Settings')">Settings<br/></p>
+<p class="MenuItemLink" style="display:none;" id="ToolsSearchResult" onclick="eXastumOpen('Tools')">Tools & Utilities<br/></p>
+<p class="MenuItemLink" style="display:none;" id="VideoPlayerSearchResult" onclick="eXastumOpen('VideoPlayer')">Video Player<br/></p>
+</div>
+<img draggable="false" src="Themes/Nova/Icons/HD/Search.png" alt="Preview" id="MenuSearchIcon" width="150" height="150" />
+</div>
+
+<div id="MenuBase">
+<img draggable="false" src="Themes/Nova/Icons/Power.png" width="30" height="30" onclick="eXastumSystemLock()" onmouseover="this.src='Themes/Nova/Icons/PowerLite.png';" onmouseout="this.src='Themes/Nova/Icons/Power.png';"/><img draggable="false" src="Themes/Nova/Icons/Reload.png" onmouseover="this.src='Themes/Nova/Icons/ReloadLite.png';" onmouseout="this.src='Themes/Nova/Icons/Reload.png';" onclick="window.location.reload()" width="30" height="30"/><input id="AppRun" type="text" class="text" spellcheck="false" onkeypress="RunApp()" placeholder="Execute Script"/>&#160;<input id="AppSearch" spellcheck="false" type="text" onkeyup="SearchApps()" onfocus="getElementById('MenuBase').style.display='block'; getElementById('MenuSearchIcon').style.display='block'; getElementById('SearchResults').style.display='block'; getElementById('AbouteXastum').style.display='none'; getElementById('WidgetList').style.display='none'; getElementById('AppList').style.display='none'; getElementById('AbouteXastumText').style.display='none'; getElementById('MenuIconPreview').style.display='none'; getElementById('MenuIconPreview3').style.display='none'; getElementById('InstalledList').style.display='none'; getElementById('MenuIconPreview2').style.display='none';" class="search" placeholder="Instant Search" x-webkit-speech/>
+</div>
+
+<div id="AbouteXastum">
+<p id="AbouteXastumText">
+Welcome to eXastum 2.0 the successor to eXastum 1.9<br/>
+and the next generation of Brian Millar's<br/>
+family of HTML5 based operating systems.<br/>
+<br/>
+This project is open source and free.<br/>
+Thank you for supporting my work and<br/>
+for using this product.<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<strong><em>Copyright Details:</em></strong>
+<br/>
+<br/>
+Copyright &copy; 2011, 2012, 2013, 2014 Brian Millar.<br/><br/>
+eXastum is free software: you can redistribute it and/or<br/>
+modify it under the terms of the GNU General Public License<br/>
+as published by the Free Software Foundation, either<br/>
+version 3 of the License, or (at your option) any later<br/>
+version.<br/><br/>
+eXastum is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+GNU General Public License for more details.<br/><br/>
+You should have received a copy of the GNU General Public License<br/>
+along with eXastum.  If not, see<br/>
+<em onclick="getElementById('Browser').style.display='block'; getElementById('Browserwindow').src='http://www.gnu.org/licenses/';" class="Link">http://www.gnu.org/licenses/</em><br/><br/>
+<u><strong>Email:</strong></u>  brianmillar9@yahoo.com<br/>
+<u><strong>Facebook:</strong></u>  www.facebook.com/eXastum<br/>
+</p>
+</div>
+</div>
+<!-- END OF TOPBAR BASEBAR AND MENUS -->
+<!-- DOCK AND ICONS -->
+<!-- DOCK -->
+<div id="Dock" onmouseover="getElementById('Dock').style.bottom='40px'; getElementById('Icons').style.bottom='65px';" onmouseout="getElementById('Dock').style.bottom='-200px'; getElementById('Icons').style.bottom='-180px';"></div>
+<div id="Icons" onmouseover="getElementById('Dock').style.bottom='40px'; getElementById('Icons').style.bottom='65px';" onmouseout="getElementById('Dock').style.bottom='-200px'; getElementById('Icons').style.bottom='-180px';">
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Web Browser';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon1').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Browser.png" height="60" width="60" onclick="eXastumOpen('Browser'); getElementById('Browserwindow').src='http://www.duckduckgo.com';" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Picture Viewer';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon2').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Pictures.png" height="60" width="60" onclick="eXastumOpen('Gallery')"/>
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='eXastum Music';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon3').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Music.png" height="60" width="60" onclick="eXastumOpen('AudioPlayer')" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Video Player';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon4').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Video.png" height="60" width="60" onclick="eXastumOpen('VideoPlayer');" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Maps';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon6').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Maps.png" height="60" width="60" onclick="eXastumOpen('Maps'); get_location(); eXastumOpen('Geo');" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Tools & Utilities';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon7').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Tools.png" height="60" width="60" onclick="eXastumOpen('Tools')" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Game Center';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon8').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Game.png" height="60" width="60" onclick="eXastumOpen('GameCenter')" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Info & Tests';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon9').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/InfoTests.png" height="60" width="60" onclick="eXastumOpen('InfoTests')" />
+<img draggable="false" alt="Image Not Found" class="image" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='System Settings';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onerror="getElementById('Icon10').src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Settings.png" height="60" width="60" onclick="eXastumOpen('Settings')" />
+</div>
+<!-- END OF DOCK -->
+<!-- END OF DESKTOP -->
+</div>
+<!-- START OF MOVEABLE DESKTOP -->
+<div id="DesktopMove" onmousemove="OpenSideCenters();" onclick="document.getElementById('DesktopMove').style.webkitTransform='translateX(0px)';">
+<img draggable="false" id="buildicon" src="Themes/Nova/Images/BuildIcon.png" width="30" height="30"/><p id="buildnumber">eXastum OS<br/>Build 2000</p>
+<!-- DESKOP ICONS -->
+<div id="AppDesktop" dropzone="dropzone" onclick="getElementById('RightClick').style.display='none';" onmouseover="getElementById('VolControl').style.display='none';">
+<div class="DevIcon" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='System App';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'SystemIcon');" id="SystemIcon" onclick="getElementById('SystemApp').style.display='block';" ondblclick="getElementById('SystemApp').style.display='none';"><img draggable="false" alt="Image Not Found" onerror="this.src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Computer.png" height="65" width="65"/><br/><p class="Desktop"> System App </p></div>
+<div class="DevIcon" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='File System';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'FilesIcon');" id="FilesIcon" onclick="eXastumOpen('Files')" ondblclick="eXastumMin('Files','File Browser')"><img alt="Image Not Found" draggable="false" onerror="this.src='Themes/Nova/Icons/FallBack.png';" src="Themes/Nova/Icons/Files.png" height="65" width="65"/><br/><p class="Desktop"> File System </p></div>
+</div>
+<!-- END OF DESKTOP ICONS -->
+<!-- DESKTOP WIDGETS -->
+<div id="AnalogClock" onmousedown="pickupwindow(this);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'AnalogClock');" onclick="eXastumOpen('Clock')"><img draggable="false" id="HourHand" src="Themes/Nova/Images/hourhand.png" width="125" height="125" alt="Image Load Failed" onerror="src='Themes/Nova/Images/FallBack.png';"/><img draggable="false" id="MinHand" src="Themes/Nova/Images/minhand.png" width="125" height="125" alt="Image Load Failed" onerror="src='Themes/Nova/Images/FallBack.png';"/><img draggable="false" id="SecHand" src="Themes/Nova/Images/sechand.png" width="125" height="125" alt="Image Load Failed" onerror="src='Themes/Nova/Images/FallBack.png';"/></div>
+<div id="PhotoFrame" onmousedown="pickupwindow(this);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'PhotoFrame');"></div>
+<div id="HTML5Logo" onmousedown="pickupwindow(this);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'HTML5Logo');"></div>
+<div id="MiniMusic" onmousedown="pickupwindow(this);" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'MiniMusic');">
+<img draggable="false" alt="Image Load Failed" style="margin-left:auto; margin-right:auto; display:block;" onmouseover="this.src='Themes/Nova/Images/Lite/Play.png'" onmouseout="this.src='Themes/Nova/Images/Play.png'" src="Themes/Nova/Images/Play.png" id="MiniPlayAudioButton" width="50" height="50" onclick="eXastumMusicPlay();"/>
+<img draggable="false" alt="Image Load Failed" style="display:none; margin-left:auto; margin-right:auto;" onmouseover="this.src='Themes/Nova/Images/Lite/Pause.png'" onmouseout="this.src='Themes/Nova/Images/Pause.png'" src="Themes/Nova/Images/Pause.png" id="MiniPauseAudioButton" width="50" height="50" onclick="eXastumMusicStop();"/>
+<p id="MiniSongScroll"><marquee style="display:none;" id="MiniSongInfo"></marquee></p>
+</div>
+<div id="NotesWidget" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Notes Widget'; getElementById('NotesClose').style.display='inline';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0'; getElementById('NotesClose').style.display='none';" onmouseup="dropwindow(); eXastumSaveIconLocation(this.style.left, this.style.top, 'NotesWidget');" onmousedown="pickupwindow(this);">
+<img draggable="false" alt="Image Load Failed" id="NotesClose" style="margin-right:13px; margin-top:10px; opacity:0.9; display:none;" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('NotesWidget');"/>
+<textarea id="NoteField" placeholder="Type a Note" spellcheck="false"></textarea>
+</div>
+<!-- END OF DESKTOP WIDGETS -->
+<!-- WALLPAPER AND LIVESCENE SYSTEM -->
+<img draggable="false" alt="Image Not Found" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;" id="WallpaperPic" onerror="getElementById('WallpaperPic').src='Themes/Nova/Images/Wallpapers/Wallpaper.jpg';" onclick="getElementById('menu').style.display='none'; getElementById('RightClick').style.display='none';" onmouseover="getElementById('VolControl').style.display='none'; document.getElementById('DesktopMove').style.webkitTransform='translateX(0px)';" src="Themes/Nova/Images/Wallpapers/Wallpaper.jpg" width="100%" height="100%" />
+<div oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;" id="Wallpaper"  onclick="getElementById('menu').style.display='none'; getElementById('RightClick').style.display='none';" onmouseover="getElementById('VolControl').style.display='none';">
+<img draggable="false" alt="Image Not Found" id="SomethingId" onclick="getElementById('RightClick').style.display='none'; getElementById('menu').style.display='none';" src="Themes/Nova/Images/MediaBG.png" width="100%" height="100%"/>
+<video onclick="getElementById('RightClick').style.display='none';" id="WallVid" onplay="getElementById('Switch').style.display='none'; getElementById('Switch2').style.display='inline';" onpause="getElementById('Switch2').style.display='none'; getElementById('Switch').style.display='inline';" loop="loop" poster="Themes/Nova/Images/Wallpapers/Wallpaper.jpg"></video>
+</div>
+</div>
+<!-- END OF WALLPAPER SYSTEM -->
+</div>
+<!-- END OF MOVEABLE DESKTOP -->
+<!--SYSTEM SOUNDS-->
+<audio id="LoginSound" src="Themes/Nova/Sounds/Login.ogg" onended="this.src='';"></audio>
+<audio id="ErrorSound" src="Themes/Nova/Sounds/Error.ogg"></audio>
+<audio id="AlarmSound" onplay="clearTimeout(AlarmTimer); document.getElementById('AlarmIcon').style.display='none';" src="Themes/Nova/Sounds/Alarm.ogg"></audio>
+
+<!-- Loads the main.js Library -->
+<script src="main.js"></script>
+
+<!-- END OF EXASTUM HTML SYSTEM -->
+</body>
+</html>

@@ -1,0 +1,11 @@
+Product: eXastum HTML5 Desktop/OS
+
+Codename: Nova
+
+Build: 2000 Alpha
+
+Language: English
+
+Licenced under the GNU GPLV3
+
+Copyright © 2011 - 2014 Brian Millar

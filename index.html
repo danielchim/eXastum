@@ -198,7 +198,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <p onclick="eXastumOpen('Terminal');" id="openterminal"></p>
 <p onclick="eXastumOpen('Calculator');" id="opencalculator"></p>
 <p onclick="eXastumOpen('Gallery');" id="opengallery"></p>
-<p onclick="eXastumOpen('CodingSuite');" id="opendev"></p>
+<p onclick="eXastumOpen('CodingSuite'); eXastumMaxWin('CodingSuite'); getElementById('CodingSuite').style.height='calc(100% - 56px)';" id="opendev"></p>
 <p onclick="eXastumOpen('InfoTests');" id="openinfo"></p>
 <p onclick="eXastumOpen('Settings');" id="opensettings"></p>
 <p onclick="eXastumOpen('Tools');" id="openutilities"></p>
@@ -306,7 +306,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <p id="MusicPlayTime">0:00 / 0:00</p>
 <p id="AudioLoad">Done</p>
 <div id="AudioButtons">
-<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Open.png'" onmouseout="this.src='Themes/Nova/Images/Open.png'" src="Themes/Nova/Images/Open.png" id="OpenMusicButton" onclick="getElementById('MusicDialog').style.display='block';" width="40" height="40"/>
+<img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Open.png'" onmouseout="this.src='Themes/Nova/Images/Open.png'" src="Themes/Nova/Images/Open.png" id="OpenMusicButton" onclick="getElementById('OpenMusicButton2').click();" width="40" height="40"/>
 <img draggable="false" alt="Image Load Failed" src="Themes/Nova/Images/Play.png" onmouseover="this.src='Themes/Nova/Images/Lite/Play.png'" onmouseout="this.src='Themes/Nova/Images/Play.png'" id="PlayAudioButton" width="50" height="50" onclick="eXastumMusicPlay();"/>
 <img draggable="false" alt="Image Load Failed" src="Themes/Nova/Images/Pause.png" onmouseover="this.src='Themes/Nova/Images/Lite/Pause.png'" onmouseout="this.src='Themes/Nova/Images/Pause.png'" id="PauseAudioButton" width="50" height="50" onclick="eXastumMusicStop();"/>
 <img draggable="false" onmouseover="this.src='Themes/Nova/Images/Lite/Loop.png'" onmouseout="this.src='Themes/Nova/Images/Loop.png'" src="Themes/Nova/Images/Loop.png" id="LoopAudioButton" onclick="getElementById('Music1').setAttribute('loop','loop'); getElementById('LoopAudioButton').style.display='none'; getElementById('LoopAudioButton2').style.display='inline';" width="40" height="40"/>
@@ -314,22 +314,14 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 </div>
 <p style="color:#000000; margin-left:430px; position:absolute; margin-top:-65px;">Speed: </p><input class="text" type="text" style="width:25px; margin-left:480px; position:absolute; margin-top:-35px;" oncontextmenu="return;" id="AudioSkipper" spellcheck="false" placeholder="0" onkeyup="getElementById('Music1').currentTime=this.value;"/>
 <p style="color:#000000; margin-left:430px; position:absolute; margin-top:-35px;">Skip: </p><input class="text" type="text" style="width:25px; margin-left:480px; position:absolute; margin-top:-65px;" oncontextmenu="return;" id="AudioSpeed" spellcheck="false" placeholder="1.0" onkeyup="getElementById('Music1').playbackRate=this.value;"/>
-<img draggable="false" onclick="MusicSeek()" id="MusicTimeAlong" src="Themes/Nova/Images/Along.png"/><img draggable="false" onclick="MusicSeek()" id="MusicTimeAlongBacker" width="500" height="5" src="Themes/Nova/Images/AlongBG.png"/>
+<span onclick="MusicSeek()" id="MusicTimeAlong"></span>
+<span onclick="MusicSeek()" id="MusicTimeAlongBacker"></span>
 <audio id="Music1" onloadstart="getElementById('AudioLoad').innerHTML='Loading...';" oncanplay="getElementById('AudioLoad').innerHTML='Done';" onplay="MusicTimer(); getElementById('PlayScroll').style.display='inline'; getElementById('MiniSongInfo').style.display='block'; getElementById('SystemInfoBaseBar').style.display='none'; getElementById('PlayAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='none'; getElementById('PauseAudioButton').style.display='inline'; getElementById('MiniPauseAudioButton').style.display='block'; document.title='▶ eXastum 2.0';"  onpause="getElementById('PlayScroll').style.display='none'; getElementById('SystemInfoBaseBar').style.display='inline'; getElementById('PlayAudioButton').style.display='inline'; getElementById('PauseAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='block'; getElementById('MiniPauseAudioButton').style.display='none'; document.title='eXastum 2.0'; getElementById('MiniSongInfo').style.display='none';" onended="getElementById('PlayAudioButton').style.display='inline'; getElementById('PauseAudioButton').style.display='none'; getElementById('MiniPlayAudioButton').style.display='block'; getElementById('MiniPauseAudioButton').style.display='none'; getElementById('MiniSongInfo').style.display='none';" ></audio>
 </div>
 </div>
 </div>
 <!-- End of Audio Player App -->
 
-<div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Music Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="MusicDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
-<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('MusicDialog');"/>
-<img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/Music.png" class="IconLink" width="18" height="18" />
-<div class="TitleText" onmousedown="pickupwindow(this.parentElement);" onmouseup="dropwindow();"><p class="Shadowed">eXastum Music</p></div>
-<br/><br/>
-<p class="Shadowed">Open Music File:</p><br/><br/>
-<input type="file" accept="audio/*" class="file" onchange="eXastumMusicSetTrack(window.URL.createObjectURL(this.files[0])); getElementById('PlayScroll').innerHTML='▶ Now Playing: '+'  '+this.files[0].name; eXastumMusicPlay(); getElementById('MiniSongInfo').innerHTML='▶ Now Playing:  ' + ' ' + this.files[0].name; getElementById('TrackName').innerHTML=this.files[0].name; eXastumClose('MusicDialog');"/>
-<br/><br/>
-</div>
 
 <div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Radio Stations Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="RadioDialog">
 <img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('RadioDialog');"/>
@@ -510,13 +502,13 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Mini/DevTools.png" class="IconLink" width="18" height="18"/>
 <div class="TitleText" onmousedown="pickupwindow(this.parentElement);" ondblclick="getElementById('CodingSuite').style.left='0px'; getElementById('CodingSuite').style.top='21px'; getElementById('CodingSuite').style.bottom='21px'; getElementById('CodingSuite').style.width='calc(100% - 30px)'; getElementById('CodingSuite').style.height='calc(100% - 85px)';" onmouseup="dropwindow();">eXastum Dev Tools</div><br/><br/>
 &#160;&#160;<p class="Button" onclick="eXastumOpen('CodeDialog')">Open File</p>&#160;<p class="Button">Save File</p>&#160;<p class="Button" onclick="window.open(getElementById('DevToolsRenderWindow').src)">Launch Site</p>&#160;<p class="Button">Run As App</p>&#160;<p class="Button" onclick="getElementById('HTMLEditor').value=''; getElementById('CSSEditor').value=''; getElementById('JSScriptEditor').value=''; updatecodez();">Clear</p>&#160;&#160;&#160;<p style="color:#838383; text-shadow:1px 1px 3px #000000;">Scale: </p>&#160;<input type="text" class="text" style="width:20px;" spellcheck="false" placeholder="1.0"/>&#160;&#160;<input type="text" style="width:140px;" class="text" spellcheck="false" placeholder="Open Full Path or URL"/>&#160;&#160;&#160;<input type="text" style="width:110px;" class="text" spellcheck="false" id="JSScriptEditor" placeholder="Type Script Code"/>&#160;<p class="Button" onclick="updatecodez(); getElementById('DevToolsRenderWindow').eval(getElementById('DevToolsRenderWindow').document.getElementById('eXastumScriptIn').value);">Run</p><img draggable="false" style="position:absolute; margin-left:10px; margin-top:-5px;" src="Themes/Nova/Images/DevTools.png" height="35" width="220"/><br/>
-<table style="margin-top:10px; width:calc(100% - 10px;); height:calc(100% - 85px);"  border="0" cellspacing="0" cellpadding="3">
+<table id="CodinTable" border="0" cellspacing="0" cellpadding="3">
   <tr>
     <td><iframe src="" id="DevToolsRenderWindow" width="100%" height="100%"></iframe></td>
     <td width="200"><textarea id="CSSEditor" onkeyup="updatecodez()" spellcheck="false" placeholder="CSS Code Field"></textarea></td>
   </tr>
   <tr>
-    <td height="200" colspan="2"><textarea onkeyup="updatecodez()" id="HTMLEditor" spellcheck="false" placeholder="HTML Code Field"></textarea></td>
+    <td height="300" colspan="2"><textarea onkeyup="updatecodez()" id="HTMLEditor" spellcheck="false" placeholder="HTML Code Field"></textarea></td>
   </tr>
 </table>
 </div>
@@ -951,7 +943,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <p class="MenuItemLink" onclick="eXastumOpen('Camera')">Camera</p><br/>
 <p class="MenuItemLink" onclick="eXastumOpen('Clock')">Clock</p><br/>
 <p class="MenuItemLink" onclick="eXastumOpen('Contacts')">Contacts</p><br/>
-<p class="MenuItemLink" onclick="eXastumOpen('CodingSuite')">Dev Tools</p><br/>
+<p class="MenuItemLink" onclick="eXastumOpen('CodingSuite'); eXastumMaxWin('CodingSuite'); getElementById('CodingSuite').style.height='calc(100% - 56px)';">Dev Tools</p><br/>
 <p class="MenuItemLink" onclick="eXastumOpen('News')">World News</p><br/>
 <p class="MenuItemLink" onclick="eXastumOpen('Stopwatch')">Stopwatch</p><br/>
 <p class="MenuItemLink" onclick="eXastumOpen('Terminal')">Terminal</p><br/>
@@ -1040,6 +1032,8 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 
 
 <input id="openvideobutton2" style="display:none;" type="file" accept="video/*" class="file" onchange="eXastumVideoSetTrack(window.URL.createObjectURL(this.files[0])); getElementById('videofilename').innerHTML='Loading Video...'; eXastumVideoPlay();"/>
+<input id="OpenMusicButton2" style="display:none;" type="file" accept="audio/*" class="file" onchange="eXastumMusicSetTrack(window.URL.createObjectURL(this.files[0])); getElementById('PlayScroll').innerHTML='▶ Now Playing: '+'  '+this.files[0].name; eXastumMusicPlay(); getElementById('MiniSongInfo').innerHTML='▶ Now Playing:  ' + ' ' + this.files[0].name; getElementById('TrackName').innerHTML=this.files[0].name;"/>
+
 
 <div class="app" onmouseover="getElementById('SystemInfoBaseBar').innerHTML='Open Enhancer Dialog';" onmouseout="getElementById('SystemInfoBaseBar').innerHTML='eXastum 2.0';" id="VideoEnhancerDialog" oncontextmenu="getElementById('RightClick').style.display='block'; RightClick.style.left = (event.pageX + scrollX) + 'px'; RightClick.style.top = (event.pageY + scrollY) + 'px'; return false;">
 <img draggable="false" alt="Image Load Failed" src="Themes/Nova/Icons/Close.png" class="CloseButton" onmouseover="this.src='Themes/Nova/Icons/CloseHover.png';" onmouseout="this.src='Themes/Nova/Icons/Close.png';" onmousedown="this.src='Themes/Nova/Icons/CloseDown.png';" onmouseup="this.src='Themes/Nova/Icons/CloseHover.png';" width="20" height="20" onclick="eXastumClose('VideoEnhancerDialog');"/>
@@ -1103,7 +1097,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <p class="min" id="CameraMin" onclick="eXastumOpen('Camera');">Camera</p>
 <p class="min" id="ClockMin" onclick="eXastumOpen('Clock');">Clock</p>
 <p class="min" id="ContactsMin" onclick="eXastumOpen('Contacts');">Contacts</p>
-<p class="min" id="CodingSuiteMin" onclick="eXastumOpen('CodingSuite');">Dev Tools</p>
+<p class="min" id="CodingSuiteMin" onclick="eXastumOpen('CodingSuite'); eXastumMaxWin('CodingSuite'); getElementById('CodingSuite').style.height='calc(100% - 56px)';">Dev Tools</p>
 <p class="min" id="FilesMin" onclick="eXastumOpen('Files');">File Browser</p>
 <p class="min" id="GalleryMin" onclick="eXastumOpen('Gallery');">Picture Viewer</p>
 <p class="min" id="GameCenterMin" onclick="eXastumOpen('GameCenter');">Game Center</p>
@@ -1160,7 +1154,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <div id="AppList">
 <br/>
 <br/>
-<h2 class="MenuTitle"><strong><em>eXastum Apps:</em></strong></h2>
+<h2 class="MenuTitle"><u>eXastum Apps:</u></h2>
 <br/>
 <br/>
 <div id="TheAppList">
@@ -1186,7 +1180,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 
 <br/>
 <br/>
-<h2 class="MenuTitle"><strong><em>Installed Apps:</em></strong></h2>
+<h2 class="MenuTitle"><u>Installed Apps:</u></h2>
 <br/>
 <br/>
 <div id="TheInstalledList">
@@ -1199,7 +1193,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <div id="WidgetList">
 <br/>
 <br/>
-<h2 class="MenuTitle"><strong><em>Widgets:</em></strong></h2>
+<h2 class="MenuTitle"><u>Widgets:</u></h2>
 <br/>
 <br/>
 <div id="TheWidgetList"><br/>
@@ -1215,7 +1209,7 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 <div id="SearchResults">
 <br/>
 <br/>
-<h2 class="MenuTitle"><strong><em>Search Results:</em></strong></h2>
+<h2 class="MenuTitle"><u>Search Results:</u></h2>
 <br/>
 <br/>
 <div id="TheSearchList">
@@ -1240,9 +1234,9 @@ Click "Finish" to complete Setup and restart eXastum.</p>
 
 <div id="AbouteXastum">
 <p id="AbouteXastumText">
-Welcome to eXastum 2.0 the successor to eXastum 1.9<br/>
-and the next generation of Brian Millar's<br/>
-family of HTML5 based operating systems.<br/>
+Welcome to eXastum 2.0 Nova the successor to
+eXastum 1.9 Stratos and the next generation<br/>
+of the eXastum family of HTML5 based desktops.<br/>
 <br/>
 This project is open source and free.<br/>
 Thank you for supporting my work and<br/>
@@ -1267,8 +1261,8 @@ GNU General Public License for more details.<br/><br/>
 You should have received a copy of the GNU General Public License<br/>
 along with eXastum.  If not, see<br/>
 <em onclick="getElementById('Browser').style.display='block'; getElementById('Browserwindow').src='http://www.gnu.org/licenses/';" class="Link">http://www.gnu.org/licenses/</em><br/><br/>
-<u><strong>Email:</strong></u>  brianmillar9@yahoo.com<br/>
-<u><strong>Facebook:</strong></u>  www.facebook.com/eXastum<br/>
+<u>Email:</u>  brianmillar9@yahoo.com<br/>
+<u>Facebook:</u>  www.facebook.com/ontropy<br/>
 </p>
 </div>
 </div>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+	Copyright 2014 Brian Millar
+	eXastum Studio is free software:
+	you can redistribute it and/or modify it under the terms of the
+	GNU General Public License as published by the Free Software Foundation,
+	either version 3 of the License, or (at your option) any later version.
+	eXastum Studio is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	You should have received a copy of the GNU General Public License
+	along with eXastum Studio.  If not, see <http://www.gnu.org/licenses/>
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>eXastum Studio Beta</title>
+<!--
+	The following notice shows the JS in the site is Free Software and it will
+	not be blocked by extensions like LibreJS, for those reasons it is in a
+	script tag. 
+-->
+<script>
+/*    
+	@licstart  The following is the entire license notice for the 
+	JavaScript code in this page.
+
+	Copyright (C) 2014  Brian Millar
+
+	The JavaScript code in this page is free software: you can
+	redistribute it and/or modify it under the terms of the GNU
+	General Public License (GNU GPL) as published by the Free Software
+	Foundation, either version 3 of the License, or (at your option)
+	any later version.  The code is distributed WITHOUT ANY WARRANTY;
+	without even the implied warranty of MERCHANTABILITY or FITNESS
+	FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+	As additional permission under GNU GPL version 3 section 7, you
+	may distribute non-source (e.g., minimized or compacted) forms of
+	that code without the copy of the GNU GPL normally required by
+	section 4, provided you include this license notice and a URL
+	through which recipients can access the Corresponding Source.   
+
+	@licend  The above is the entire license notice
+	for the JavaScript code in this page.
+*/
+</script>
+
+<!-- Importing my two libraries and Mr Doob's Three JS -->
+<script src="music.js"></script>
+<script src="macgril.js"></script>
+<script src="three.min.js"></script>
+
+<!-- CSS Stylesheet -->
+<link rel="stylesheet" type="text/css" href="theme.css"/>
+</head>
+
+<!-- Run Macgril Init and check if a user exists, check for special function keypresses -->
+<body onload="macgrilInit(); checkCanLogin();" onkeydown="checkKey(event)">
+
+
+<div id="overlay">
+	<p>&#160;&#160;Best Used in Fullscreen (F11 Usually)</p>
+	<br/>
+
+	<!-- The main form, submission is prevented(avoid page reload) and JS validation is run instead -->
+	<form id="createUserForm" action="index.html" method="POST" onsubmit="event.preventDefault(); validateForm();">
+		<fieldset>
+			<legend><em>&#160; v1.0 &#160;</em></legend>
+			<img alt="image" src="images/speaker.png" width="150"/>
+			<h2>Welcome to eXastum Studio</h2>
+			<em>Easy Music Production in HTML5</em><br/><br/>
+			This appears to be the first time you've run eXastum Studio.
+			<br/><br/>
+			<strong>Create a New User</strong>
+			<br/><br/>
+			<input name="username" required class="text" type="text" placeholder="Username"/><br/>
+			<input name="password" required class="text" type="password" placeholder="Password"/><br/>
+			<input name="firstname" required class="text" type="text" placeholder="First Name"/><br/>
+			<input name="lastname" required class="text" type="text" placeholder="Last Name"/><br/>
+			<input name="email" required class="text" type="text" placeholder="Email"/><br/>
+			<input name="phone" required class="text" type="text" placeholder="Phone Number"/><br/>
+			<br/><br/>
+			<div id="genderSelect"><br/>
+			<label><strong>Gender</strong></label><br/>
+				<input class="radio" name="gender" type="radio" value="Male"/><label class="radio">Male</label><br/><br/>
+				<input checked="true" class="radio" name="gender" type="radio" value="Female"/><label class="radio">Female</label><br/><br/>
+				<input class="radio" name="gender" type="radio" value="Custom"/><label class="radio">Custom</label><br/><br/>
+			</div><br/>
+			<input id="customGender" type="text" class="text" placeholder="Custom Gender"/>
+			<br/>
+			<label id="expLabel">Experience Level:</label>
+			<select id="experience" name="experience">
+				<option>
+					Beginner
+				</option>
+				<option>
+					Intermediate
+				</option>
+				<option>
+					Professional
+				</option>
+			</select>
+			<br/>
+			<input id="termsBox" type="checkBox"/><label id="xpLabel">I agree to the Terms of all Licences</label>
+			<br/><br/>
+			<input class="button" type="submit" id="submitButton"/>
+			<button onclick="skipValidation()" class="floatRight">Skip</button><br/><br/>
+		</fieldset>
+	</form>
+
+	
+</div>
+
+
+<header>
+	<img alt="image" draggable="false" src="images/logo.png" id="mainLogo"/>
+	<img alt="image" draggable="false" id="playPause" onclick="pausePlay()" src="images/play.png" width="45" height="45"/>
+	<img alt="image" draggable="false" id="flashy" width="40" height="40" src="images/led.png"/>
+	
+	<!-- Not using <nav> as no page navigation by way of anchors taking place -->
+	<div id="navTabs">
+		<span onclick="switchTabs('tracksContainer','aboutStudio');" class="workTab">Version 1.0</span>
+	</div>
+	<!--
+	<span id="progressBG"></span>
+	<span id="progress"></span>
+	-->
+	<img alt="image" onclick="window.open('http://www.gnu.org/copyleft/gpl.html');" id="gplLogo" src="images/gpl.png"/>
+	<img alt="image" onclick="window.open('http://creativecommons.org/licenses/by-sa/4.0/');" id="ccLogo" src="images/cc.png"/>
+	<img alt="image" onclick="window.open('http://www.fsf.org/campaigns/playogg/en/');" id="oggLogo" src="images/ogg.png"/>
+	<span id="dateTimeDisplay"></span>
+	<button id="demoButton" onclick="demoMode()">Demo Mode</button>
+	<button id="userButton" onclick="userInfo()">User Info</button>
+</header>
+
+<!-- Left Sidebar -->
+
+<aside>
+	
+	<h2 onclick="switchTabs('aboutStudio','tracksContainer');" class="sideOption" onmouseover="$('productionArrow').style.marginRight='0px';" onmouseout="$('productionArrow').style.marginRight='10px';">Production<span class="menuArrow" id="productionArrow">></span></h2>
+	<h2 onclick="switchTabs('tracksContainer','aboutStudio');" class="sideOption" onmouseover="$('aboutArrow').style.marginRight='0px';" onmouseout="$('aboutArrow').style.marginRight='10px';">About<span class="menuArrow" id="aboutArrow">></span></h2>
+
+	<div id="toolbox">
+		<h5 id="toolboxTitle">Toolbox</h5><br/><br/>
+		<img alt="image" class="toolboxItem" onclick="newConsole()" src="images/console.png" width="45" height="45"/>
+		<img alt="image" class="toolboxItem" onclick="newFiles()" src="images/files.png" width="45" height="45"/>
+		<img alt="image" class="toolboxItem" onclick="newNotes()" src="images/note.png" width="45" height="45"/>
+		<br/>
+	</div>
+	
+	<div id="masterControls">
+		<h4 id="masterCtrlsTitle">Master Controls</h4>
+		
+		<span class="controlKnob">
+		<img class="knobTurner" alt="image" draggable="false" ondragstart="return false;" onload="this.style.MozTransform = 'rotate(0deg)';" src="images/Knob2.png" onmousedown="knobLogic(this,event,'adjustVolume(newPos)');" width="50" height="50"/></span>
+		<label class="knobLabel"><strong>VOL</strong></label>
+		
+		<span class="controlKnob" id="panDial">
+		<img class="knobTurner" alt="image" draggable="false" ondragstart="return false;" onload="this.style.MozTransform = 'rotate(0deg)';" src="images/Knob2.png" onmousedown="knobLogic(this,event);" width="50" height="50"/></span>
+		<label class="knobLabel" style="margin-left:60px;"><strong>PAN</strong></label>
+		
+		<span class="controlKnob" id="gainDial">
+		<img class="knobTurner" alt="image" draggable="false" ondragstart="return false;" onload="this.style.MozTransform = 'rotate(0deg)';" src="images/Knob2.png" onmousedown="knobLogic(this,event);" width="50" height="50"/></span>
+		<label class="knobLabel" style="margin-left:120px;"><strong>GAIN</strong></label>
+		
+		<span class="controlKnob" id="funDial">
+		<img class="knobTurner" alt="image" draggable="false" ondragstart="return false;" onload="this.style.MozTransform = 'rotate(0deg)';" src="images/Knob2.png" onmousedown="knobLogic(this,event,'adjustFun(newPos)');" width="50" height="50"/></span>
+		<label class="knobLabel" style="margin-left:180px;"><strong>FUN</strong></label>
+	</div>
+	<div id="renderer">
+		<!-- A WebGL Canvas is generated in here at runtime for the visualiser effects (see music.js) -->
+	</div>
+</aside>
+
+
+<div id="aboutStudio">
+	<h1>eXastum Studio Beta v1.0</h1>
+	<h3><em>The HTML5 Digital Audio Workstation</em></h3><br/>
+	<p>eXastum Studio adds to and rounds out the eXastum family of HTML5 projects.<br/>
+	eXastum Desktop 3.0 is coming soon. See <a href="http://www.sourceforge.net/projects/exastum" target="_blank"><em>sourceforge.net/projects/exastum</em></a>.<br/>
+	Development is moving to Github soon.
+	</p>
+	<p>Copyright &copy; Brian Millar 2014 (not very many rights reserved)<br/><br/>
+	All projects including eXastum Studio are distributed under the GNU General Public Licence Version 3 (click GPL logo in top right for more)<br/><br/>
+	Media elements such as icons are available under a Creative Commons Attribution 4.0 Sharealike licence (click CC logo in top right for more)<br/><br/><br/>
+	The 'Raleway' font by Matt McInerney is shared under an Open Font Licence (see the font folder for more)<br/><br/>
+	See <a href="http://www.threejs.org/license" target="_blank"><em>threejs.org/license</em></a> for the licencing information for Mr Doob's Three JS  webGL library.<br/>
+	</p>
+</div>
+
+
+<div id="tracksContainer">
+	<h2 id="editorTitle">Song Editor - Unnamed Project</h2>
+	<button onclick="addTrack('NewTrack',100,false);">New Track</button>
+	<button onclick="addSource(fOpen('audio'));">Open Track</button>
+	<span id="currentTime">0:00 / 0:00</span>
+	<table id="trackCtrlTable" cellpadding="0" cellspacing="0"></table>
+	<div id="trackDeckContainer">
+		<table id="trackDeck" cellpadding="0" cellspacing="0"></table>
+	</div>
+</div>
+
+<!--
+<div id="oscillatorCtrl">
+	<div id="piano">
+	<img alt="image" id="pianoBG" draggable="false" src="images/piano.png" width="720" height="150"/>
+		<div id="whiteKeys"></div>
+		<div id="blackKeys"></div>
+	</div>
+	<br/>
+	<h2 id="oscTitle"><em>Oscillator Control</em></h2>
+</div>
+-->
+
+<div id="windowSystem"></div>
+
+<div id="macgril"></div>
+</body>
+</html>

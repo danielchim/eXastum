@@ -1,4 +1,0 @@
-Please perform your own virus scans on anything you download from here,
-I don't always have time to perform scans myself although my machines are usually clean.
-However I use Linux so a Windows virus may go unnoticed by me.
-I do not put viruses in my projects, if you find one please report it ASAP.

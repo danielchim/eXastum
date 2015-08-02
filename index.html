@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<!-- Copyright 2011, 2012, 2013, 2014, 2015 Brian Millar
+	 This file is part of eXastum.
+	 eXastum is free software: you can redistribute it and/or modify
+	 it under the terms of the GNU General Public License as published by
+	 the Free Software Foundation, either version 3 of the License, or
+	 (at your option) any later version.
+	 eXastum is distributed in the hope that it will be useful,
+	 but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 GNU General Public License for more details.
+	 You should have received a copy of the GNU General Public License
+	 along with eXastum.  If not, see <http://www.gnu.org/licenses/>
+
+	 Under Section 7 of the GNU General Public Licence Version 3 
+	 I require that you give me credit for the original project
+	 in all forks and modified versions. For example if you
+	 wish to create "Bob's HTML5 Desktop" you must include
+	 "based on eXastum by Brian Millar" somewhere in the project
+	 credits and a link to an eXastum project page such as Github, Sourceforge
+	 or Ontropy.org
+-->
+
+<html>
+<head>
+	<script>
+		/*    
+		@licstart  The following is the entire license notice for the 
+		JavaScript code in this page.
+
+		Copyright (C) 2015  Brian Millar
+
+		The JavaScript code in this page is free software: you can
+		redistribute it and/or modify it under the terms of the GNU
+		General Public License (GNU GPL) as published by the Free Software
+		Foundation, either version 3 of the License, or (at your option)
+		any later version.  The code is distributed WITHOUT ANY WARRANTY;
+		without even the implied warranty of MERCHANTABILITY or FITNESS
+		FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+		As additional permission under GNU GPL version 3 section 7, you
+		may distribute non-source (e.g., minimized or compacted) forms of
+		that code without the copy of the GNU GPL normally required by
+		section 4, provided you include this license notice and a URL
+		through which recipients can access the Corresponding Source.   
+
+		
+		@licend  The above is the entire license notice
+		for the JavaScript code in this page.
+		*/
+	</script>
+
+	<meta name="author" content="Brian Millar"/>
+	<!-- In case a search engine indexes this... -->
+	<meta name="keywords" content="exastum, exast, HTML5, html, js, javascript, operating, system, browser, desktop, web, open, source, free, software, ontropy, brian, millar" />
+	<meta name="description" content="eXastum is the world's first HTML5 desktop environment for your browser." />
+	<title id="SystemTitle">eXastum 3.0</title>
+	<!-- Load CSS assets, JS is loaded at the bottom of the document -->
+	<link id="Sheet" rel="stylesheet" type="text/css" href="skins/default/skin.css"/>
+	<!-- Load attitional custom CSS rules as defined by the user -->
+	<style id="styleSystem"></style>
+
+<body onload="init();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
+<!-- Indentation style not applied to first children of body as almost the entire
+	 page would be indented by one tab for no real reason -->
+<noscript>
+	<!-- Make sure we have JS enabled, you never know -->
+	<h1 id="NoJSWarning">FATAL ERROR: Sorry, eXastum cannot run without JavaScript support</h1>
+</noscript>
+
+<img id="bootsplash" src="skins/default/ui/bootsplash.gif" width="100%" height="100%"/>
+
+<textarea style="display:none;" id="console"></textarea>
+
+<div id="login">
+<input type="text" id="username"/>
+<input type="password" id="password"/>
+<button onclick="login();" id="loginButton">Login</button>
+</div>
+
+<div id="setup">
+<p>Welcome to eXastum Setup</p>
+</div>	
+
+<div id="loggedIn">
+	<img id="wallpaper" src="skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
+	<div id="windowLayer">
+		<div id="topBar">
+			<img id="menuButton" src="skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
+			<span id="sysTasks">Running Tasks</span>
+			<span id="sysTray">System Tray</span>
+			<span id="sysClock">Sat 11 Apr  00:00</span>
+		</div>
+		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
+			<span>&copy; Brian Millar 2015</span>
+		</div>
+		<div id="mainMenu">
+			<ul>
+				<li id="itemHighlighter"></li>
+				<li onmouseover="adjustMargins('itemHighlighter', '0');">Installer</li>
+				<li onmouseover="adjustMargins('itemHighlighter', '25');">Open File</li>
+				<li>eXastum Repo</li>
+					<br/>
+				<li onmouseover="adjustMargins('itemHighlighter', '50');">Applications</li>
+				<li>Games</li>
+				<li onmouseover="adjustMargins('itemHighlighter', '75');">Widgets</li>
+					<br/>
+				<li>About eXastum</li>
+			</ul>
+		</div>
+		<span id="rightHotspot" onmouseover="$('desktop').style.MozTransform='translateX(-250px)';"></span>
+		<div id="desktop" onclick="clickDesktop();">
+			<span id="buildNum"></span>
+			<div id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
+				<!--<div id="coreApps">
+					<iframe src="apps/ex_studio/index.html" width="100%" height="100%"></iframe>
+				</div>-->
+			</div>
+			<div id="dock" onmouseover="showDock();" onmouseout="hideDock();">
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/browser.png" width="70" height="70" id="dockFirstIcon"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/pictures.png" width="70" height="70"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/music.png" width="70" height="70"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/video.png" width="70" height="70"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/tools.png" width="70" height="70"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/games.png" width="70" height="70"/>
+				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/settings.png" width="70" height="70"/>
+			</div>
+		</div>
+	</div>
+	<div id="widgetLayer"></div>
+</div>
+
+<!-- Loads the exastum.js Core System Library and Macgril JS -->
+<script src="libs/exastum.js"></script>
+<script src="libs/macgril.js"></script>
+</body>
+</html>

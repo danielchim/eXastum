@@ -415,20 +415,6 @@ iframe.app {
 	height:		23px;
 }
 
-#itemHighlighter {
-	z-index:			-1;
-	position:			absolute;
-	width:				150px;
-	height:				25px;
-	background-color:	rgba(0,0,0,0.7);
-	
-	transition:			0.2s;
-	-o-transition:		0.2s;
-	-ms-transition:		0.2s;
-	-moz-transition:	0.2s;
-	-webkit-transition:	0.2s;
-}
-
 #desktop {
 	position:			fixed;
 	top:				0px;

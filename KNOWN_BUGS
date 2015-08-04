@@ -1,2 +1,10 @@
-Window Resizing not working.
-Restoring Window after Maximise not working.
+========================================================================
+  KNOWN BUGS THAT NEED FIXING
+========================================================================
+
+[ ] Window Resizing not working.
+
+[X] Restoring Window after Maximise not working.
+	- Fixed but can still seem buggy for some reason
+	
+========================================================================

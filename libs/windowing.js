@@ -51,13 +51,18 @@ function maxWindow(winID) {
 	lStore(winID+"Height",$(winID).style.height);
 	lStore(winID+"Left",$(winID).style.left);
 	lStore(winID+"Top",$(winID).style.top);
-	document.onmousemove = function() {return false};
-	$(winID).setAttribute("style","opacity:1.0; display:block; top:22px; left:0px; width:100%; height:calc(100% - 44px); border-style:none; border-radius:0px; z-index:10;");
+	document.onmousemove  = function() {return false};
+	$(winID).style.top    = "22px";
+	$(winID).style.left   = "0px";
+	$(winID).style.width  = "100%";
+	$(winID).style.height = "calc(100% - 44px)";
 }
 
 function restoreWindow(winID) {
-	document.onmousemove = function() {return false};
-	$(winID).setAttribute("style","opacity:1.0; display:block; top:"+lStore(winID+"Top")+"; left:"+lStore(winID+"Left")+"; width:"+lStore(winID+"Width")+"; height:calc"+lStore(winID+"Height")+"; z-index:8;");
+	$(winID).style.width  = lStore(winID+"Width");
+	$(winID).style.height = lStore(winID+"Height");
+	$(winID).style.top    = lStore(winID+"Top");
+	$(winID).style.left   = lStore(winID+"Left");
 	lStore(winID+"Width","del");
 	lStore(winID+"Height","del");
 	lStore(winID+"Left","del");
@@ -65,8 +70,9 @@ function restoreWindow(winID) {
 }
 
 function maxRestoreWindow(winID) {
-	if((lStore((winID+"Width")!=null))&&(lStore((winID+"Width")!=undefined)))
-		restoreWindow(appWindow);
+	document.onmousemove = function() {return false};
+	if(lStore(winID+"Width")!=null)
+		restoreWindow(winID);
 	else
 		maxWindow(winID);
 }
@@ -74,8 +80,6 @@ function maxRestoreWindow(winID) {
 //Window Movemovement
 
 function dragWindow(appWindow,ev) {
-	if((lStore((appWindow+"Width")!=null))&&(lStore((appWindow+"Width")!=undefined)))
-		restoreWindow(appWindow);
 	positionLeft	= parseInt($(appWindow).style.left);
 	positionTop		= parseInt($(appWindow).style.top);
 	xcoor			= ev.clientX;

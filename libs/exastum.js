@@ -1,6 +1,6 @@
 /* GLOBALS */
-var buildNo		= "3.0.1.0";
-var codeName	= "Nightly 24/07/15";
+var buildNo		= "3.0.0.1";
+var codeName	= "Pre-Alpha";
 var language	= "english"
 
 function init() {

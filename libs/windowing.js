@@ -56,6 +56,12 @@ function maxWindow(winID) {
 	$(winID).style.left   = "0px";
 	$(winID).style.width  = "100%";
 	$(winID).style.height = "calc(100% - 44px)";
+	$(winID).style.borderLeftStyle         = "none";
+	$(winID).style.borderRightStyle        = "none";
+	$(winID).style.borderTopLeftRadius     = "0px";
+	$(winID).style.borderTopRightRadius    = "0px";
+	$(winID).style.borderBottomLeftRadius  = "0px";
+	$(winID).style.borderBottomRightRadius = "0px";
 }
 
 function restoreWindow(winID) {
@@ -67,6 +73,12 @@ function restoreWindow(winID) {
 	lStore(winID+"Height","del");
 	lStore(winID+"Left","del");
 	lStore(winID+"Top","del");
+	$(winID).style.borderLeftStyle         = "solid";
+	$(winID).style.borderRightStyle        = "solid";
+	$(winID).style.borderTopLeftRadius     = "20px";
+	$(winID).style.borderTopRightRadius    = "20px";
+	$(winID).style.borderBottomLeftRadius  = "16px";
+	$(winID).style.borderBottomRightRadius = "16px";
 }
 
 function maxRestoreWindow(winID) {

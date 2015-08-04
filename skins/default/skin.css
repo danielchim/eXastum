@@ -10,25 +10,12 @@ body {
 	color:				#593e60;
 	background-color:	#000000;
 	
-	/* Most browsers don't support this stuff
-	 * but I'm adding the prefixes anyway in 
-	 * case they decide to add it at some point.
-	 * 
-	 * A side note to mention, just because all 
-	 * these browser prefixes are here doesn't 
-	 * mean the whole system will work in all of 
-	 * these browsers, browser support is added 
-	 * as much as possible but some of the JS stuff 
-	 * may never work outside of Chrome or Firefox.
-	 */
-	
 	user-select:			none;
 	-o-user-select:			none;
 	-ms-user-select:		none;
 	-moz-user-select:		none;
 	-webkit-user-select:	none;
-	
-	/* I think only Chrome actually supports this */
+
 	font-smoothing:			antialiased;
 	-o-font-smoothing:		antialiased;
 	-ms-font-smoothing:		antialiased;
@@ -346,9 +333,9 @@ iframe.app {
 
 #sysClock {
 	font-family:	eXastumDefault;
-	font-size:		14px;
+	font-size:		15px;
 	position:		fixed;
-	top:			4px;
+	top:			2px;
 	right:			5px;
 	text-shadow:	1px 1px 3px #000000;
 }
@@ -427,12 +414,12 @@ iframe.app {
 }
 
 #rightHotspot {
-	position:	fixed;
-	top:		0px;
-	right:		0px;
-	width:		10px;
-	height:		100%;
-	background-color: red;
+	position:			fixed;
+	top:				0px;
+	right:				0px;
+	width:				8px;
+	height:				100%;
+	background-color:	transparent;
 }
 
 #loggedIn {

@@ -10,12 +10,18 @@ function init() {
 	loadStrings(language);
 	loadSettings();
 	initGUI();
+	clock();
 }
 
 function checkSetup() {
 	if (lStore("setup")!=null)
 		return true;
 	return false;
+}
+
+function clock() {
+	$("sysClock").innerHTML = fDate()+"  -  "+fTime();
+	setTimeout("clock()",500);
 }
 
 function startSetup() {

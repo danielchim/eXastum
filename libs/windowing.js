@@ -2,9 +2,9 @@
 function newWindow(x,y,title,content,resize,min,max) {
 	if((max==null)||(max==undefined)) max=true;
 	if((min==null)||(min==undefined)) min=true;
-	var newWindow	=generate("div","windowSystem");
-	var titleBar	=generate("span",newWindow);
-	var windowTab	=newTab(title);
+	var newWindow	= generate("div","windowSystem");
+	var titleBar	= generate("span",newWindow);
+	var windowTab	= newTab(title);
 	$(newWindow).setAttribute("class","window");
 	$(newWindow).style.width	= x + 2	 + "px";
 	$(newWindow).style.height	= y + 32 + "px";
@@ -21,14 +21,14 @@ function newWindow(x,y,title,content,resize,min,max) {
 	var minString	= "";
 	var maxString	= "";
 	if(min)
-		minString="<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/min.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/minHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/min.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/minDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/min.png';\" class=\"minButton\" onclick=\"minMaxWindow('" + newWindow + "')\"/>";
+		minString="<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/min.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/minHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/min.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/minDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/min.png';\" class=\"minButton\" onclick=\"minMaxWindow('" + newWindow + "','" + windowTab + "')\"/>";
 	if(max)
-		maxString="<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/max.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/maxHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/maxDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" class=\"maxButton\" onclick=\"maxRestoreWindow('" + newWindow + "')\"/>";
+		maxString="<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/max.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/maxHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/maxDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" class=\"maxButton\" onclick=\"maxRestoreWindow('" + newWindow + "','" + windowTab + "')\"/>";
 	$(titleBar).innerHTML	="<span class='titleBarText'>" + title + "</span>" + "<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/close.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/closeHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/close.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/closeDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/close.png';\" class=\"closeButton\" onclick=\"destroyWindow('" + newWindow + "','" + windowTab + "')\"/>"+maxString+minString;
 	$(titleBar).setAttribute("class","titleBar");
 
 	$(titleBar).setAttribute("onmousedown","dragWindow('" + newWindow + "',event);");
-	$(windowTab).setAttribute("onclick","minMaxWindow('" + newWindow + "')");
+	$(windowTab).setAttribute("onclick","minMaxWindow('" + newWindow + "','" + windowTab + "')");
 	return newWindow;
 }
 
@@ -37,13 +37,16 @@ function destroyWindow(winID,tabID) {
 	$(tabID).remove();
 }
 
-function minMaxWindow(winID) {
+function minMaxWindow(winID,tabID) {
 	if ($(winID).style.display == "block") {
 		$(winID).style.display = "none";
+		$(tabID).style.backgroundImage = "URL('skins/" + lStore("skin") + "/ui/backing_up.png')";
 		document.onmousemove = function() {return false};
 	}
-	else
+	else {
 		$(winID).style.display = "block";
+		$(tabID).style.backgroundImage = "URL('skins/" + lStore("skin") + "/ui/backing_down.png')";
+	}
 }
 
 function maxWindow(winID) {

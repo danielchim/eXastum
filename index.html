@@ -56,9 +56,9 @@
 <textarea style="display:none;" id="console"></textarea>
 
 <div id="login">
-<input type="text" id="username"/>
-<input type="password" id="password"/>
-<button onclick="login();" id="loginButton">Login</button>
+	<input type="text" id="username"/>
+	<input type="password" id="password"/>
+	<button onclick="login();" id="loginButton">Login</button>
 </div>
 
 <div id="setup">
@@ -70,15 +70,15 @@
 	<div id="windowLayer">
 		<div id="topBar">
 			<img id="menuButton" src="skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
-			<span id="sysTasks">Running Tasks</span>
-			<span id="sysTray">System Tray</span>
+			<span id="sysTasks"></span>
+			<span id="sysTray"></span>
 			<span id="sysClock">::Clock Error::</span>
 		</div>
 		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
 			<!-- Add stuff here -->
 		</div>
 		<div id="mainMenu">
-			<!-- Add List Items -->
+			<div id="menuRight"></div>
 		</div>
 		<span id="rightHotspot" onmouseover="$('desktop').style.MozTransform='translateX(-250px)';"></span>
 		<div id="desktop" onclick="clickDesktop();">

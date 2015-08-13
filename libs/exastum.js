@@ -96,7 +96,8 @@ function initGUI() {
 }
 
 function clickDesktop() {
-	document.getElementById("mainMenu").style.display="none";
+	$("mainMenu").style.display="none";
+	$("menuButton").src = "skins/"+lStore("skin")+"/ui/menu.png";
 }
 
 function loadUiColors() {
@@ -140,10 +141,14 @@ function consoleWrite(message) {
 //UI Controls
 
 function showHideMainMenu() {
-	if (document.getElementById("mainMenu").style.display=="none")
-		document.getElementById("mainMenu").style.display="block";
-	else
-		document.getElementById("mainMenu").style.display="none";
+	if ($("mainMenu").style.display == "none") {
+		$("mainMenu").style.display = "block";
+		$("menuButton").src = "skins/"+lStore("skin")+"/ui/menuPress.png";
+	}
+	else {
+		$("menuButton").src = "skins/"+lStore("skin")+"/ui/menu.png";
+		$("mainMenu").style.display="none";
+	}
 }
 
 //Theme Functions

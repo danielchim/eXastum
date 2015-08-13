@@ -220,6 +220,18 @@ div.window:hover {
 	box-shadow:		0px 0px 10px #000000;
 }
 
+span.workTab {
+	font-size:			14px;
+	background-image:	URL("ui/backing_down.png");
+	background-size:	100% 100%;
+	padding-left:		8px;
+	padding-right:		8px;
+	border-radius:		20px;
+	box-shadow:			inset 0px 0px 8px #000000;
+	text-shadow:		0px 0px 8px #000000;
+	margin-left:		6px;
+}
+
 div.sysDialog {
 	position:						absolute;
 	z-index:						11;
@@ -387,13 +399,29 @@ iframe.app {
 	height:						320px;
 	padding:					0px;
 	background-color:			rgba(0,0,0,0.7);
-	box-shadow:					0px 0px 3px #000000;
+	box-shadow:					0px 8px 20px #000000;
+	border-width:				1px;
+	border-right-style:			solid;
+	border-bottom-style:		solid;
 	border-bottom-right-radius:	20px;
 	animation:					0.4s mainMenu;
 	-webkit-animation:			0.4s mainMenu;
 	-moz-animation:				0.4s mainMenu;
 	-ms-animation:				0.4s mainMenu;
 	-o-animation:				0.4s mainMenu;
+}
+
+#menuRight {
+	float:						right;
+	width:						150px;
+	height:						100%;
+	border-bottom-right-radius:	20px;
+	background-image:			URL("ui/sider.png");
+	background-size:			100% 100%;
+	border-width:				1px;
+	border-left-style:			solid;
+	box-shadow:					0px 0px 8px #000000;
+	background-color:			transparent;
 }
 
 #menuButton {

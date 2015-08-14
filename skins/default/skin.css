@@ -287,6 +287,14 @@ iframe.app {
 	resize:							none;
 }
 
+img.barIcon {
+	height:			18px;
+	width:			18px;
+	margin-top:		1px;
+	margin-left:	2px;
+	cursor:			pointer;
+}
+
 #bootsplash {
 	position:	fixed;
 	top:		0px;
@@ -335,7 +343,9 @@ iframe.app {
 #sysTasks {
 	position:		fixed;
 	top:			2px;
-	left:			60px;
+	left:			121px;
+	right:			140px;
+	overflow:		hidden;
 }
 
 #sysTray {
@@ -429,6 +439,10 @@ iframe.app {
 	position:	fixed;
 	z-index:	20;
 	height:		23px;
+}
+
+#quickLaunch {
+	margin-left:	52px;
 }
 
 #desktop {

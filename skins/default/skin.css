@@ -293,6 +293,42 @@ img.barIcon {
 	margin-top:		1px;
 	margin-left:	2px;
 	cursor:			pointer;
+	opacity:		0.7;
+}
+
+img.barIcon:hover {
+	opacity:		1.0;
+}
+
+img.powerButtons {
+	margin-left:	8px;
+	width:			26px;
+	height:			26px;
+	display:		inline;
+	cursor:			pointer;
+}
+
+p.menuTextLink {
+	margin-left:		10px;
+	cursor:				pointer;
+	font-size:			14px;
+	text-shadow:		1px 1px 3px #000000;
+}
+
+p.menuTextLink:hover {
+	text-decoration:	underline;
+}
+
+h1.menuTitle {
+	margin-left:	20px;
+	font-weight:	normal;
+	margin-top:		10px;
+	
+	animation:			titleFade 1.0s;
+	-webkit-animation:	titleFade 1.0s;
+	-moz-animation:		titleFade 1.0s;
+	-ms-animation:		titleFade 1.0s;
+	-o-animation:		titleFade 1.0s;
 }
 
 #bootsplash {
@@ -423,7 +459,9 @@ img.barIcon {
 }
 
 #menuRight {
-	float:						right;
+	position:					absolute;
+	right:						0px;
+	top:						0px;
 	width:						150px;
 	height:						100%;
 	border-bottom-right-radius:	20px;
@@ -439,6 +477,17 @@ img.barIcon {
 	position:	fixed;
 	z-index:	20;
 	height:		23px;
+}
+
+#menuLinks {
+	position:	absolute;
+	bottom:		40px;
+}
+
+#menuPowerButtons {
+	position:		absolute;
+	bottom:			8px;
+	margin-left:	60px;
 }
 
 #quickLaunch {
@@ -552,3 +601,9 @@ img.barIcon {
 @-webkit-keyframes	sysDialog {0% {box-shadow:0px 0px 25px #000000;} 50% {box-shadow:0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow:0px 0px 25px #000000;}}
 @-ms-keyframes		sysDialog {0% {box-shadow:0px 0px 25px #000000;} 50% {box-shadow:0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow:0px 0px 25px #000000;}}
 @-o-keyframes		sysDialog {0% {box-shadow:0px 0px 25px #000000;} 50% {box-shadow:0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow:0px 0px 25px #000000;}}
+
+@keyframes			titleFade {0% {opacity:0.0; margin-left:-10px;} 100% {opacity:1.0;}}
+@-moz-keyframes		titleFade {0% {opacity:0.0; margin-left:-10px;} 100% {opacity:1.0;}}
+@-webkit-keyframes	titleFade {0% {opacity:0.0; margin-left:-10px;} 100% {opacity:1.0;}}
+@-ms-keyframes		titleFade {0% {opacity:0.0; margin-left:-10px;} 100% {opacity:1.0;}}
+@-o-keyframes		titleFade {0% {opacity:0.0; margin-left:-10px;} 100% {opacity:1.0;}}

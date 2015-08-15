@@ -84,7 +84,19 @@
 			<!-- Add stuff here -->
 		</div>
 		<div id="mainMenu">
-			<div id="menuRight"></div>
+			<h1 class="menuTitle">Applications</h1>
+			<div id="menuRight">
+				<div id="menuLinks">
+					<p class="menuTextLink">Installer</p>
+					<p class="menuTextLink">Open File</p>
+					<p class="menuTextLink">System Settings</p>
+					<p class="menuTextLink">About eXastum</p>
+				</div>
+				<div id="menuPowerButtons">
+					<img onmouseover="this.src='skins/default/icons/reload_over.png';" onmouseout="this.src='skins/default/icons/reload.png';" class="powerButtons" src="skins/default/icons/reload.png"/>
+					<img onmouseover="this.src='skins/default/icons/power_over.png';" onmouseout="this.src='skins/default/icons/power.png';" class="powerButtons" src="skins/default/icons/power.png"/>
+				</div>
+			</div>
 		</div>
 		<span id="rightHotspot" onmouseover="$('desktop').style.MozTransform='translateX(-250px)';"></span>
 		<div id="desktop" onclick="clickDesktop();">

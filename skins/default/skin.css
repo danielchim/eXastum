@@ -514,6 +514,18 @@ h1.menuTitle {
 	bottom:		40px;
 }
 
+#menuIconPreview {
+	margin-left:	20px;
+}
+
+#menuAppsList {
+	width:		289px;
+	position:	absolute;
+	top:		35px;
+	height:		234px;
+	box-shadow:	inset 0px 0px 20px #000000;
+}
+
 #menuBottom {
 	position:			absolute;
 	bottom:				0px;
@@ -523,6 +535,24 @@ h1.menuTitle {
 	width:				289px;
 	background-image:	URL("ui/button.png");
 	background-size:	100% 100%;
+}
+
+#menuTop {
+	position:				absolute;
+	top:					0px;
+	height:					44px;
+	border-bottom-style:	solid;
+	border-width:			1px;
+	width:					289px;
+	background-image:		URL("ui/button.png");
+	background-size:		100% 100%;
+}
+
+#menuHeader {
+	margin-left:	20px;
+	margin-top:		9px;
+	font-weight:	normal;
+	text-shadow:	0px 0px 10px #000000;
 }
 
 #menuSearch {

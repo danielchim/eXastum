@@ -397,12 +397,12 @@ h1.menuTitle {
 }
 
 #userName {
-	position:	absolute;
-	top:		0px;
-	right:		8px;
-	margin-top:	2px;
-	font-size:	16px;
-	color:		#838383;
+	position:		absolute;
+	top:			0px;
+	right:			8px;
+	margin-top:		2px;
+	font-size:		16px;
+	color:			#838383;
 }
 
 #sysTasks {
@@ -514,6 +514,22 @@ h1.menuTitle {
 	bottom:		40px;
 }
 
+#menuBottom {
+	position:			absolute;
+	bottom:				0px;
+	height:				40px;
+	border-top-style:	solid;
+	border-width:		1px;
+	width:				289px;
+	background-image:	URL("ui/button.png");
+	background-size:	100% 100%;
+}
+
+#menuSearch {
+	margin-left:	10px;
+	margin-top:		10px;
+}
+
 #menuPowerButtons {
 	position:		absolute;
 	bottom:			8px;
@@ -532,6 +548,15 @@ h1.menuTitle {
 	bottom:				0px;
 	margin:				0px;
 	overflow:			hidden;
+	background-color:	transparent;
+}
+
+#leftHotspot {
+	position:			fixed;
+	top:				0px;
+	left:				0px;
+	width:				8px;
+	height:				100%;
 	background-color:	transparent;
 }
 

@@ -76,9 +76,8 @@
 				<img class="barIcon" src="skins/default/icons/mini/settings.png"/>
 			</span>
 			<span id="sysTasks"></span>
-			<span id="sysTray">
-			</span>
-			<span id="sysClock">::Clock Error::</span>
+			<span id="sysTray"></span>
+			<span id="sysClock"></span>
 		</div>
 		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
 			<input id="infoPrompt" class="text" type="text" placeholder="eXastum 3.0"/>
@@ -86,6 +85,9 @@
 		</div>
 		<div id="mainMenu">
 			<h1 class="menuTitle">Applications</h1>
+			<div id="menuBottom">
+				<input id="menuSearch" class="text" type="text" placeholder="Quick Search"/>
+			</div>
 			<div id="menuRight">
 				<div id="menuLinks">
 					<p class="menuTextLink">Installer</p>
@@ -99,8 +101,9 @@
 				</div>
 			</div>
 		</div>
-		<span id="rightHotspot" onmouseover="$('desktop').style.MozTransform='translateX(-250px)';"></span>
 		<div id="desktop" onclick="clickDesktop();">
+			<div id="leftHotspot"></div>
+			<div id="rightHotspot"></div>
 			<span id="buildNum"></span>
 			<div id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
 			</div>

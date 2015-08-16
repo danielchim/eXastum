@@ -147,6 +147,20 @@ textarea.cli {
 	border:							none;
 }
 
+input.text {
+	background-image:	URL("ui/backing_down.png");
+	background-size:	100% 100%;
+	text-shadow:		1px 1px 3px #000000;
+	box-shadow:			inset 0px 0px 8px #000000;
+	border:				none;
+	border-radius:		20px;
+	padding-left:		8px;
+	padding-right:		8px;
+	padding-top:		2px;
+	padding-bottom:		2px;
+	color:				#838383;
+}
+
 button {
 	font-family:		eXastumDefault;
 	font-size:			12px;
@@ -376,6 +390,21 @@ h1.menuTitle {
 	border-top-style:	solid;
 }
 
+#infoPrompt {
+	margin-top:		1px;
+	width:			150px;
+	margin-left:	4px;
+}
+
+#userName {
+	position:	absolute;
+	top:		0px;
+	right:		8px;
+	margin-top:	2px;
+	font-size:	16px;
+	color:		#838383;
+}
+
 #sysTasks {
 	position:		fixed;
 	top:			2px;
@@ -397,6 +426,7 @@ h1.menuTitle {
 	top:			2px;
 	right:			5px;
 	text-shadow:	1px 1px 3px #000000;
+	color:			#838383;
 }
 
 #buildNum {

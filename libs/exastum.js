@@ -24,6 +24,10 @@ function clock() {
 	setTimeout("clock()",500);
 }
 
+function updateInfoBar(text) {
+	$("infoBar").value = text;
+}
+
 function startSetup() {
 	consoleWrite("Setup is not compelete, starting setup...");
 }

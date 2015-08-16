@@ -6,6 +6,8 @@ function newWindow(x,y,title,content,resize,min,max) {
 	var titleBar	= generate("span",newWindow);
 	var windowTab	= newTab(title);
 	$(newWindow).setAttribute("class","window");
+	$(newWindow).setAttribute("onmouseover","updateInfoBar('" + title + "');");
+	$(newWindow).setAttribute("onmouseout","updateInfoBar('eXastum 3.0');");
 	$(newWindow).style.width	= x + 2	 + "px";
 	$(newWindow).style.height	= y + 32 + "px";
 	$(newWindow).style.resize	= resize;
@@ -26,7 +28,6 @@ function newWindow(x,y,title,content,resize,min,max) {
 		maxString="<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/max.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/maxHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/maxDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/max.png';\" class=\"maxButton\" onclick=\"maxRestoreWindow('" + newWindow + "','" + windowTab + "')\"/>";
 	$(titleBar).innerHTML	="<span class='titleBarText'>" + title + "</span>" + "<img draggable=\"false\" ondragstart=\"return false;\" src=\"skins/"+lStore("skin")+"/ui/close.png\" onmouseover=\"this.src='skins/"+lStore("skin")+"/ui/closeHover.png';\" onmouseout=\"this.src='skins/"+lStore("skin")+"/ui/close.png';\" onmousedown=\"this.src='skins/"+lStore("skin")+"/ui/closeDown.png';\" onmouseup=\"this.src='skins/"+lStore("skin")+"/ui/close.png';\" class=\"closeButton\" onclick=\"destroyWindow('" + newWindow + "','" + windowTab + "')\"/>"+maxString+minString;
 	$(titleBar).setAttribute("class","titleBar");
-
 	$(titleBar).setAttribute("onmousedown","dragWindow('" + newWindow + "',event);");
 	$(windowTab).setAttribute("onclick","minMaxWindow('" + newWindow + "','" + windowTab + "')");
 	return newWindow;

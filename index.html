@@ -41,14 +41,14 @@
 		*/
 	</script>
 	<meta name="author" content="Brian Millar"/>
-	<meta name="keywords" content="exastum, exast, HTML5, html, js, javascript, operating, system, browser, desktop, web, open, source, free, software, ontropy, brian, millar" />
-	<meta name="description" content="eXastum is the world's first HTML5 desktop environment for your browser." />
 	<title id="SystemTitle">eXastum 3.0</title>
 	<link id="Sheet" rel="stylesheet" type="text/css" href="skins/default/skin.css"/>
 	<style id="styleSystem"></style>
+</head>
 <body onload="init();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
+
 <noscript>
-	<h1 id="NoJSWarning">FATAL ERROR: Sorry, eXastum cannot run without JavaScript support</h1>
+	<h1 id="NoJSWarning">eXastum cannot run without JavaScript</h1>
 </noscript>
 
 <img id="bootsplash" src="skins/default/ui/bootsplash.gif" width="100%" height="100%"/>
@@ -60,11 +60,9 @@
 	<input type="password" id="password"/>
 	<button onclick="login();" id="loginButton">Login</button>
 </div>
-
 <div id="setup">
 	<p>Welcome to eXastum Setup</p>
-</div>	
-
+</div>
 <div id="loggedIn">
 	<img id="wallpaper" src="skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
 	<div id="windowLayer">
@@ -126,7 +124,6 @@
 	</div>
 	<div id="widgetLayer"></div>
 </div>
-	
 	<script src="libs/exastum.js"></script>
 	<script src="libs/macgril.js"></script>
 	<script src="libs/windowing.js"></script>

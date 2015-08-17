@@ -12,7 +12,7 @@ function newWindow(x,y,title,content,resize,min,max) {
 	$(newWindow).style.height	= y + 32 + "px";
 	$(newWindow).style.resize	= resize;
 	$(newWindow).style.left		= randNum(600,0) + "px";
-	$(newWindow).style.top		= randNum(300,0) + "px";
+	$(newWindow).style.top		= (parseInt(randNum(200,0)) + 25) + "px";
 	$(newWindow).style.display	= "block";
 	$(titleBar).style.width		= x;
 	if(content!=null) {

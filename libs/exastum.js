@@ -15,6 +15,7 @@
 var buildNo  = "3.0.0.2";
 var codeName = "Alpha";
 var language = "english";
+var skin     = lStore("skin");
 
 function init() {
 	consoleWrite("eXastum build " + buildNo + " - " + codeName);
@@ -31,7 +32,7 @@ function checkSetup() {
 }
 
 function clock() {
-	$("sysClock").innerHTML = fDate()+"  -  "+fTime();
+	$("sysClock").innerHTML = fDate() + "  -  " + fTime();
 	setTimeout("clock()",500);
 }
 
@@ -47,10 +48,9 @@ function loadStrings(lang) {
 }
 
 function loadTheme() {
-	$("Sheet").href = "skins/" + lStore("skin") + "/main.css";
-	var skin = "skins/" + lStore("skin") + "/";
-	$("bootsplash").src = skin + "ui/bootsplash.jpg";
-	$("wallpaper").src  = skin + "wallpaper/default.jpg";
+	$("Sheet").href     = "skins/" + skin + "/main.css";
+	$("bootsplash").src = "skins/" + skin + "/ui/bootsplash.jpg";
+	$("wallpaper").src  = "skins/" + skin + "/wallpaper/default.jpg";
 }
 
 function changeTheme(x) {

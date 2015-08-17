@@ -40,9 +40,9 @@
 		for the JavaScript code in this page.
 		*/
 	</script>
-	<meta name="author" content="Brian Millar"/>
+	<meta  name="author" content="Brian Millar"/>
 	<title id="SystemTitle">eXastum 3.0</title>
-	<link id="Sheet" rel="stylesheet" type="text/css" href="skins/default/skin.css"/>
+	<link  id="Sheet" rel="stylesheet" type="text/css" href="skins/default/skin.css"/>
 	<style id="styleSystem"></style>
 </head>
 <body onload="init();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
@@ -56,8 +56,8 @@
 <textarea style="display:none;" id="console"></textarea>
 
 <div id="login">
-	<input type="text" id="username"/>
-	<input type="password" id="password"/>
+	<input  type="text"        id="username"/>
+	<input  type="password"    id="password"/>
 	<button onclick="login();" id="loginButton">Login</button>
 </div>
 <div id="setup">
@@ -67,11 +67,11 @@
 	<img id="wallpaper" src="skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
 	<div id="windowLayer">
 		<div id="topBar">
-			<img id="menuButton" src="skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
+			<img  id="menuButton" src="skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
 			<span id="quickLaunch">
-				<img class="barIcon" src="skins/default/icons/mini/terminal.png"/>
-				<img class="barIcon" src="skins/default/icons/mini/music.png"/>
-				<img class="barIcon" src="skins/default/icons/mini/settings.png"/>
+				<img onclick="newConsole()"          class="barIcon" src="skins/default/icons/mini/terminal.png"/>
+				<img onclick="launchApp('music')"    class="barIcon" src="skins/default/icons/mini/music.png"/>
+				<img onclick="launchApp('settings')" class="barIcon" src="skins/default/icons/mini/settings.png"/>
 			</span>
 			<span id="sysTasks"></span>
 			<span id="sysTray"></span>
@@ -91,7 +91,7 @@
 				<input id="menuSearch" class="text" type="text" placeholder="Quick Search"/>
 			</div>
 			<div id="menuRight">
-				<h2 id="menuHeader">eXastum 3.0</h2>
+				<h2  id="menuHeader">eXastum 3.0</h2>
 				<img id="menuIconPreview" src="skins/default/icons/music.png" width="108" height="108"/>
 				<div id="menuLinks">
 					<p class="menuTextLink">Installer</p>
@@ -101,24 +101,24 @@
 				</div>
 				<div id="menuPowerButtons">
 					<img onmouseover="this.src='skins/default/icons/reload_over.png';" onmouseout="this.src='skins/default/icons/reload.png';" class="powerButtons" src="skins/default/icons/reload.png"/>
-					<img onmouseover="this.src='skins/default/icons/power_over.png';" onmouseout="this.src='skins/default/icons/power.png';" class="powerButtons" src="skins/default/icons/power.png"/>
+					<img onmouseover="this.src='skins/default/icons/power_over.png';"  onmouseout="this.src='skins/default/icons/power.png';"  class="powerButtons" src="skins/default/icons/power.png"/>
 				</div>
 			</div>
 		</div>
 		<div id="desktop" onclick="clickDesktop();">
-			<div id="leftHotspot"></div>
-			<div id="rightHotspot"></div>
+			<div  id="leftHotspot"></div>
+			<div  id="rightHotspot"></div>
 			<span id="buildNum"></span>
-			<div id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
+			<div  id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
 			</div>
 			<div id="dock" onmouseover="showDock();" onmouseout="hideDock();">
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/browser.png" width="70" height="70" id="dockFirstIcon"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/pictures.png" width="70" height="70"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/music.png" width="70" height="70"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/video.png" width="70" height="70"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/tools.png" width="70" height="70"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/games.png" width="70" height="70"/>
-				<img onclick="newConsole()" class="dockIcon" src="skins/default/icons/settings.png" width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('Browser');"         onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/browser.png"  width="70" height="70" id="dockFirstIcon"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('Photo Viewer');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/pictures.png" width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('eXastum Music');"   onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/music.png"    width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('Video Player');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/video.png"    width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('Tools & Utils');"   onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/tools.png"    width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('Games Center');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/games.png"    width="70" height="70"/>
+				<img onclick="newConsole()" onmouseover="updateInfoBar('System Settings');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="skins/default/icons/settings.png" width="70" height="70"/>
 			</div>
 		</div>
 	</div>

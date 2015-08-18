@@ -47,9 +47,11 @@ function newWindow(x,y,title,content,resize,min,max) {
 function destroyWindow(winID,tabID) {
 	$(winID).remove();
 	$(tabID).remove();
+	updateInfoBar("eXastum 3.0");
 }
 
 function minMaxWindow(winID,tabID) {
+	updateInfoBar("eXastum 3.0");
 	if ($(winID).style.display == "block") {
 		$(winID).style.display =  "none";
 		$(tabID).style.backgroundImage = "URL('skins/" + lStore("skin") + "/ui/backing_up.png')";
@@ -80,6 +82,7 @@ function maxWindow(winID) {
 }
 
 function restoreWindow(winID) {
+	updateInfoBar("eXastum 3.0");
 	$(winID).style.width  = lStore(winID + "Width");
 	$(winID).style.height = lStore(winID + "Height");
 	$(winID).style.top    = lStore(winID + "Top");

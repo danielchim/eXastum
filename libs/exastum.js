@@ -13,7 +13,7 @@
 */
 
 var buildNo  = "3.0.0.2";
-var codeName = "Alpha";
+var codeName = "Silverfish - Alpha";
 var language = "english";
 var skin     = lStore("skin");
 
@@ -104,6 +104,7 @@ function initGUI() {
 function clickDesktop() {
 	$("mainMenu").style.display = "none";
 	$("menuButton").src         = "skins/" + lStore("skin") + "/ui/menu.png";
+	updateInfoBar("eXastum 3.0");
 }
 
 function loadUiColors() {

@@ -256,16 +256,42 @@ span.workTab {
 }
 
 div.sysDialog {
-	position:                absolute;
-	overflow:                auto;
-	z-index:                 11;
-	box-shadow:              0px 0px 25px #000000;
-	background-color:        rgba(0,0,0,0.8);
-	border-style:            solid;
-	border-width:            1px;
-	border-color:            #fff;
-	border-top-left-radius:  20px;
-	border-top-right-radius: 20px;
+	position:                   absolute;
+	overflow:                   auto;
+	z-index:                    11;
+	box-shadow:                 0px 0px 25px #000000;
+	background-color:           rgba(0,0,0,0.8);
+	border-left-style:          solid;
+	border-right-style:         solid;
+	border-width:               1px;
+	border-color:               #fff;
+	border-top-left-radius:     20px;
+	border-top-right-radius:    20px;
+	border-bottom-left-radius:  16px;
+	border-bottom-right-radius: 16px;
+	
+
+	transition:         0.4s box-shadow;
+	-o-transition:      0.4s box-shadow;
+	-ms-transition:     0.4s box-shadow;
+	-moz-transition:    0.4s box-shadow;
+	-webkit-transition: 0.4s box-shadow;
+}
+
+div.sysDialogUrgent {
+	position:                   absolute;
+	overflow:                   auto;
+	z-index:                    11;
+	box-shadow:                 0px 0px 25px #000000;
+	background-color:           rgba(0,0,0,0.8);
+	border-left-style:          solid;
+	border-right-style:         solid;
+	border-width:               1px;
+	border-color:               #fff;
+	border-top-left-radius:     20px;
+	border-top-right-radius:    20px;
+	border-bottom-left-radius:  16px;
+	border-bottom-right-radius: 16px;
 	
 	animation:         sysDialog 1s;
 	-o-animation:      sysDialog 1s;

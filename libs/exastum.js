@@ -58,6 +58,10 @@ function changeTheme(x) {
 	loadTheme();
 }
 
+function showAbout() {
+	sysDialog("About eXastum","eXastum build " + buildNo + " - " + codeName,false);
+}
+
 function loadSettings() {
 
 }
@@ -70,12 +74,15 @@ function launchApp(app) {
 	newWindow(lStore(app));
 }
 
-function sysDialog(error,message) {
+function sysDialog(error,message,urgent) {
 	var dialog = newWindow(400,50,error,null,"none",false,false);
 	var msg    = generate("span",dialog);
 	$(msg).innerHTML = message;
 	$(msg).setAttribute("class","sysDialog");
-	$(dialog).setAttribute("class","sysDialog");
+	if(urgent)
+		$(dialog).setAttribute("class","sysDialogUrgent");
+	else
+		$(dialog).setAttribute("class","sysDialog");
 }
 
 function showDock() {

@@ -31,14 +31,14 @@ function log(x) {
 
 function $(element) {
 	var id = document.getElementById(element);
-	if ((id!=null)&&(id!=undefined)) return id;
+	if ((id != null) && (id != undefined)) return id;
 }
 
 function generate(x,y,z) {
 	var el = document.createElement(x);
 	var id;
-	if (z!=null) id = z;
-	else id = "macgrilID"+(mgID++);
+	if (z != null) id = z;
+	else id = "macgrilID" + (mgID++);
 	el.setAttribute("id",id);
 	$(y).appendChild(el);
 	return id;
@@ -48,20 +48,20 @@ function generate(x,y,z) {
 //File Access & Storage
 
 function lStore(x,y) {
-	if ((y!=null)&&(y!="del"))
+	if ((y != null) && (y != "del"))
 		window.localStorage.setItem(x,y);
-	else if (y=="del")
+	else if (y == "del")
 		window.localStorage.removeItem(x);
 	else
 		return window.localStorage.getItem(x);
 }
 
 function fOpen(accept) {
-	if (($("fOpen")!=0)&&($("fOpen")!=undefined))
+	if (($("fOpen") != 0) && ($("fOpen") != undefined))
 		$("macgril").removeChild($("fOpen"));
 	generate("input","macgril","fOpen");
 	$("fOpen").setAttribute("type","file");
-	if ((accept!=null)&&(accept!=undefined))
+	if ((accept != null) && (accept != undefined))
 		$("fOpen").setAttribute("accept", accept);
 	$("fOpen").click();
 	var x = window.confirm("Are you sure you want to load this file from disk?");
@@ -79,9 +79,9 @@ function fDate() {
 	var day   = mgDate.getDate();
 	var month = mgDate.getMonth() + 1;
 	var year  = mgDate.getFullYear().toString();
-	if (day<10)   day   = "0"+day;
-	if (month<10) month = "0"+month;
-	return day+"/"+month+"/"+year.charAt(2)+year.charAt(3);
+	if (day   < 10) day   = "0"+day;
+	if (month < 10) month = "0"+month;
+	return day + "/" + month + "/" + year.charAt(2) + year.charAt(3);
 }
 
 function fTime() {
@@ -89,17 +89,17 @@ function fTime() {
 	var hours   = mgDate.getHours();
 	var minutes = mgDate.getMinutes();
 	var seconds = mgDate.getSeconds();
-	if (hours < 10)   hours   = "0"+hours;
-	if (minutes < 10) minutes = "0"+minutes;
-	if (seconds < 10) seconds = "0"+seconds;
-	return hours+":"+minutes+":"+seconds;
+	if (hours < 10)   hours   = "0" + hours;
+	if (minutes < 10) minutes = "0" + minutes;
+	if (seconds < 10) seconds = "0" + seconds;
+	return hours + ":" + minutes + ":" + seconds;
 }
 
 
 //Input Functions
 
 function onStrikeEnter(func,ev,prvnt) {
-	if ((ev.which===13)||(ev.keyCode===13)) {
+	if ((ev.which === 13) || (ev.keyCode === 13)) {
 		if (prvnt) ev.preventDefault();
 		return (eval(func));
 	}
@@ -110,7 +110,7 @@ function knobLogic(knob,ev,func) {
 	var newPos      = startPos;
 	var startingRot = knob.style.MozTransform;
 	var startRot    = "";
-	for (var i=0; i<startingRot.length; i++)
+	for (var i = 0; i < startingRot.length; i++)
 		if (!isNaN(startingRot[i]))
 			startRot = startRot+startingRot[i];
 	document.onmousemove = function(ev) {
@@ -118,9 +118,9 @@ function knobLogic(knob,ev,func) {
 		newPos       = rotation + parseInt(startPos - ev.clientY);
 		if (newPos > 120)  newPos = 120;
 		if (newPos < -120) newPos = -120;
-		knob.style.MozTransform   = "rotate("+newPos+"deg)";
+		knob.style.MozTransform   = "rotate(" + newPos + "deg)";
 		rotation = 0;
-		if ((func!=null)&&(func!=undefined)) eval(func);
+		if ((func != null) && (func != undefined)) eval(func);
 		document.onmouseup = function(ev) {
 			newPos   = null;
 			startPos = null;
@@ -137,8 +137,8 @@ function switchTabs(id1,id2) {
 }
 
 function showHideIDs(idArray,x) {
-	for (var i=0; i<idArray.length; i++) {
-		if (x=="show")
+	for (var i = 0; i < idArray.length; i++) {
+		if (x == "show")
 			$(idArray[i]).style.display = "block";
 		else
 			$(idArray[i]).style.display = "none";
@@ -149,5 +149,5 @@ function showHideIDs(idArray,x) {
 //Mathematics Functions
 
 function randNum(x,y) {
-	return (Math.random()*x).toFixed(y);
+	return (Math.random() * x).toFixed(y);
 }

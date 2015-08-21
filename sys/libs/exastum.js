@@ -133,11 +133,6 @@ function newConsole() {
 	consoleInit(cli);
 }
 
-function consoleInit(txtArea) {
-	$(txtArea).setAttribute("onkeypress","onStrikeEnter(this.value,event,false)");
-	$(txtArea).focus();
-}
-
 function consoleWrite(message) {
 	$("console").innerHTML = $("console").innerHTML + message + "\n";
 	log(message);

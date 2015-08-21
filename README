@@ -1,24 +1,40 @@
-PLEASE DO NOT CLONE/FORK/DOWNLOAD THIS REPO YET
+========================================================================
+                                             
+             m    m                 m
+       mmm    #  #   mmm    mmm   mm#mm  m   m  mmmmm
+      #"  #    ##   "   #  #   "    #    #   #  # # #
+      #""""   m""m  m"""#   """m    #    #   #  # # #
+      "#mm"  m"  "m "mm"#  "mmm"    "mm  "mm"#  # # #
 
-This repo is currently being set up for development, it is not yet ready.
-A notice of development status will be posted soon. 
 
+	Welcome to The eXastum Project
+	
+	eXastum 3.0 has now entered Alpha development stage
+	
+=={KNOWN BUGS}==========================================================
 
-Welcome to The eXastum Project.
+	Window reising currently does not work (Tested in Firefox)
 
 =={LICENCING}===========================================================
 
-	Two licences cover content in The eXastum Project.
+	Two licences cover content in The eXastum Project
 
 	1. All source code falls under the terms of this licence:
 	   https://www.gnu.org/licenses/gpl-3.0.en.html
 	
 	2. Artistic works such as icons and sounds fall under this licence:
 	   https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-	   
+	
 	Basically what this means is for both code and artistic works you 
 	modify and share as long as you also share your changes and do not 
 	profit from them. While only the CC licence disallows commercial use 
 	in the licence the nature of the GNU GPL basically also makes it 
 	impossible as you must make source code available and allow sharing.
 
+	EXCEPTION:
+	eXastum uses the Liberation Sans font which was not created by me. 
+	It's licence is GNU GPLv2 with some exceptions and can be found in 
+	sys/skins/default/fonts
+
+========================================================================
+========================================================================

@@ -33,7 +33,7 @@ function checkSetup() {
 }
 
 function clock() {
-	$("sysClock").innerHTML = fDate() + "  -  " + fTime();
+	$("sysClock").innerHTML = fDate(true) + "&#160;&#160;|&#160;&#160;" + fTime(true) + "&#160;";
 	setTimeout("clock()",500);
 }
 

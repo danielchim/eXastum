@@ -74,17 +74,33 @@ function fOpen(accept) {
 
 var mgDate = new Date();
 
-function fDate() {
+function fDate(natural) {
 	mgDate    = new Date();
-	var day   = mgDate.getDate();
-	var month = mgDate.getMonth() + 1;
+	var day   = mgDate.getDay();
+	var date  = mgDate.getDate();
+	var month = mgDate.getMonth();
 	var year  = mgDate.getFullYear().toString();
-	if (day   < 10) day   = "0"+day;
-	if (month < 10) month = "0"+month;
-	return day + "/" + month + "/" + year.charAt(2) + year.charAt(3);
+	if (date  < 10) day   = "0" + day;
+	if (natural) {
+			var days   = ["Mon","Tues","Wed","Thur","Fri","Sat","Sun"];
+			var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+			var extra  = "th";
+			if (date == 1 || date == 21 || date == 31)
+				extra = "st";
+			else if (date == 2 || date == 22)
+				extra = "nd";
+			else if (date == 3 || date == 23)
+				extra = "rd";
+			return days[day - 1] + " " + date + "<sup>" + extra + "</sup> " + months[month];
+	}
+	else {
+		month++;
+		if (month < 10) month = "0" + month;
+		return date + "/" + month + "/" + year.charAt(2) + year.charAt(3);
+	}
 }
 
-function fTime() {
+function fTime(natural) {
 	mgDate      = new Date();
 	var hours   = mgDate.getHours();
 	var minutes = mgDate.getMinutes();
@@ -92,7 +108,14 @@ function fTime() {
 	if (hours < 10)   hours   = "0" + hours;
 	if (minutes < 10) minutes = "0" + minutes;
 	if (seconds < 10) seconds = "0" + seconds;
-	return hours + ":" + minutes + ":" + seconds;
+	if (natural) {
+		var tick = " ";
+		if (seconds % 2 == 0)
+			tick = ":";
+		return hours + tick + minutes;
+	}
+	else
+		return hours + ":" + minutes + ":" + seconds;
 }
 
 

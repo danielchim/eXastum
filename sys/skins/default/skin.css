@@ -457,7 +457,7 @@ h1.menuTitle {
 	font-family: eXastumDefault;
 	font-size:   15px;
 	position:    fixed;
-	top:         2px;
+	top:         -2px;
 	right:       5px;
 	text-shadow: 1px 1px 3px #000000;
 	color:       #838383;

@@ -1,0 +1,730 @@
+@font-face {
+	font-family: eXastumDefault;
+	src: local(eXastumDefault), URL("fonts/raleway_thin.otf") format("opentype");
+}
+
+body {
+	font-family:      sans-serif;
+	font-size:        12px;
+	margin:           0px;
+	overflow:         hidden;
+	color:            #593e60;
+	background-color: #000000;
+	
+	user-select:         none;
+	-o-user-select:      none;
+	-ms-user-select:     none;
+	-moz-user-select:    none;
+	-webkit-user-select: none;
+
+	font-smoothing:         antialiased;
+	-o-font-smoothing:      antialiased;
+	-ms-font-smoothing:     antialiased;
+	-moz-font-smoothing:    antialiased;
+	-webkit-font-smoothing: antialiased;
+}
+
+ul {
+	margin-top:   10px;
+	margin-left:  0px;
+	margin-right: 0px;
+	padding:      0px;
+}
+
+li {
+	cursor:        default;
+	margin-left:   0px;
+	width:         150px;
+	height:        25px;
+	padding-left:  15px;
+	padding-right: 5px;
+}
+
+img.dockIcon {
+	margin-top:  4px;
+	margin-left: 12px;
+	display:     inline;
+	
+	transform:         translateY(-50px);
+	-o-transform:      translateY(-50px);
+	-ms-transform:     translateY(-50px);
+	-moz-transform:    translateY(-50px);
+	-webkit-transform: translateY(-50px);
+
+	transition:         0.4s;
+	-o-transition:      0.4s;
+	-ms-transition:     0.4s;
+	-moz-transition:    0.4s;
+	-webkit-transition: 0.4s;
+}
+
+img.dockIcon:hover {
+	transform:         rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+	-o-transform:      rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+	-ms-transform:     rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+	-moz-transform:    rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+	-webkit-transform: rotateX(15deg) rotateY(-10deg) scale(1.6) translateY(-50px);
+
+	transition:         0.3s;
+	-o-transition:      0.3s;
+	-ms-transition:     0.3s;
+	-moz-transition:    0.3s;
+	-webkit-transition: 0.3s;
+}
+
+img.dockIcon:active {
+	transform:         rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+	-o-transform:      rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+	-ms-transform:     rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+	-moz-transform:    rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+	-webkit-transform: rotateX(-15deg) rotateY(10deg) scale(1.3) translateY(-45px);
+
+	transition:         0.0s;
+	-o-transition:      0.0s;
+	-ms-transition:     0.0s;
+	-moz-transition:    0.0s;
+	-webkit-transition: 0.0s;
+}
+
+img.minButton {
+	cursor:       pointer;
+	width:        20px;
+	height:       20px;
+	float:        right;
+	margin-right: 4px;
+	margin-top:   4px;
+}
+
+img.maxButton {
+	cursor:       pointer;
+	width:        20px;
+	height:       20px;
+	float:        right;
+	margin-right: 4px;
+	margin-top:   4px;
+}
+
+
+img.closeButton {
+	cursor:       pointer;
+	width:        20px;
+	height:       20px;
+	float:        right;
+	margin-right: 10px;
+	margin-top:   4px;
+}
+
+span.titleBarText {
+	margin-top:  7px;
+	float:       left;
+	margin-left: 15px;
+	font-size:   15px;
+
+	animation:         titleFade 1.0s;
+	-webkit-animation: titleFade 1.0s;
+	-moz-animation:    titleFade 1.0s;
+	-ms-animation:     titleFade 1.0s;
+	-o-animation:      titleFade 1.0s;
+}
+
+span.titleBar {
+	cursor:              move;
+	position:            absolute;
+	margin-top:          10px;
+	height:              30px;
+	width:               100%;
+	margin-top:          0px;
+	border-bottom-style: dotted;
+	border-width:        1px;
+	border-color:        #838383;
+	background-image:    URL("ui/button.png");
+	background-size:     100% 100%;
+}
+
+textarea.cli {
+	width:            calc(100% - 20px);
+	height:           calc(100% - 51px);
+	margin-top:       31px;
+	padding:          10px;
+	background-color: #000000;
+	color:            #e3e3e3;
+	position:         absolute;
+	font-family:      sans-serif;
+	font-size:        11px;
+	resize:           none;
+	border:           none;
+}
+
+input.text {
+	background-image: URL("ui/backing_down.png");
+	background-size:  100% 100%;
+	text-shadow:      1px 1px 3px #000000;
+	box-shadow:       inset 0px 0px 8px #000000;
+	border:           none;
+	border-radius:    20px;
+	padding-left:     8px;
+	padding-right:    8px;
+	padding-top:      2px;
+	padding-bottom:   2px;
+	color:            #838383;
+}
+
+button {
+	font-family:      eXastumDefault;
+	font-size:        12px;
+	display:          inline;
+	height:           25px;
+	margin:           0px;
+	padding-top:      3px;
+	padding-bottom:   3px;
+	padding-left:     10px;
+	padding-right:    10px;
+	border:           none;
+	border-radius:    25px;
+	border-width:     1px;
+	border-style:     solid;
+	outline:          none;
+	text-decoration:  none;
+	color:            #838383;
+	background-color: #000000;
+	background-image: URL("ui/button.png");
+	background-size:  100% 100%;
+	box-shadow:       0px 3px 10px #000000;
+
+	transition:         1s border-color, color;
+	-o-transition:      1s border-color, color;
+	-ms-transition:     1s border-color, color;
+	-moz-transition:    1s border-color, color;
+	-webkit-transition: 1s border-color, color;
+}
+
+button:hover {
+}
+
+button:active {
+	background-image: URL("ui/buttonPress.png");
+}
+
+iframe {
+	border: none;
+}
+
+div.window {
+	position:                   absolute;
+	z-index:                    9;
+	overflow:                   hidden;
+	box-shadow:                 0px 0px 25px #000000;
+	background-color:           rgba(0,0,0,0.8);
+	border-right-style:         solid;
+	border-left-style:          solid;
+	border-width:               1px;
+	border-color:               #838383;
+	border-top-left-radius:     20px;
+	border-top-right-radius:    20px;
+	border-bottom-left-radius:  16px;
+	border-bottom-right-radius: 16px;
+
+	animation:         window 0.4s;
+	-o-animation:      window 0.4s;
+	-ms-animation:     window 0.4s;
+	-moz-animation:    window 0.4s;
+	-webkit-animation: window 0.4s;
+
+	transition:         0.4s box-shadow;
+	-o-transition:      0.4s box-shadow;
+	-ms-transition:     0.4s box-shadow;
+	-moz-transition:    0.4s box-shadow;
+	-webkit-transition: 0.4s box-shadow;
+}
+
+div.window:hover {
+	z-index:    10;
+	box-shadow: 0px 0px 10px #000000;
+}
+
+span.workTab {
+	font-size:        14px;
+	background-image: URL("ui/backing_down.png");
+	background-size:  100% 100%;
+	padding-left:     8px;
+	padding-right:    8px;
+	border-radius:    20px;
+	box-shadow:       inset 0px 0px 8px #000000;
+	text-shadow:      0px 0px 8px #000000;
+	margin-left:      6px;
+	cursor:           pointer;
+}
+
+div.sysDialog {
+	position:                   absolute;
+	overflow:                   auto;
+	z-index:                    11;
+	box-shadow:                 0px 0px 25px #000000;
+	background-color:           rgba(0,0,0,0.8);
+	border-left-style:          solid;
+	border-right-style:         solid;
+	border-width:               1px;
+	border-color:               #fff;
+	border-top-left-radius:     20px;
+	border-top-right-radius:    20px;
+	border-bottom-left-radius:  16px;
+	border-bottom-right-radius: 16px;
+	
+
+	transition:         0.4s box-shadow;
+	-o-transition:      0.4s box-shadow;
+	-ms-transition:     0.4s box-shadow;
+	-moz-transition:    0.4s box-shadow;
+	-webkit-transition: 0.4s box-shadow;
+}
+
+div.sysDialogUrgent {
+	position:                   absolute;
+	overflow:                   auto;
+	z-index:                    11;
+	box-shadow:                 0px 0px 25px #000000;
+	background-color:           rgba(0,0,0,0.8);
+	border-left-style:          solid;
+	border-right-style:         solid;
+	border-width:               1px;
+	border-color:               #fff;
+	border-top-left-radius:     20px;
+	border-top-right-radius:    20px;
+	border-bottom-left-radius:  16px;
+	border-bottom-right-radius: 16px;
+	
+	animation:         sysDialog 1s;
+	-o-animation:      sysDialog 1s;
+	-ms-animation:     sysDialog 1s;
+	-moz-animation:    sysDialog 1s;
+	-webkit-animation: sysDialog 1s;
+
+	animation-iteration-count:         infinite;
+	-o-animation-iteration-count:      infinite;
+	-ms-animation-iteration-count:     infinite;
+	-moz-animation-iteration-count:    infinite;
+	-webkit-animation-iteration-count: infinite;
+
+	transition:         0.4s box-shadow;
+	-o-transition:      0.4s box-shadow;
+	-ms-transition:     0.4s box-shadow;
+	-moz-transition:    0.4s box-shadow;
+	-webkit-transition: 0.4s box-shadow;
+}
+
+span.sysDialog {
+	position:      absolute;
+	font-size:     16px;
+	margin-top:    40px;
+	margin-left:   10px;
+	margin-right:  10px;
+	margin-bottom: 10px;
+}
+
+iframe.app {
+	width:            100%;
+	height:           calc(100% - 31px);
+	margin-top:       31px;
+	margin-bottom:    0px;
+	margin-left:      0px;
+	margin-right:     0px;
+	background-color: #000000;
+	color:            #e3e3e3;
+	position:         absolute;
+	font-family:      sans-serif;
+	resize:           none;
+}
+
+img.barIcon {
+	height:      18px;
+	width:       18px;
+	margin-top:  1px;
+	margin-left: 2px;
+	cursor:      pointer;
+	opacity:     0.7;
+}
+
+img.barIcon:hover {
+	opacity: 1.0;
+}
+
+img.powerButtons {
+	margin-left: 8px;
+	width:       26px;
+	height:      26px;
+	display:     inline;
+	cursor:      pointer;
+}
+
+p.menuTextLink {
+	margin-left: 10px;
+	cursor:      pointer;
+	font-size:   14px;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+p.menuTextLink:hover {
+	text-decoration: underline;
+}
+
+h1.menuTitle {
+	margin-left: 20px;
+	font-weight: normal;
+	margin-top:  10px;
+
+	animation:         titleFade 1.0s;
+	-webkit-animation: titleFade 1.0s;
+	-moz-animation:    titleFade 1.0s;
+	-ms-animation:     titleFade 1.0s;
+	-o-animation:      titleFade 1.0s;
+}
+
+#bootsplash {
+	position: fixed;
+	top:      0px;
+	left:     0px;
+	z-index:  20;
+	height:   100%;
+	width:    100%;
+}
+
+#topBar {
+	z-index:             12;
+	position:            fixed;
+	top:                 0px;
+	left:                0px;
+	right:               0px;
+	margin:              0px;
+	width:               100%;
+	height:              21px;
+	overflow:            hidden;
+	background-color:    transparent;
+	background-image:    URL("ui/bar.png");
+	background-size:     100% 100%;
+	box-shadow:          0px 4px 10px #000000;
+	border-width:        1px;
+	border-bottom-style: solid;
+}
+
+#baseBar {
+	z-index:          12;
+	position:         fixed;
+	bottom:           0px;
+	left:             0px;
+	right:            0px;
+	margin:           0px;
+	width:            100%;
+	height:           21px;
+	overflow:         hidden;
+	background-color: transparent;
+	background-image: URL("ui/bar.png");
+	background-size:  100% 100%;
+	box-shadow:       0px 4px 10px #000000;
+	border-width:     1px;
+	border-top-style: solid;
+}
+
+#infoBar {
+	margin-top:  1px;
+	width:       150px;
+	margin-left: 4px;
+}
+
+#userName {
+	position:   absolute;
+	top:        0px;
+	right:      8px;
+	margin-top: 2px;
+	font-size:  16px;
+	color:      #838383;
+}
+
+#sysTasks {
+	position: fixed;
+	top:      2px;
+	left:     121px;
+	right:    140px;
+	overflow: hidden;
+}
+
+#sysTray {
+	position: fixed;
+	top:      2px;
+	right:    130px;
+}
+
+#sysClock {
+	font-family: eXastumDefault;
+	font-size:   15px;
+	position:    fixed;
+	top:         2px;
+	right:       5px;
+	text-shadow: 1px 1px 3px #000000;
+	color:       #838383;
+}
+
+#buildNum {
+	font-size:   14px;
+	position:    fixed;
+	bottom:      36px;
+	right:       15px;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+#dockFirstIcon {
+	margin-left: 52px;
+}
+
+#dock {
+	display:          block;
+	position:         fixed;
+	bottom:           20px;
+	left:             calc(50% - 350px);
+	width:            700px;
+	height:           50px;
+	overflow:         visible;
+	background-color: transparent;
+	background-image: URL("ui/dock.png");
+	background-size:  100% 100%;
+
+	transform:         translateY(140px);
+	-o-transform:      translateY(140px);
+	-ms-transform:     translateY(140px);
+	-moz-transform:    translateY(140px);
+	-webkit-transform: translateY(140px);
+
+	transition:         0.4s transform;
+	-o-transition:      0.4s transform;
+	-ms-transition:     0.4s transform;
+	-moz-transition:    0.4s transform;
+	-webkit-transition: 0.4s transform;
+}
+
+#mainMenu {
+	z-index:                    11;
+	display:                    none;
+	position:                   fixed;
+	top:                        21px;
+	left:                       0px;
+	width:                      440px;
+	height:                     320px;
+	padding:                    0px;
+	background-color:           rgba(0,0,0,0.7);
+	box-shadow:                 0px 8px 20px #000000;
+	border-width:               1px;
+	border-right-style:         solid;
+	border-bottom-style:        solid;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius:  15px;
+	border-top-right-radius:    15px;
+
+	animation:         0.4s mainMenu;
+	-webkit-animation: 0.4s mainMenu;
+	-moz-animation:    0.4s mainMenu;
+	-ms-animation:     0.4s mainMenu;
+	-o-animation:      0.4s mainMenu;
+}
+
+#menuRight {
+	position:                   absolute;
+	right:                      0px;
+	top:                        0px;
+	width:                      150px;
+	height:                     100%;
+	border-bottom-right-radius: 20px;
+	border-top-right-radius:    15px;
+	background-image:           URL("ui/sider.png");
+	background-size:            100% 100%;
+	border-width:               1px;
+	border-left-style:          solid;
+	box-shadow:                 0px 0px 8px #000000;
+	background-color:           transparent;
+}
+
+#menuButton {
+	position: fixed;
+	z-index:  20;
+	height:   23px;
+}
+
+#menuLinks {
+	position: absolute;
+	bottom:   40px;
+}
+
+#menuIconPreview {
+	margin-left: 20px;
+}
+
+#menuAppsList {
+	width:      289px;
+	position:   absolute;
+	top:        35px;
+	height:     234px;
+	box-shadow: inset 0px 0px 20px #000000;
+}
+
+#menuBottom {
+	position:                  absolute;
+	bottom:                    0px;
+	height:                    40px;
+	border-top-style:          solid;
+	border-width:              1px;
+	width:                     289px;
+	background-image:          URL("ui/button.png");
+	background-size:           100% 100%;
+	border-bottom-left-radius: 15px;
+}
+
+#menuTop {
+	position:            absolute;
+	top:                 0px;
+	height:              44px;
+	border-bottom-style: solid;
+	border-width:        1px;
+	width:               289px;
+	background-image:    URL("ui/button.png");
+	background-size:     100% 100%;
+}
+
+#menuHeader {
+	margin-left: 20px;
+	margin-top:  9px;
+	font-weight: normal;
+	text-shadow: 0px 0px 10px #000000;
+}
+
+#menuSearch {
+	margin-left: 10px;
+	margin-top:  10px;
+}
+
+#menuPowerButtons {
+	position:    absolute;
+	bottom:      8px;
+	margin-left: 60px;
+}
+
+#quickLaunch {
+	margin-left: 52px;
+}
+
+#desktop {
+	position:         fixed;
+	top:              0px;
+	left:             0px;
+	right:            0px;
+	bottom:           0px;
+	margin:           0px;
+	overflow:         hidden;
+	background-color: transparent;
+}
+
+#leftHotspot {
+	position:         fixed;
+	top:              0px;
+	left:             0px;
+	width:            8px;
+	height:           100%;
+	background-color: transparent;
+}
+
+#rightHotspot {
+	position:         fixed;
+	top:              0px;
+	right:            0px;
+	width:            8px;
+	height:           100%;
+	background-color: transparent;
+}
+
+#loggedIn {
+	display: none;
+}
+
+#login {
+	display: none;
+}
+
+#setup {
+	display: none;
+}
+
+#wallpaper {
+	z-index:  -1;
+	position: fixed;
+	top:      0px;
+	bottom:   0px;
+	left:     0px;
+	right:    0px;
+	margin:   0px;
+	width:    100%;
+	height:   100%;
+	overflow: hidden;
+}
+
+#widgetLayer {
+	z-index:          0;
+	position:         fixed;
+	top:              0px;
+	bottom:           0px;
+	left:             0px;
+	right:            0px;
+	margin:           0px;
+	width:            100%;
+	height:           100%;
+	overflow:         hidden;
+	background-color: transparent;
+}
+
+#windowLayer {
+	z-index:          1;
+	position:         fixed;
+	top:              0px;
+	bottom:           0px;
+	left:             0px;
+	right:            0px;
+	margin:           0px;
+	width:            100%;
+	height:           100%;
+	overflow:         hidden;
+	background-color: transparent;
+}
+
+#console {
+	width:            100%;
+	height:           100%;
+	resize:           none;
+	background-color: #000000;
+}
+
+
+@keyframes         window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-o-keyframes      window {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -o-transform:      scale(0.0) translateY(150px) rotateY(45deg) rotateX(45deg);} 100% {opacity: 1.0; -o-transform:      scale(1.0) translateY(0px) rotateY(0deg) rotateX(0deg);}}
+
+@keyframes         mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-o-keyframes      mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -o-transform:      translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -o-transform:      translateY(0px) rotateY(0deg) rotateX(0deg);}}
+
+@keyframes         fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-moz-keyframes    fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-webkit-keyframes fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-ms-keyframes     fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+@-o-keyframes      fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
+
+@keyframes         sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-moz-keyframes    sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-webkit-keyframes sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-ms-keyframes     sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+@-o-keyframes      sysDialog {0% {box-shadow: 0px 0px 25px #000000;} 50% {box-shadow: 0px 0px 50px rgba(255,255,255,0.4);} 100% {box-shadow: 0px 0px 25px #000000;}}
+
+@keyframes         titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-moz-keyframes    titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-webkit-keyframes titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-ms-keyframes     titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}
+@-o-keyframes      titleFade {0% {opacity: 0.0; margin-left: -10px;} 100% {opacity: 1.0;}}

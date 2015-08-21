@@ -1,6 +1,6 @@
 @font-face {
 	font-family: eXastumDefault;
-	src: local(eXastumDefault), URL("fonts/raleway_thin.otf") format("opentype");
+	src: local(eXastumDefault), URL("fonts/LiberationSans-Regular.ttf") format("truetype");
 }
 
 body {

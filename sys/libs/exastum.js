@@ -24,6 +24,7 @@ function init() {
 	loadSettings();
 	initGUI();
 	clock();
+	installDefaultApps();
 }
 
 function checkSetup() {
@@ -71,7 +72,8 @@ function installApp(appData) {
 }
 
 function launchApp(app) {
-	newWindow(lStore(app));
+	var appData = lStore(app).split(",");
+	newWindow(appData[0],appData[1],appData[2],appData[3],appData[4],appData[5],appData[6]);
 }
 
 function sysDialog(error,message,urgent) {
@@ -181,5 +183,5 @@ function login() {
 }
 
 function installDefaultApps() {
-	lStore("Browser","600,400,'Browser','sys/browser.html',true,true,true");
+	lStore("Browser","500,300,Browser,sys/browser.html,true,true,true");
 }

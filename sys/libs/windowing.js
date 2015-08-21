@@ -21,8 +21,8 @@ function newWindow(x,y,title,content,resize,min,max) {
 	$(newWindow).setAttribute("class","window");
 	$(newWindow).setAttribute("onmouseover","updateInfoBar('" + title + "');");
 	$(newWindow).setAttribute("onmouseout","updateInfoBar('eXastum 3.0');");
-	$(newWindow).style.width    = x + 2	 + "px";
-	$(newWindow).style.height   = y + 32 + "px";
+	$(newWindow).style.width    = parseInt(x) + 2	 + "px";
+	$(newWindow).style.height   = parseInt(y) + 32 + "px";
 	$(newWindow).style.resize   = resize;
 	$(newWindow).style.left     = randNum(600,0) + "px";
 	$(newWindow).style.top      = (parseInt(randNum(200,0)) + 25) + "px";

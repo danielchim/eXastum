@@ -179,3 +179,7 @@ function login() {
 	$("loggedIn").style.display = "block";
 	lStore("skin","default");
 }
+
+function installDefaultApps() {
+	lStore("Browser","600,400,'Browser','sys/browser.html',true,true,true");
+}

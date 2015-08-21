@@ -13,8 +13,8 @@
 */
 
 function consoleInit(console) {
-	$(txtArea).setAttribute("onkeypress","onStrikeEnter(this.value,event,false);");
-	$(txtArea).focus();
+	$(console).setAttribute("onkeypress","onStrikeEnter(this.value,event,false);");
+	$(console).focus();
 }
 
 function consoleOut(msg,console) {

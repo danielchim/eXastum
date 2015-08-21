@@ -48,10 +48,10 @@ function generate(x,y,z) {
 //File Access & Storage
 
 function lStore(x,y) {
-	if ((y != null) && (y != "del"))
-		window.localStorage.setItem(x,y);
-	else if (y == "del")
+	if (y == "del")
 		window.localStorage.removeItem(x);
+	else if (y != null)
+		window.localStorage.setItem(x,y);
 	else
 		return window.localStorage.getItem(x);
 }

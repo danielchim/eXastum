@@ -112,7 +112,7 @@
 			<div  id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
 			</div>
 			<div id="dock" onmouseover="showDock();" onmouseout="hideDock();">
-				<img onclick="newConsole()" onmouseover="updateInfoBar('Browser');"         onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/browser.png"  width="70" height="70" id="dockFirstIcon"/>
+				<img onclick="launchApp('Browser')" onmouseover="updateInfoBar('Browser');"         onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/browser.png"  width="70" height="70" id="dockFirstIcon"/>
 				<img onclick="newConsole()" onmouseover="updateInfoBar('Photo Viewer');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/pictures.png" width="70" height="70"/>
 				<img onclick="newConsole()" onmouseover="updateInfoBar('eXastum Music');"   onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/music.png"    width="70" height="70"/>
 				<img onclick="newConsole()" onmouseover="updateInfoBar('Video Player');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/video.png"    width="70" height="70"/>
@@ -124,9 +124,9 @@
 	</div>
 	<div id="widgetLayer"></div>
 </div>
+	<script src="sys/libs/macgril.js"></script>
 	<script src="sys/libs/exastum.js"></script>
 	<script src="sys/libs/js_prompt.js"></script>
-	<script src="sys/libs/macgril.js"></script>
 	<script src="sys/libs/windowing.js"></script>
 </body>
 </html>

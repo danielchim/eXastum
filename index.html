@@ -58,9 +58,13 @@
 
 <div id="login">
 	<br/><br/>
-	<input  class="text" type="text"     id="username"/><br/><br/>
-	<input  class="text" type="password" id="password"/><br/><br/>
-	<button onclick="login();"           id="loginButton">Login</button>
+	<div id="loginForm">
+		<h1>Welcome</h1>
+		<input  class="text" type="text"     id="username"/><br/><br/>
+		<input  class="text" type="password" id="password"/><br/><br/>
+		<button onclick="login();"           id="loginButton">Login</button>
+	</div>
+	<div id="loginBG"></div>
 </div>
 <div id="setup">
 	<p>Welcome to eXastum Setup</p>
@@ -107,7 +111,6 @@
 			</div>
 		</div>
 		<div id="desktop" onclick="clickDesktop();">
-			<img  id="wallpaper" src="sys/skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
 			<div  id="leftHotspot"></div>
 			<div  id="rightHotspot"></div>
 			<span id="buildNum"></span>
@@ -126,9 +129,13 @@
 	</div>
 	<div id="widgetLayer"></div>
 </div>
+<img id="wallpaper" src="sys/skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
+<div id="libs">
+	<script src="sys/libs/init.js"></script>
 	<script src="sys/libs/macgril.js"></script>
 	<script src="sys/libs/exastum.js"></script>
 	<script src="sys/libs/js_prompt.js"></script>
 	<script src="sys/libs/windowing.js"></script>
+</div>
 </body>
 </html>

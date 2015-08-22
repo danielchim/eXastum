@@ -175,6 +175,8 @@ input.text {
 	padding-top:      2px;
 	padding-bottom:   2px;
 	color:            #838383;
+	border-width:     1px;
+	border-style:     solid;
 }
 
 button {
@@ -434,7 +436,8 @@ h1.menuTitle {
 
 #infoBar {
 	margin-top:  1px;
-	width:       150px;
+	width:       120px;
+	height:      12px;
 	margin-left: 4px;
 }
 
@@ -651,7 +654,13 @@ h1.menuTitle {
 }
 
 #login {
-	display: none;
+	display:      none;
+	margin-top:   50px;
+	margin-left:  50px;
+	padding:      20px;
+	border-width: 1px;
+	border-style: solid;
+	width:        300px;
 }
 
 #setup {

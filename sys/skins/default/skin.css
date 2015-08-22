@@ -141,18 +141,27 @@ span.titleBar {
 	background-size:     100% 100%;
 }
 
+textarea {
+	border:      none;
+	outline:     none;
+	padding:     10px;
+	font-family: eXastumDefault;
+}
+
 textarea.cli {
 	width:            calc(100% - 20px);
 	height:           calc(100% - 51px);
 	margin-top:       31px;
-	padding:          10px;
 	background-color: #000000;
 	color:            #e3e3e3;
 	position:         absolute;
-	font-family:      sans-serif;
-	font-size:        11px;
+	font-size:        12px;
 	resize:           none;
-	border:           none;
+}
+
+input {
+	border:  none;
+	outline: none;
 }
 
 input.text {
@@ -160,7 +169,6 @@ input.text {
 	background-size:  100% 100%;
 	text-shadow:      1px 1px 3px #000000;
 	box-shadow:       inset 0px 0px 8px #000000;
-	border:           none;
 	border-radius:    20px;
 	padding-left:     8px;
 	padding-right:    8px;

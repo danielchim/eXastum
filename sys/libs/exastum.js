@@ -17,21 +17,6 @@ var codeName = "Silverfish - Alpha";
 var language = "english";
 var skin     = lStore("skin");
 
-function init() {
-	consoleWrite("eXastum build " + buildNo + " - " + codeName);
-	if(!checkSetup()) startSetup();
-	loadStrings(language);
-	loadSettings();
-	initGUI();
-	clock();
-	installDefaultApps();
-}
-
-function checkSetup() {
-	if (lStore("setup") != null) return true;
-	return false;
-}
-
 function clock() {
 	$("sysClock").innerHTML = fDate(true) + "&#160;&#160;|&#160;&#160;" + fTime(true) + "&#160;";
 	setTimeout("clock()",500);
@@ -39,10 +24,6 @@ function clock() {
 
 function updateInfoBar(text) {
 	$("infoBar").value = text;
-}
-
-function startSetup() {
-	consoleWrite("Setup is not compelete, starting setup...");
 }
 
 function loadStrings(lang) {

@@ -44,6 +44,22 @@ function generate(x,y,z) {
 	return id;
 }
 
+function quickShake(element,passTwo) {
+	$(element).style.MozTransition = "0.1s transform";
+	$(element).style.MozTransform = "translateX(-40px)";
+		var timer1 = setTimeout(
+			function() {
+				$(element).style.MozTransform = "translateX(40px)";
+				var timer2 = setTimeout(
+					function() {
+						clearTimeout(timer1);
+						$(element).style.MozTransform = "translateX(0px)";
+						clearTimeout(timer2);
+						if(!passTwo) quickShake(element,true);
+					},100);
+			},100);
+}
+
 
 //File Access & Storage
 

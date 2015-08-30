@@ -1,0 +1,8 @@
+eXastum bundles the following 3rd Party Libraries:
+
+    - Three.js by Mr. Doob
+	
+        This library is licenced under the MIT Licence.
+        I have included only the minimised library file needed to run 
+        code that uses Three.js, for full information & documentation 
+        see threejs.org.

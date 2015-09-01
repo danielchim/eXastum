@@ -69,19 +69,17 @@ function sysDialog(error,message,urgent) {
 }
 
 function showDock() {
-	$("dock").style.MozTransform    = "translateY(0px)";
 	$("dock").style.transform       = "translateY(0px)";
-	$("dock").style.webkitTransform = "translateY(0px)";
+	$("dock").style.MozTransform    = "translateY(0px)";
+	$("dock").style.WebkitTransform = "translateY(0px)";
 	$("dock").style.msTransform     = "translateY(0px)";
-	$("dock").style.OTransform      = "translateY(0px)";
 }
 
 function hideDock() {
-	$("dock").style.MozTransform    = "translateY(140px)";
 	$("dock").style.transform       = "translateY(140px)";
-	$("dock").style.webkitTransform = "translateY(140px)";
+	$("dock").style.MozTransform    = "translateY(140px)";
+	$("dock").style.WebkitTransform = "translateY(140px)";
 	$("dock").style.msTransform     = "translateY(140px)";
-	$("dock").style.OTransform      = "translateY(140px)";
 }
 
 function initGUI() {

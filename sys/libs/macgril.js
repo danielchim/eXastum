@@ -45,15 +45,27 @@ function generate(x,y,z) {
 }
 
 function quickShake(element,passTwo) {
-	$(element).style.MozTransition = "0.1s transform";
-	$(element).style.MozTransform = "translateX(-40px)";
+	$(element).style.transition       = "0.1s transform";
+	$(element).style.MozTransition    = "0.1s transform";
+	$(element).style.WebkitTransition = "0.1s transform";
+	$(element).style.msTransition     = "0.1s transform";
+	$(element).style.transform        = "translateX(-40px)";
+	$(element).style.MozTransform     = "translateX(-40px)";
+	$(element).style.WebkitTransform  = "translateX(-40px)";
+	$(element).style.msTransform      = "translateX(-40px)";
 		var timer1 = setTimeout(
 			function() {
-				$(element).style.MozTransform = "translateX(40px)";
+				$(element).style.transform       = "translateX(40px)";
+				$(element).style.MozTransform    = "translateX(40px)";
+				$(element).style.WebkitTransform = "translateX(40px)";
+				$(element).style.msTransform     = "translateX(40px)";
 				var timer2 = setTimeout(
 					function() {
 						clearTimeout(timer1);
-						$(element).style.MozTransform = "translateX(0px)";
+						$(element).style.transform       = "translateX(0px)";
+						$(element).style.MozTransform    = "translateX(0px)";
+						$(element).style.WebkitTransform = "translateX(0px)";
+						$(element).style.msTransform     = "translateX(0px)";
 						clearTimeout(timer2);
 						if(!passTwo) quickShake(element,true);
 					},100);

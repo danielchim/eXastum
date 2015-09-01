@@ -62,7 +62,7 @@
 		<h1>Welcome</h1>
 		<input  class="text" type="text"     id="username"/><br/><br/>
 		<input  class="text" type="password" id="password"/><br/><br/>
-		<button onclick="login();"           id="loginButton">Login</button>
+		<button onclick="login($('username').value);" id="loginButton">Login</button>
 	</div>
 	<div id="loginBG"></div>
 </div>

@@ -12,13 +12,13 @@
 	along with eXastum.  If not, see <http://www.gnu.org/licenses/>
 */
 
-var buildNo  = "3.0.0.2";
+var buildNo  = "3.0.0.3";
 var codeName = "Silverfish - Alpha";
 var language = "english";
 var skin     = lStore("skin");
 
 function clock() {
-	$("sysClock").innerHTML = fDate(true) + "&#160;&#160;|&#160;&#160;" + fTime(true) + "&#160;";
+	$("sysClock").innerHTML = "|&#160;&#160;" + fDate(true) + "&#160;&#160;|&#160;&#160;" + fTime(true) + "&#160;";
 	setTimeout("clock()",500);
 }
 
@@ -155,10 +155,11 @@ function loadTheme() {
 	$("mainMenu").style.display = "none";
 }
 
-function login() {
+function login(user) {
 	$("login").style.display    = "none";
 	$("loggedIn").style.display = "block";
 	lStore("skin","default");
+	$("userName").innerHTML = "|&#160;&#160;" + user;
 }
 
 function installDefaultApps() {

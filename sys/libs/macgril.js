@@ -146,6 +146,38 @@ function fTime(natural) {
 		return hours + ":" + minutes + ":" + seconds;
 }
 
+function genCal(day,month,year,cal) {
+	var monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+	if (isLeapYear(year)) monthDays[1] = 29;
+	var calStr = "";
+	for (var i = 0; i < 5; i++) {
+		calStr += "<tr>";
+		for (var j = 1; j <= 7; j++) {
+			var tempDay = j + (7 * i);
+			if (tempDay <= monthDays[month - 1]) {
+				calStr += "<td";
+				if (day == tempDay) calStr += " style='background-color:red;' ";
+				calStr += ">" + (j + (7 * i)) + "</td>";
+			}
+			else
+				calStr += "&#160;";
+		}
+		calStr += "</tr>";
+	}
+	$(cal).innerHTML = calStr;
+}
+
+function isLeapYear(year) {
+	if (year % 4 == 0) {
+		if (year % 100 == 0) {
+			if (year % 400 == 0)
+				return true;
+		}
+		else return false;
+	}
+	return false;
+}
+
 
 //Input Functions
 

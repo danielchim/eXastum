@@ -93,9 +93,22 @@
 			</span>
 			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
 			<span id="sysTray"  onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
-			<span id="sysClock" onmouseover="updateInfoBar('System Clock'); showTimePanel();" onmouseout="updateInfoBar('eXastum 3.0'); hideTimePanel();"></span>
+			<span id="sysClock" onmouseover="updateInfoBar('System Clock'); $('timePanel').style.display = 'block';" onmouseout="updateInfoBar('eXastum 3.0'); $('timePanel').style.display = 'none';"></span>
 		</div>
-		<div id="timePanel"><table id="miniCal"></table></div>
+		
+		<div id="timePanel" onmouseover="this.style.display = 'block';" onmouseout="this.style.display = 'none';">
+			<div id="analogClock">
+				<img draggable="false" id="hourHand" src="sys/skins/default/ui/hourHand.png" width="125" height="125"/>
+				<img draggable="false" id="minsHand" src="sys/skins/default/ui/minsHand.png" width="125" height="125"/>
+				<img draggable="false" id="secsHand" src="sys/skins/default/ui/secsHand.png" width="125" height="125"/>
+			</div>
+			<table id="miniCal"></table>
+			<button style="margin-left:10px;">Alarms</button>
+			<button style="margin-left:10px;">Timers</button>
+			<button style="margin-left:10px;">Calendar</button><br/><br/>
+			<p style="color:#838383; text-shadow:1px 1px 3px #000;">Tip: you cannot change incorrect in eXastum time as eXastum gets the current time from your browser</p>
+		</div>
+		
 		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
 			<input id="infoBar" onfocus="this.value='';" class="text" type="text" placeholder="eXastum 3.0"/>
 			<p     id="userName" onmouseover="updateInfoBar('Username')" onmouseout="updateInfoBar('eXastum 3.0')">Anon</p>
@@ -141,7 +154,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="widgetLayer"></div>
 </div>
 <img id="wallpaper" src="sys/skins/default/wallpapers/default.png" width="100%" height="100%" alt="Desktop Wallpaper"/>
 <div id="libs">

@@ -190,10 +190,10 @@ button {
 	padding-bottom:   3px;
 	padding-left:     10px;
 	padding-right:    10px;
-	border:           none;
-	border-radius:    25px;
+	border-style:     default;
 	border-width:     1px;
-	border-style:     solid;
+	border-color:     #838383;
+	border-radius:    25px;
 	outline:          none;
 	text-decoration:  none;
 	color:            #838383;
@@ -235,13 +235,11 @@ div.window {
 	border-bottom-right-radius: 16px;
 
 	animation:         window 0.4s;
-	-o-animation:      window 0.4s;
 	-ms-animation:     window 0.4s;
 	-moz-animation:    window 0.4s;
 	-webkit-animation: window 0.4s;
 
 	transition:         0.4s box-shadow;
-	-o-transition:      0.4s box-shadow;
 	-ms-transition:     0.4s box-shadow;
 	-moz-transition:    0.4s box-shadow;
 	-webkit-transition: 0.4s box-shadow;
@@ -282,7 +280,6 @@ div.sysDialog {
 	
 
 	transition:         0.4s box-shadow;
-	-o-transition:      0.4s box-shadow;
 	-ms-transition:     0.4s box-shadow;
 	-moz-transition:    0.4s box-shadow;
 	-webkit-transition: 0.4s box-shadow;
@@ -304,19 +301,16 @@ div.sysDialogUrgent {
 	border-bottom-right-radius: 16px;
 	
 	animation:         sysDialog 1s;
-	-o-animation:      sysDialog 1s;
 	-ms-animation:     sysDialog 1s;
 	-moz-animation:    sysDialog 1s;
 	-webkit-animation: sysDialog 1s;
 
 	animation-iteration-count:         infinite;
-	-o-animation-iteration-count:      infinite;
 	-ms-animation-iteration-count:     infinite;
 	-moz-animation-iteration-count:    infinite;
 	-webkit-animation-iteration-count: infinite;
 
 	transition:         0.4s box-shadow;
-	-o-transition:      0.4s box-shadow;
 	-ms-transition:     0.4s box-shadow;
 	-moz-transition:    0.4s box-shadow;
 	-webkit-transition: 0.4s box-shadow;
@@ -497,6 +491,7 @@ h1.menuTitle {
 
 #timePanel {
 	position:                   fixed;
+	width:						315px;
 	top:                        21px;
 	right:                      0px;
 	background-image:           URL("ui/button.png");
@@ -511,7 +506,7 @@ h1.menuTitle {
 	border-bottom-style:        solid;
 	border-bottom-left-radius:  20px;
 	border-bottom-right-radius: 15px;
-	border-top-right-radius:    15px;
+	border-top-left-radius:     15px;
 
 	animation:         0.4s timePanel;
 	-webkit-animation: 0.4s timePanel;
@@ -520,9 +515,34 @@ h1.menuTitle {
 	-o-animation:      0.4s timePanel;
 }
 
+#analogClock {
+	width:            125px;
+	height:           125px;
+	background-image: URL("ui/clockBack.png");
+	background-size:  100% 100%;
+	position:         absolute;
+	right:            200px;
+}
+
+#hourHand {
+	position:           absolute;
+	margin:             0px;
+}
+
+#minsHand {
+	position:           absolute;
+	margin:             0px;
+}
+
+#secsHand {
+	position:           absolute;
+	margin:             0px;
+}
+
 #miniCal {
 	font-size:   14px;
 	color:       #838383;
+	margin-left: 155px;
 	text-shadow: 1px 1px 4px #000000;
 }
 

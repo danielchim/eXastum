@@ -8,7 +8,7 @@ body {
 	font-size:        12px;
 	margin:           0px;
 	overflow:         hidden;
-	color:            #593e60;
+	color:            #838383;
 	background-color: #000000;
 	
 	user-select:         none;
@@ -177,7 +177,7 @@ input.text {
 	padding-bottom:   2px;
 	color:            #838383;
 	border-width:     1px;
-	border-style:     solid;
+	border-style:     inset;
 }
 
 button {
@@ -190,7 +190,7 @@ button {
 	padding-bottom:   3px;
 	padding-left:     10px;
 	padding-right:    10px;
-	border-style:     default;
+	border-style:     outset;
 	border-width:     1px;
 	border-color:     #838383;
 	border-radius:    25px;
@@ -210,10 +210,12 @@ button {
 }
 
 button:hover {
+
 }
 
 button:active {
 	background-image: URL("ui/buttonPress.png");
+	border-style:     inset;
 }
 
 iframe {
@@ -226,8 +228,8 @@ div.window {
 	overflow:                   hidden;
 	box-shadow:                 0px 0px 25px #000000;
 	background-color:           rgba(0,0,0,0.8);
-	border-right-style:         solid;
-	border-left-style:          solid;
+	border-right-style:         inset;
+	border-left-style:          inset;
 	border-width:               1px;
 	border-top-left-radius:     20px;
 	border-top-right-radius:    20px;
@@ -373,7 +375,7 @@ p.menuTextLink:hover {
 
 h1.menuTitle {
 	margin-left: 20px;
-	font-weight: normal;
+	font-weight: lighter;
 	margin-top:  10px;
 
 	animation:         titleFade 1.0s;
@@ -455,9 +457,9 @@ h1.menuTitle {
 	background-color:    transparent;
 	background-image:    URL("ui/bar.png");
 	background-size:     100% 100%;
-	box-shadow:          0px 4px 10px #000000;
+	box-shadow:          0px 10px 20px #000000;
 	border-width:        1px;
-	border-bottom-style: solid;
+	border-bottom-style: outset;
 	border-bottom-left-radius:  12px;
 	border-bottom-right-radius: 12px;
 }
@@ -475,9 +477,9 @@ h1.menuTitle {
 	background-color: transparent;
 	background-image: URL("ui/bar.png");
 	background-size:  100% 100%;
-	box-shadow:       0px 4px 10px #000000;
+	box-shadow:       0px -10px 20px #000000;
 	border-width:     1px;
-	border-top-style: solid;
+	border-top-style: outset;
 	border-top-left-radius:  12px;
 	border-top-right-radius: 12px;
 }
@@ -502,8 +504,7 @@ h1.menuTitle {
 	background-color:           rgba(0,0,0,0.7);
 	box-shadow:                 0px 8px 20px #000000;
 	border-width:               1px;
-	border-left-style:          solid;
-	border-bottom-style:        solid;
+	border-style:               inset;
 	border-bottom-left-radius:  20px;
 	border-bottom-right-radius: 15px;
 	border-top-left-radius:     15px;
@@ -641,8 +642,7 @@ h1.menuTitle {
 	background-color:           rgba(0,0,0,0.7);
 	box-shadow:                 0px 8px 20px #000000;
 	border-width:               1px;
-	border-right-style:         solid;
-	border-bottom-style:        solid;
+	border-style:               inset;
 	border-bottom-right-radius: 20px;
 	border-bottom-left-radius:  15px;
 	border-top-right-radius:    15px;
@@ -683,6 +683,7 @@ h1.menuTitle {
 
 #menuIconPreview {
 	margin-left: 20px;
+	margin-top:  25px;
 }
 
 #menuAppsList {
@@ -714,13 +715,6 @@ h1.menuTitle {
 	width:               289px;
 	background-image:    URL("ui/button.png");
 	background-size:     100% 100%;
-}
-
-#menuHeader {
-	margin-left: 20px;
-	margin-top:  9px;
-	font-weight: normal;
-	text-shadow: 0px 0px 10px #000000;
 }
 
 #menuSearch {

@@ -165,3 +165,13 @@ function login(user) {
 function installDefaultApps() {
 	lStore("Browser","500,300,Browser,sys/browser.html,true,true,true");
 }
+
+function showTimePanel() {
+	var today = new Date();
+	genCal(today.getDate(), (today.getMonth() + 1), today.getFullYear(), "miniCal");
+	$("timePanel").style.display = "block";
+}
+
+function hideTimePanel() {
+	$("timePanel").style.display = "none";
+}

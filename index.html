@@ -81,8 +81,9 @@
 			</span>
 			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
 			<span id="sysTray"  onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
-			<span id="sysClock" onmouseover="updateInfoBar('System Clock')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
+			<span id="sysClock" onmouseover="updateInfoBar('System Clock'); showTimePanel();" onmouseout="updateInfoBar('eXastum 3.0'); hideTimePanel();"></span>
 		</div>
+		<div id="timePanel"><table id="miniCal"></table></div>
 		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
 			<input id="infoBar" onfocus="this.value='';" class="text" type="text" placeholder="eXastum 3.0"/>
 			<p     id="userName" onmouseover="updateInfoBar('Username')" onmouseout="updateInfoBar('eXastum 3.0')">Anon</p>

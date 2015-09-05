@@ -87,9 +87,9 @@
 		<div id="topBar">
 			<img  id="menuButton" onmouseover="updateInfoBar('Menu Button')" onmouseout="updateInfoBar('eXastum 3.0')" src="sys/skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
 			<span id="quickLaunch" onmouseover="updateInfoBar('Quick Launch')" onmouseout="updateInfoBar('eXastum 3.0')">
-				<img onclick="launchApp('console')"  class="barIcon" src="sys/skins/default/icons/mini/terminal.png"/>
-				<img onclick="launchApp('music')"    class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
-				<img onclick="launchApp('settings')" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
+				<img onclick="newConsole();" class="barIcon" src="sys/skins/default/icons/mini/terminal.png"/>
+				<img onclick="launchApp('music')" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
+				<img onclick="$('sysSettings').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
 			</span>
 			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
 			<span id="sysTray"  onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
@@ -149,7 +149,7 @@
 	<script src="sys/libs/auth.js"></script>
 	<script src="sys/libs/init.js"></script>
 	<script src="sys/libs/macgril.js"></script>
-	<script src="sys/libs/exastum.js"></script>
+	<script src="sys/libs/sys.js"></script>
 	<script src="sys/libs/js_prompt.js"></script>
 	<script src="sys/libs/windowing.js"></script>
 	<!-- Third Party Libs -->

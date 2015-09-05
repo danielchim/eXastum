@@ -155,13 +155,6 @@ function loadTheme() {
 	$("mainMenu").style.display = "none";
 }
 
-function login(user) {
-	$("login").style.display    = "none";
-	$("loggedIn").style.display = "block";
-	lStore("skin","default");
-	$("userName").innerHTML = "|&#160;&#160;" + user;
-}
-
 function installDefaultApps() {
 	lStore("Browser","500,300,Browser,sys/browser.html,true,true,true");
 }

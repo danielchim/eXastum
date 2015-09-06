@@ -20,6 +20,7 @@ function init() {
 	loadSettings();
 	initGUI();
 	clock();
+	initAudioSystem();
 }
 
 function checkSetup() {

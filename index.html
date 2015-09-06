@@ -46,7 +46,10 @@
 	<link  id="Sheet" rel="stylesheet" type="text/css" href="sys/skins/default/skin.css"/>
 	<style id="styleSystem"></style>
 </head>
-<body onload="init();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
+<body onload="init(); addAudioSource($('test'));" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
+
+<!-- THIS IS A TEST REMOVE IT LATER -->
+<audio src="test.ogg" id="test" autoplay loop></audio>
 
 <noscript>
 	<h1 id="NoJSWarning">eXastum cannot run without JavaScript</h1>
@@ -109,6 +112,10 @@
 			<p><strong>Tip:</strong> you cannot change incorrect time information in eXastum as eXastum gets the current time from your browser</p>
 		</div>
 		
+		<div id="audioPanel" onmouseover="this.style.display = 'block';" onmouseover="this.style.display = 'none';">
+			<div id="audioPanelVisualizer"></div>
+		</div>
+		
 		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
 			<input id="infoBar" onfocus="this.value='';" class="text" type="text" placeholder="eXastum 3.0"/>
 			<p     id="userName" onmouseover="updateInfoBar('Username')" onmouseout="updateInfoBar('eXastum 3.0')">Anon</p>
@@ -161,6 +168,7 @@
 	<script src="sys/libs/init.js"></script>
 	<script src="sys/libs/macgril.js"></script>
 	<script src="sys/libs/sys.js"></script>
+	<script src="sys/libs/audio.js"></script>
 	<script src="sys/libs/js_prompt.js"></script>
 	<script src="sys/libs/windowing.js"></script>
 	<!-- Third Party Libs -->

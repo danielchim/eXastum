@@ -12,8 +12,8 @@
 	along with eXastum.  If not, see <http://www.gnu.org/licenses/>
 */
 
-var buildNo  = "3.0.0.4";
-var codeName = "Silverfish - Alpha";
+var buildNo  = "3.0.0.5";
+var codeName = "Silverfish - Beta";
 var language = "english";
 var skin     = lStore("skin");
 

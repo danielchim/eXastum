@@ -25,7 +25,7 @@ function clock() {
 
 function updateAnalogClock() {
 	var today = new Date();
-	genCal(today.getDate(), (today.getMonth() + 1), today.getFullYear(), "miniCal");
+	genCal(today,"miniCal");
 	
 	var hrs   = today.getHours();
 	var min   = today.getMinutes();

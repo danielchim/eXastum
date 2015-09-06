@@ -142,18 +142,18 @@ function fTime(natural) {
 		return hours + ":" + minutes + ":" + seconds;
 }
 
-function genCal(day,month,year,cal) {
+function genCal(dateObj,cal) {
 	var monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
-	if (isLeapYear(year)) monthDays[1] = 29;
+	if (isLeapYear(dateObj.getFullYear())) monthDays[1] = 29;
 	var calStr = "";
 	$(cal).innerHTML = calStr;
 	for (var i = 0; i < 5; i++) {
 		calStr += "<tr>";
 		for (var j = 1; j <= 7; j++) {
 			var tempDay = j + (7 * i);
-			if (tempDay <= monthDays[month - 1]) {
+			if (tempDay <= monthDays[dateObj.getMonth()]) {
 				calStr += "<td";
-				if (day == tempDay) calStr += " style='border-width:1px; border-style:solid;' ";
+				if (dateObj.getDate() == tempDay) calStr += " style='border-width:1px; border-style:solid;' ";
 				calStr += ">" + (j + (7 * i)) + "</td>";
 			}
 			else

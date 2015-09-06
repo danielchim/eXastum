@@ -13,71 +13,75 @@
 */
 
 function initAudioSystem() {
-	context		=	new AudioContext();
-	analyser	=	context.createAnalyser();
-	gainnode	=	context.createGain();
-	gainnode.gain.value				=	0.5;
-	analyser.fftSize				=	128;
-	analyser.smoothingTimeConstant	=	0.4;
-	analyser.connect(gainnode);
-	gainnode.connect(context.destination);
-	fbc_array	=	new Uint8Array(analyser.frequencyBinCount);
-	fbd_array	=	new Uint8Array(analyser.fftSize);
-	startCanvas();
+	sysAudioContext  = new AudioContext();
+	sysAudioAnalyser = sysAudioContext.createAnalyser();
+	sysAudioGain     = sysAudioContext.createGain();
+	sysAudioGain.gain.value  = 0.5;
+	sysAudioAnalyser.fftSize = 128;
+	sysAudioAnalyser.smoothingTimeConstant = 0.4;
+	sysAudioAnalyser.connect(sysAudioGain);
+	sysAudioGain.connect(sysAudioContext.destination);
+	startAudioVisualization();
 }
 
 function addAudioSource(src) {
-	var audio = context.createMediaElementSource(src);
-	audio.connect(analyser);
+	var audio = sysAudioContext.createMediaElementSource(src);
+	audio.connect(sysAudioAnalyser);
 }
 
 function setSysVol(level) {
-	gainnode.gain.value = (level + 120) * 0.004166667;
+	sysAudioGain.gain.value = (level + 120) * 0.004166667;
 }
 
 
-function startCanvas() {
-	scene		=	new THREE.Scene();
-	camera		=	new THREE.PerspectiveCamera(45,200/200,49,50);
-					camera.position.set(0,0,50);
-					camera.lookAt(scene.position);
-					scene.add(camera);
+function startAudioVisualization() {
+	scene  = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(45,200/200,49,50);
+	
+	camera.position.set(0,0,50);
+	camera.lookAt(scene.position);
+	scene.add(camera);
 
-	renderer	=	new THREE.WebGLRenderer({alpha:true, antialias:true});
-					renderer.setSize(250,200);
-					$("audioPanelVisualizer").appendChild(renderer.domElement);
+	renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
+	
+	renderer.setSize(250,200);
+	$("audioPanelVisualizer").appendChild(renderer.domElement);
 
-	cubes		=	[];
-	cubes2		=	[];
+	bars = new Array(new Array(40),new Array(40));
 
 	for (var i = 0; i < 40; i++) {
-		cubes[i]	=	new THREE.Mesh(new THREE.PlaneBufferGeometry(0.1,0.5), new THREE.MeshBasicMaterial({color:0x00796C}));
-		cubes2[i]	=	new THREE.Mesh(new THREE.PlaneBufferGeometry(0.1,0.5), new THREE.MeshBasicMaterial({color:0x6EFFF1}));
-		cubes[i].position.set((i - 20),0,0);
-		cubes2[i].position.set((i - 19.5),0,0);
-		scene.add(cubes[i]);
-		scene.add(cubes2[i]);
+		bars[0][i] = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.1,0.5), new THREE.MeshBasicMaterial({color:0xC22828}));
+		bars[1][i] = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.1,0.5), new THREE.MeshBasicMaterial({color:0x838383}));
+		bars[0][i].position.set((i - 20),0,0);
+		bars[1][i].position.set((i - 19.5),0,0);
+		scene.add(bars[0][i]);
+		scene.add(bars[1][i]);
 	}
-	animate();
+
+	visualize();
 }
 
 
-function animate() {
-	analyser.getByteTimeDomainData(fbd_array);
-	analyser.getByteFrequencyData(fbc_array);
+function visualize() {
+	var visualData = new Array(new Uint8Array(128),new Uint8Array(64));
+
+	sysAudioAnalyser.getByteTimeDomainData(visualData[0]);
+	sysAudioAnalyser.getByteFrequencyData(visualData[1]);
+	
+	var barHeight = new Array(2);
 
 	for (var i = 0; i < 40; i++) {
-		var cubeHeight1 = fbc_array[i] * 0.2;
-		var cubeHeight2 = fbd_array[i] - 128;
+		barHeight[0] = (visualData[0][i] - 128) / 2;
+		barHeight[1] = visualData[1][i] / 4;
 
-		if (!(cubeHeight1 < 1)) cubes[i].scale.y = cubeHeight1;
-		else cubes[i].scale.y = 0.1;
+		if (!(barHeight[0] < 1)) bars[0][i].scale.y = barHeight[0];
+		else bars[0][i].scale.y = 0.1;
 		
-		if (!(cubeHeight2 < 1)) cubes2[i].scale.y = cubeHeight2;
-		else cubes2[i].scale.y = 0.1;
+		if (!(barHeight[1] < 1)) bars[1][i].scale.y = barHeight[1];
+		else bars[1][i].scale.y = 0.1;
 	}
 	
-	setTimeout	(function() {requestAnimationFrame(animate);});
+	setTimeout(function() {requestAnimationFrame(visualize);});
 	renderer.render(scene,camera);
 }
 

@@ -517,7 +517,30 @@ h1.menuTitle {
 	-webkit-animation: 0.4s timePanel;
 	-moz-animation:    0.4s timePanel;
 	-ms-animation:     0.4s timePanel;
-	-o-animation:      0.4s timePanel;
+}
+
+#audioPanel {
+	position:                   fixed;
+	width:						315px;
+	top:                        21px;
+	right:                      0px;
+	background-image:           URL("ui/button.png");
+	padding:                    20px;
+	background-size:            100% 100%;
+	z-index:                    11;
+	display:                    block;
+	background-color:           rgba(0,0,0,0.7);
+	box-shadow:                 0px 8px 20px #000000;
+	border-width:               1px;
+	border-style:               inset;
+	border-bottom-left-radius:  20px;
+	border-bottom-right-radius: 15px;
+	border-top-left-radius:     15px;
+
+	animation:         0.4s timePanel;
+	-webkit-animation: 0.4s timePanel;
+	-moz-animation:    0.4s timePanel;
+	-ms-animation:     0.4s timePanel;
 }
 
 #analogClock {

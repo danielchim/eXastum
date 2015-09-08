@@ -340,12 +340,12 @@ iframe.app {
 }
 
 img.barIcon {
-	height:      18px;
-	width:       18px;
-	margin-top:  1px;
-	margin-left: 2px;
-	cursor:      pointer;
-	opacity:     0.7;
+	height:         18px;
+	width:          18px;
+	margin-top:     1px;
+	margin-left:    2px;
+	opacity:        0.7;
+	padding-bottom: 2px;
 }
 
 img.barIcon:hover {
@@ -595,14 +595,15 @@ h1.menuTitle {
 }
 
 #sysClock {
-	cursor:       default;
-	font-family:  eXastumDefault;
-	font-size:    15px;
-	float:        right;
-	margin-right: 5px;
-	margin-top:   -2px;
-	text-shadow:  1px 1px 3px #000000;
-	color:        #838383;
+	cursor:         default;
+	font-family:    eXastumDefault;
+	font-size:      15px;
+	float:          right;
+	margin-right:   5px;
+	margin-top:     -2px;
+	text-shadow:    1px 1px 3px #000000;
+	color:          #838383;
+	padding-bottom: 2px;
 }
 
 #buildNum {

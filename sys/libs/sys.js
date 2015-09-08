@@ -86,7 +86,9 @@ function initGUI() {
 }
 
 function clickDesktop() {
-	$("mainMenu").style.display = "none";
+	$("mainMenu").style.display   = "none";
+	$("timePanel").style.display  = "none";
+	$("audioPanel").style.display = "none";
 	$("menuButton").src         = "sys/skins/" + lStore("skin") + "/ui/menu.png";
 	updateInfoBar("eXastum 3.0");
 }
@@ -153,12 +155,4 @@ function loadTheme() {
 
 function installDefaultApps() {
 	lStore("Browser","500,300,Browser,sys/browser.html,true,true,true");
-}
-
-function showTimePanel() {
-	$("timePanel").style.display = "block";
-}
-
-function hideTimePanel() {
-	$("timePanel").style.display = "none";
 }

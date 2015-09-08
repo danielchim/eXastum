@@ -92,13 +92,13 @@
 				<img onclick="$('sysSettings').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
 			</span>
 			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
-			<span id="sysClock" onmouseover="updateInfoBar('System Clock'); $('timePanel').style.display = 'block';" onmouseout="updateInfoBar('eXastum 3.0'); $('timePanel').style.display = 'none';"></span>
-			<span id="sysTray"  onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')">
-				<img width="19" height="19" onmouseover="$('audioPanel').style.display = 'block';" onmouseout="$('audioPanel').style.display = 'none';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
+			<span id="sysClock" title="Click to open Time Panel" onclick="$('timePanel').style.display = 'block';" onmouseover="updateInfoBar('System Clock');" onmouseout="updateInfoBar('eXastum 3.0');"></span>
+			<span id="sysTray" onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')">
+				<img onmouseover="updateInfoBar('Audio Panel Button')" onmouseout="updateInfoBar('eXastum 3.0')" title="Click to open Audio Panel" width="19" height="19" onclick="$('audioPanel').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
 			</span>
 		</div>
 		
-		<div id="timePanel" onmouseover="this.style.display = 'block';" onmouseout="this.style.display = 'none';">
+		<div id="timePanel" onmouseover="updateInfoBar('Time Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
 			<div id="analogClock">
 				<img draggable="false" id="hourHand" src="sys/skins/default/ui/hourHand.png" width="125" height="125"/>
 				<img draggable="false" id="minsHand" src="sys/skins/default/ui/minsHand.png" width="125" height="125"/>
@@ -111,9 +111,9 @@
 			<p><strong>Tip:</strong> you cannot change incorrect time information in eXastum as eXastum gets the current time from your browser</p>
 		</div>
 		
-		<div id="audioPanel" onmouseover="this.style.display = 'block';" onmouseout="this.style.display = 'none';">
+		<div id="audioPanel" onmouseover="updateInfoBar('Audio Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
 			<div id="audioPanelVisualizer"></div>
-			<button class="panelButton" onclick="testAudio()">Test Audio</button>
+			<button class="panelButton" onclick="testAudio()" id="audioTestButton">Test Audio</button>
 			<button class="panelButton" onclick="testAudio()">Music App</button>
 			<button class="panelButton" onclick="testAudio()">eXastum Studio</button>
 		</div>
@@ -182,6 +182,8 @@
 	<!-- Third Party Libs -->
 	<script src="sys/libs/third_party/three.min.js"></script>
 </div>
+
+<audio id="testTrack" src="sys/sounds/third_party/Mixro_-_CCmixter.org.ogg"/>
 
 </body>
 </html>

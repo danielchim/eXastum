@@ -21,6 +21,7 @@ function initAudioSystem() {
 	sysAudioAnalyser.smoothingTimeConstant = 0.4;
 	sysAudioAnalyser.connect(sysAudioGain);
 	sysAudioGain.connect(sysAudioContext.destination);
+	addAudioSource($("testTrack"));
 	startAudioVisualization();
 }
 
@@ -85,10 +86,17 @@ function visualize() {
 	renderer.render(scene,camera);
 }
 
-function testAudio() {
-	var audio = new Audio();
-	audio.src = "sys/sounds/third_party/Mixro_-_CCmixter.org.ogg";
-	addAudioSource(audio);
-	audio.play();
+function testAudio(x) {
+	if (!x) {
+		$("audioTestButton").innerHTML = "Stop Test";
+		$("audioTestButton").setAttribute("onclick","testAudio(true)");
+		testTrack.play();
+	}
+	else {
+		testTrack.pause();
+		testTrack.currentTime = 0;
+		$("audioTestButton").innerHTML = "Test Audio";
+		$("audioTestButton").setAttribute("onclick","testAudio()");
+	}
 }
 

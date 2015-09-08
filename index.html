@@ -92,9 +92,9 @@
 				<img onclick="$('sysSettings').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
 			</span>
 			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
-			<span id="sysClock" title="Click to open Time Panel" onclick="$('timePanel').style.display = 'block';" onmouseover="updateInfoBar('System Clock');" onmouseout="updateInfoBar('eXastum 3.0');"></span>
+			<span id="sysClock" title="Click to open Time Panel" onclick="hideMainMenu(); $('audioPanel').style.display = 'none'; $('timePanel').style.display = 'block';" onmouseover="updateInfoBar('System Clock');" onmouseout="updateInfoBar('eXastum 3.0');"></span>
 			<span id="sysTray" onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')">
-				<img onmouseover="updateInfoBar('Audio Panel Button')" onmouseout="updateInfoBar('eXastum 3.0')" title="Click to open Audio Panel" width="19" height="19" onclick="$('audioPanel').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
+				<img onmouseover="updateInfoBar('Audio Panel Button')" onmouseout="updateInfoBar('eXastum 3.0')" title="Click to open Audio Panel" width="19" height="19" onclick="hideMainMenu(); $('timePanel').style.display = 'none'; $('audioPanel').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
 			</span>
 		</div>
 		

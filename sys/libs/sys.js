@@ -86,10 +86,9 @@ function initGUI() {
 }
 
 function clickDesktop() {
-	$("mainMenu").style.display   = "none";
+	hideMainMenu();
 	$("timePanel").style.display  = "none";
 	$("audioPanel").style.display = "none";
-	$("menuButton").src         = "sys/skins/" + lStore("skin") + "/ui/menu.png";
 	updateInfoBar("eXastum 3.0");
 }
 
@@ -118,14 +117,18 @@ function consoleWrite(message) {
 }
 
 function showHideMainMenu() {
+	$("timePanel").style.display  = "none";
+	$("audioPanel").style.display = "none";
 	if ($("mainMenu").style.display == "none") {
 		$("mainMenu").style.display =  "block";
 		$("menuButton").src = "sys/skins/" + lStore("skin") + "/ui/menuPress.png";
 	}
-	else {
-		$("menuButton").src         = "sys/skins/" + lStore("skin") + "/ui/menu.png";
-		$("mainMenu").style.display = "none";
-	}
+	else hideMainMenu();
+}
+
+function hideMainMenu() {
+	$("menuButton").src         = "sys/skins/" + lStore("skin") + "/ui/menu.png";
+	$("mainMenu").style.display = "none";
 }
 
 function setTheme(text, color, opacity) {

@@ -17,24 +17,38 @@
 
 =={LICENCING}===========================================================
 
-	Two licences cover content in The eXastum Project
+	STUFF MADE BY ME (Brian Millar):
 
-	1. All source code falls under the terms of this licence:
-	   https://www.gnu.org/licenses/gpl-3.0.en.html
+	1. All source code writen by me falls under the terms of the
+	   GNU General Public Licence Version 3.
+	   See: https://www.gnu.org/licenses/gpl-3.0.en.html
 	
-	2. Artistic works such as icons and sounds fall under this licence:
+	2. Artistic works by me such as icons and sounds fall under the
+	   following licence:
 	   https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 	
 	Basically what this means is for both code and artistic works you 
-	modify and share as long as you also share your changes and do not 
-	profit from them. While only the CC licence disallows commercial use 
-	in the licence the nature of the GNU GPL basically also makes it 
+	can modify and share as long as you also share your changes and do 
+	not profit from them. While only the CC licence disallows commercial 
+	use in the licence the nature of the GNU GPL basically also makes it 
 	impossible as you must make source code available and allow sharing.
 
-	EXCEPTION:
-	eXastum uses the Liberation Sans font which was not created by me. 
-	It's licence is GNU GPLv2 with some exceptions and can be found in 
-	sys/skins/default/fonts
+-------------------------------------------------------------------------
+
+	STUFF NOT MADE BY ME:
+
+	1. eXastum's default font, the Liberation Sans font is licenced under 
+	   the GNU GPLv2 with some exceptions, the full licence can be found in: 
+	   sys/skins/default/fonts/COPYING
+
+	2. The Three.js by Mr. Doob is used for webGL 3D graphics. Is licenced 
+	   under the MIT Licence. See threejs.org for full documentation.
+
+	3. CCmixter.org by Nitropox@CCmixter is the song used for audio demos.
+	   It's licence can be found here:
+	   https://creativecommons.org/licenses/by-nc/3.0/legalcode
+	   I transcoded the song from its original format, the original can be
+	   found here: http://dig.ccmixter.org/files/Mixro/16474
 
 ========================================================================
 ========================================================================

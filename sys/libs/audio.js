@@ -87,7 +87,7 @@ function visualize() {
 
 function testAudio() {
 	var audio = new Audio();
-	audio.src = "test.ogg";
+	audio.src = "sys/sounds/third_party/Mixro_-_CCmixter.org.ogg";
 	addAudioSource(audio);
 	audio.play();
 }

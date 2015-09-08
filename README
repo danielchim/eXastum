@@ -38,8 +38,8 @@
 	STUFF NOT MADE BY ME:
 
 	1. eXastum's default font, the Liberation Sans font is licenced under 
-	   the GNU GPLv2 with some exceptions, the full licence can be found in: 
-	   sys/skins/default/fonts/COPYING
+	   the GNU GPLv2 with some exceptions, the full licence can be found
+           in: sys/skins/default/fonts/COPYING
 
 	2. The Three.js by Mr. Doob is used for webGL 3D graphics. Is licenced 
 	   under the MIT Licence. See threejs.org for full documentation.

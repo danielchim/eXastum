@@ -208,6 +208,10 @@ button:active {
 	border-style:     inset;
 }
 
+button.panelButton {
+	margin-left: 10px;
+}
+
 iframe {
 	border: none;
 }
@@ -502,15 +506,14 @@ h1.menuTitle {
 	border-bottom-right-radius: 15px;
 	border-top-left-radius:     15px;
 
-	animation:         0.4s timePanel;
-	-webkit-animation: 0.4s timePanel;
-	-moz-animation:    0.4s timePanel;
-	-ms-animation:     0.4s timePanel;
+	animation:         0.4s sysPanel;
+	-webkit-animation: 0.4s sysPanel;
+	-moz-animation:    0.4s sysPanel;
+	-ms-animation:     0.4s sysPanel;
 }
 
 #audioPanel {
 	position:                   fixed;
-	width:						315px;
 	top:                        21px;
 	right:                      0px;
 	background-image:           URL("ui/button.png");
@@ -526,10 +529,10 @@ h1.menuTitle {
 	border-bottom-right-radius: 15px;
 	border-top-left-radius:     15px;
 
-	animation:         0.4s timePanel;
-	-webkit-animation: 0.4s timePanel;
-	-moz-animation:    0.4s timePanel;
-	-ms-animation:     0.4s timePanel;
+	animation:         0.4s sysPanel;
+	-webkit-animation: 0.4s sysPanel;
+	-moz-animation:    0.4s sysPanel;
+	-ms-animation:     0.4s sysPanel;
 }
 
 #analogClock {
@@ -542,18 +545,18 @@ h1.menuTitle {
 }
 
 #hourHand {
-	position:           absolute;
-	margin:             0px;
+	position: absolute;
+	margin:   0px;
 }
 
 #minsHand {
-	position:           absolute;
-	margin:             0px;
+	position: absolute;
+	margin:   0px;
 }
 
 #secsHand {
-	position:           absolute;
-	margin:             0px;
+	position: absolute;
+	margin:   0px;
 }
 
 #miniCal {
@@ -586,20 +589,20 @@ h1.menuTitle {
 }
 
 #sysTray {
-	position: fixed;
-	top:      2px;
-	right:    130px;
+	float:        right;
+	top:          1px;
+	margin-right: 9px;
 }
 
 #sysClock {
-	cursor:      default;
-	font-family: eXastumDefault;
-	font-size:   15px;
-	position:    fixed;
-	top:         -2px;
-	right:       5px;
-	text-shadow: 1px 1px 3px #000000;
-	color:       #838383;
+	cursor:       default;
+	font-family:  eXastumDefault;
+	font-size:    15px;
+	float:        right;
+	margin-right: 5px;
+	margin-top:   -2px;
+	text-shadow:  1px 1px 3px #000000;
+	color:        #838383;
 }
 
 #buildNum {
@@ -842,10 +845,10 @@ h1.menuTitle {
 @-webkit-keyframes mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
 @-ms-keyframes     mainMenu {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(-440px) rotateY(-45deg) rotateX(45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
 
-@keyframes         timePanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-moz-keyframes    timePanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-webkit-keyframes timePanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
-@-ms-keyframes     timePanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@keyframes         sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; transform:         translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; transform:         translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-moz-keyframes    sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -moz-transform:    translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -moz-transform:    translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-webkit-keyframes sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -webkit-transform: translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -webkit-transform: translateY(0px) rotateY(0deg) rotateX(0deg);}}
+@-ms-keyframes     sysPanel {0% {opacity: 0.0; box-shadow: 0px 0px 400px #ffffff; -ms-transform:     translateY(-320px) translateX(440px) rotateY(-45deg) rotateX(-45deg);} 100% {opacity: 1.0; -ms-transform:     translateY(0px) rotateY(0deg) rotateX(0deg);}}
 
 @keyframes         fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}
 @-moz-keyframes    fadeInOut {0% {opacity: 0.6;} 50% {opacity: 1.0;} 100% {opacity: 0.6;}}

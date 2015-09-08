@@ -85,3 +85,10 @@ function visualize() {
 	renderer.render(scene,camera);
 }
 
+function testAudio() {
+	var audio = new Audio();
+	audio.src = "test.ogg";
+	addAudioSource(audio);
+	audio.play();
+}
+

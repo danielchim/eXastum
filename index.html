@@ -75,7 +75,13 @@
 
 <div id="loggedIn">
 	<div id="windowLayer">
-		<div id="abouteXastum"></div>
+		
+		<div id="abouteXastum">
+			<h2>eXastum 3.0</h2>
+			<p id="aboutText">
+				This is a test.
+			</p>
+		</div>
 
 		<div id="sysSettings" style="top:150px; left:200px;" onmouseout="updateInfoBar('eXastum 3.0');" onmouseover="updateInfoBar('Console');" class="window">
 			<span onmousedown="dragWindow('sysSettings',event);" class="titleBar" id="settingsTitleBar">
@@ -138,7 +144,7 @@
 					<p class="menuTextLink">Installer</p>
 					<p class="menuTextLink">Open File</p>
 					<p class="menuTextLink">System Settings</p>
-					<p class="menuTextLink" onclick="showAbout()">About eXastum</p>
+					<p class="menuTextLink" onclick="$('abouteXastum').style.display = 'block'">About eXastum</p>
 				</div>
 				<div id="menuPowerButtons">
 					<img onmouseover="this.src='sys/skins/default/icons/reload_over.png'; updateInfoBar('Reload eXastum');" onmouseout="this.src='sys/skins/default/icons/reload.png'; updateInfoBar('eXastum 3.0');" class="powerButtons" src="sys/skins/default/icons/reload.png"/>

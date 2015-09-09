@@ -440,6 +440,25 @@ h1.menuTitle {
 	background-image: URL("ui/login.png");
 }
 
+#abouteXastum {
+	position: absolute;
+	z-index:  20;
+	top:      150px;
+	left:     500px;
+	width:    400px;
+	height:   200px;
+	border-radius: 20px;
+	background-image: URL("ui/sider.png");
+	display: none;
+	background-size: 100% 100%;
+	box-shadow: 0px 0px 20px #000000;
+	border-style: inset;
+	border-width: 1px;
+	padding: 30px;
+	overflow-X: hidden;
+	overflow-Y: scroll;
+}
+
 #topBar {
 	z-index:             12;
 	position:            fixed;

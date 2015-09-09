@@ -21,6 +21,7 @@ function init() {
 	initGUI();
 	clock();
 	initAudioSystem();
+	$("aboutText").innerHTML = "Version: " + buildNo + ", " + codeName;
 }
 
 function checkSetup() {

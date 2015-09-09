@@ -12,10 +12,12 @@
 	along with eXastum.  If not, see <http://www.gnu.org/licenses/>
 */
 
-var buildNo  = "3.0.0.5";
-var codeName = "Silverfish - Beta";
-var language = "english";
-var skin     = lStore("skin");
+/* Syswide Globals */
+
+buildNo  = "3.0.0.5";
+codeName = "Silverfish - Beta";
+language = "english";
+skin     = lStore("skin");
 
 
 function updateInfoBar(text) {
@@ -36,10 +38,6 @@ function changeTheme(x) {
 	loadTheme();
 }
 
-function showAbout() {
-	sysDialog("About eXastum","eXastum build " + buildNo + " - " + codeName,false);
-}
-
 function loadSettings() {
 
 }
@@ -58,10 +56,8 @@ function sysDialog(error,message,urgent) {
 	var msg    = generate("span",dialog);
 	$(msg).innerHTML = message;
 	$(msg).setAttribute("class","sysDialog");
-	if(urgent)
-		$(dialog).setAttribute("class","sysDialogUrgent");
-	else
-		$(dialog).setAttribute("class","sysDialog");
+	if(urgent) $(dialog).setAttribute("class","sysDialogUrgent");
+	else $(dialog).setAttribute("class","sysDialog");
 }
 
 function showDock() {
@@ -87,8 +83,9 @@ function initGUI() {
 
 function clickDesktop() {
 	hideMainMenu();
-	$("timePanel").style.display  = "none";
-	$("audioPanel").style.display = "none";
+	$("timePanel").style.display    = "none";
+	$("audioPanel").style.display   = "none";
+	$("abouteXastum").style.display = "none";
 	updateInfoBar("eXastum 3.0");
 }
 

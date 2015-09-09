@@ -14,7 +14,7 @@
 
 /* Syswide Globals */
 
-buildNo  = "3.0.0.5";
+buildNo  = "3.0.0.6";
 codeName = "Silverfish - Beta";
 language = "english";
 skin     = lStore("skin");

@@ -343,8 +343,9 @@ img.barIcon {
 	height:         18px;
 	width:          18px;
 	margin-top:     1px;
-	margin-left:    2px;
+	margin-left:    5px;
 	opacity:        0.7;
+	cursor:         pointer;
 }
 
 img.barIcon:hover {
@@ -395,19 +396,19 @@ h1.menuTitle {
 }
 
 #loginForm {
-	position:     fixed;
-	top:          150px;
-	left:         calc(50% - 171px);
-	padding:      20px;
-	border-width: 1px;
-	border-left-style:  solid;
-	border-right-style: solid;
-	background-image:   URL("ui/button.png");
-	background-size:    100% 100%;
+	position:      fixed;
+	top:           150px;
+	left:          calc(50% - 171px);
+	padding:       20px;
+	border-width:  1px;
 	border-radius: 20px;
 	width:         300px;
 	z-index:       2;
 	box-shadow:    0px 0px 30px #000;
+	border-left-style:  solid;
+	border-right-style: solid;
+	background-image:   URL("ui/button.png");
+	background-size:    100% 100%;
 }
 
 #userField {
@@ -447,16 +448,16 @@ h1.menuTitle {
 	left:     500px;
 	width:    400px;
 	height:   200px;
-	border-radius: 20px;
-	background-image: URL("ui/sider.png");
-	display: none;
-	background-size: 100% 100%;
-	box-shadow: 0px 0px 20px #000000;
+	display:  none;
+	padding:  30px;
 	border-style: inset;
 	border-width: 1px;
-	padding: 30px;
-	overflow-X: hidden;
-	overflow-Y: scroll;
+	overflow-X:   hidden;
+	overflow-Y:   scroll;
+	border-radius:    20px;
+	background-image: URL("ui/sider.png");
+	background-size:  100% 100%;
+	box-shadow:       0px 0px 20px #000000;
 }
 
 #topBar {
@@ -601,8 +602,8 @@ h1.menuTitle {
 #sysTasks {
 	position: fixed;
 	top:      2px;
-	left:     121px;
-	right:    140px;
+	left:     106px;
+	right:    200px;
 	overflow: hidden;
 }
 
@@ -613,14 +614,14 @@ h1.menuTitle {
 }
 
 #sysClock {
-	cursor:         default;
-	font-family:    eXastumDefault;
-	font-size:      15px;
-	float:          right;
-	margin-right:   5px;
-	margin-top:     -2px;
-	text-shadow:    1px 1px 3px #000000;
-	color:          #838383;
+	font-family:  eXastumDefault;
+	font-size:    15px;
+	float:        right;
+	margin-right: 5px;
+	margin-top:   -2px;
+	text-shadow:  1px 1px 3px #000000;
+	color:        #838383;
+	cursor:       pointer;
 }
 
 #buildNum {

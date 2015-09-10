@@ -1,55 +1,54 @@
 <!DOCTYPE html>
-<!-- Copyright 2015 Brian Millar
-	 This file is part of eXastum.
-	 eXastum is free software: you can redistribute it and/or modify
-	 it under the terms of the GNU General Public License as published by
-	 the Free Software Foundation, either version 3 of the License, or
-	 (at your option) any later version.
-	 eXastum is distributed in the hope that it will be useful,
-	 but WITHOUT ANY WARRANTY; without even the implied warranty of
-	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	 GNU General Public License for more details.
-	 You should have received a copy of the GNU General Public License
-	 along with eXastum.  If not, see <http://www.gnu.org/licenses/>
+<!--Copyright 2015 Brian Millar
+    This file is part of eXastum.
+    eXastum is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    eXastum is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with eXastum.  If not, see <http://www.gnu.org/licenses/>
 -->
 <html>
 <head>
-	<script>
-		/*    
-		@licstart  The following is the entire license notice for the 
-		JavaScript code in this page.
+    <script>
+        /*    
+        @licstart  The following is the entire license notice for the 
+        JavaScript code in this page.
 
-		Copyright (C) 2015  Brian Millar
+        Copyright (C) 2015  Brian Millar
 
-		The JavaScript code in this page is free software: you can
-		redistribute it and/or modify it under the terms of the GNU
-		General Public License (GNU GPL) as published by the Free Software
-		Foundation, either version 3 of the License, or (at your option)
-		any later version.  The code is distributed WITHOUT ANY WARRANTY;
-		without even the implied warranty of MERCHANTABILITY or FITNESS
-		FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+        The JavaScript code in this page is free software: you can
+        redistribute it and/or modify it under the terms of the GNU
+        General Public License (GNU GPL) as published by the Free Software
+        Foundation, either version 3 of the License, or (at your option)
+        any later version.  The code is distributed WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS
+        FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
 
-		As additional permission under GNU GPL version 3 section 7, you
-		may distribute non-source (e.g., minimized or compacted) forms of
-		that code without the copy of the GNU GPL normally required by
-		section 4, provided you include this license notice and a URL
-		through which recipients can access the Corresponding Source.   
+        As additional permission under GNU GPL version 3 section 7, you
+        may distribute non-source (e.g., minimized or compacted) forms of
+        that code without the copy of the GNU GPL normally required by
+        section 4, provided you include this license notice and a URL
+        through which recipients can access the Corresponding Source.   
 
-		
-		@licend  The above is the entire license notice
-		for the JavaScript code in this page.
-		*/
-	</script>
-	<meta charset="UTF-8"> 
-	<meta name="author" content="Brian Millar"/>
-	<title id="SystemTitle">eXastum 3.0</title>
-	<link id="Sheet" rel="stylesheet" type="text/css" href="sys/skins/default/skin.css"/>
-	<style id="styleSystem"></style>
+        @licend  The above is the entire license notice
+        for the JavaScript code in this page.
+        */
+    </script>
+    <meta charset="UTF-8"> 
+    <meta name="author" content="Brian Millar"/>
+    <title id="SystemTitle">eXastum 3.0</title>
+    <link id="Sheet" rel="stylesheet" type="text/css" href="sys/skins/default/skin.css"/>
+    <style id="styleSystem"></style>
 </head>
 <body onload="init();" onabort="alert('eXastum loading was interupted, some functions may be missing...');" onunload="alert('Are you sure you want to exit?');">
 
 <noscript>
-	<h1 id="NoJSWarning">eXastum cannot run without JavaScript</h1>
+    <h1 id="NoJSWarning">eXastum cannot run without JavaScript</h1>
 </noscript>
 
 <img id="bootsplash" src="sys/skins/default/ui/bootsplash.gif" width="100%" height="100%"/>
@@ -57,136 +56,136 @@
 <textarea style="display:none;" id="console"></textarea>
 
 <div id="login">
-	<br/><br/>
-	<div id="loginForm">
-		<h1 style="font-weight:normal; font-size:30px; margin:0px; text-shadow:0px 2px 6px #000;">Welcome</h1>
-		<p style="text-shadow:1px 1px 3px #000;">eXastum 3.0 is still in early development,<br/>Please use the username 'admin' with no password to log in for now.</p>
-		<br/>
-		<input class="text" type="text" id="userField"/><br/><br/>
-		<input class="text" type="password" id="passField"/><br/><br/>
-		<button style="margin-left:189px;" onclick="login($('userField').value);" id="loginButton">Login</button>
-	</div>
-	<div id="loginBG"></div>
+    <br/><br/>
+    <div id="loginForm">
+        <h1 style="font-weight:normal; font-size:30px; margin:0px; text-shadow:0px 2px 6px #000;">Welcome</h1>
+        <p style="text-shadow:1px 1px 3px #000;">eXastum 3.0 is still in early development,<br/>Please use the username 'admin' with no password to log in for now.</p>
+        <br/>
+        <input class="text" type="text" id="userField"/><br/><br/>
+        <input class="text" type="password" id="passField"/><br/><br/>
+        <button style="margin-left:189px;" onclick="login($('userField').value);" id="loginButton">Login</button>
+    </div>
+    <div id="loginBG"></div>
 </div>
 
 <div id="setup">
-	<p>Welcome to eXastum Setup</p>
+    <p>Welcome to eXastum Setup</p>
 </div>
 
 <div id="loggedIn">
-	<div id="windowLayer">
+    <div id="windowLayer">
 		
-		<div id="abouteXastum">
-			<h2>eXastum 3.0</h2>
-			<p id="aboutText">
-				This is a test.
-			</p>
-		</div>
+    <div id="abouteXastum">
+        <h2>eXastum 3.0</h2>
+        <p id="aboutText"></p>
+    </div>
 
-		<div id="sysSettings" style="top:150px; left:200px;" onmouseout="updateInfoBar('eXastum 3.0');" onmouseover="updateInfoBar('Console');" class="window">
-			<span onmousedown="dragWindow('sysSettings',event);" class="titleBar" id="settingsTitleBar">
-				<span class="titleBarText">eXastum Settings</span>
-				<img draggable="false" ondragstart="return false;" src="sys/skins/default/ui/close.png" onmouseover="this.src='sys/skins/default/ui/closeHover.png';" onmouseout="this.src='sys/skins/default/ui/close.png';" onmousedown="this.src='sys/skins/default/ui/closeDown.png';" onmouseup="this.src='sys/skins/default/ui/close.png';" class="closeButton" onclick="updateInfoBar('eXastum 3.0'); document.onmousemove = function() {return false}; $('sysSettings').style.display = 'none';"/>
-			</span>
-			<button style="position:absolute; bottom:14px; right:20px;">Apply</button>
-		</div>
+    <div id="sysSettings" style="top:150px; left:200px;" onmouseout="updateInfoBar('eXastum 3.0');" onmouseover="updateInfoBar('Console');" class="window">
+        <span onmousedown="dragWindow('sysSettings',event);" class="titleBar" id="settingsTitleBar">
+            <span class="titleBarText">eXastum Settings</span>
+            <img draggable="false" ondragstart="return false;" src="sys/skins/default/ui/close.png" onmouseover="this.src='sys/skins/default/ui/closeHover.png';" onmouseout="this.src='sys/skins/default/ui/close.png';" onmousedown="this.src='sys/skins/default/ui/closeDown.png';" onmouseup="this.src='sys/skins/default/ui/close.png';" class="closeButton" onclick="updateInfoBar('eXastum 3.0'); document.onmousemove = function() {return false}; $('sysSettings').style.display = 'none';"/>
+        </span>
+        <button style="position:absolute; bottom:14px; right:20px;">Apply</button>
+    </div>
 		
-		<div id="topBar">
-			<img  id="menuButton" onmouseover="updateInfoBar('Menu Button')" onmouseout="updateInfoBar('eXastum 3.0')" src="sys/skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
-			<span id="quickLaunch" onmouseover="updateInfoBar('Quick Launch')" onmouseout="updateInfoBar('eXastum 3.0')">
-				<img onclick="newConsole();" class="barIcon" src="sys/skins/default/icons/mini/terminal.png"/>
-				<img onclick="$('sysSettings').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
-			</span>
-			<span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
-			<span id="sysClock" title="Click to open Time Panel" onclick="hideMainMenu(); $('audioPanel').style.display = 'none'; $('timePanel').style.display = 'block';" onmouseover="updateInfoBar('System Clock');" onmouseout="updateInfoBar('eXastum 3.0');"></span>
-			<span id="sysTray" onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')">
-				<img onmouseover="updateInfoBar('Audio Panel Button')" onmouseout="updateInfoBar('eXastum 3.0')" title="Click to open Audio Panel" width="19" height="19" onclick="hideMainMenu(); $('timePanel').style.display = 'none'; $('audioPanel').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
-			</span>
-		</div>
+    <div id="topBar">
+        <img id="menuButton" onmouseover="updateInfoBar('Menu Button')" onmouseout="updateInfoBar('eXastum 3.0')" src="sys/skins/default/ui/menu.png" onclick="showHideMainMenu();"/>
+        <span id="quickLaunch" onmouseover="updateInfoBar('Quick Launch')" onmouseout="updateInfoBar('eXastum 3.0')">
+            <img onclick="newConsole();" class="barIcon" src="sys/skins/default/icons/mini/terminal.png"/>
+            <img onclick="$('sysSettings').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/settings.png"/>
+        </span>
+        <span id="sysTasks" onmouseover="updateInfoBar('Running Tasks')" onmouseout="updateInfoBar('eXastum 3.0')"></span>
+        <span id="sysClock" title="Click to open Time Panel" onclick="hideMainMenu(); $('audioPanel').style.display = 'none'; $('timePanel').style.display = 'block';" onmouseover="updateInfoBar('System Clock');" onmouseout="updateInfoBar('eXastum 3.0');"></span>
+        <span id="sysTray" onmouseover="updateInfoBar('System Tray')" onmouseout="updateInfoBar('eXastum 3.0')">
+            <img onmouseover="updateInfoBar('Audio Panel Button')" onmouseout="updateInfoBar('eXastum 3.0')" title="Click to open Audio Panel" width="19" height="19" onclick="hideMainMenu(); $('timePanel').style.display = 'none'; $('audioPanel').style.display = 'block';" class="barIcon" src="sys/skins/default/icons/mini/music.png"/>
+        </span>
+    </div>
 		
-		<div id="timePanel" onmouseover="updateInfoBar('Time Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
-			<div id="analogClock">
-				<img draggable="false" id="hourHand" src="sys/skins/default/ui/hourHand.png" width="125" height="125"/>
-				<img draggable="false" id="minsHand" src="sys/skins/default/ui/minsHand.png" width="125" height="125"/>
-				<img draggable="false" id="secsHand" src="sys/skins/default/ui/secsHand.png" width="125" height="125"/>
-			</div>
-			<table id="miniCal"></table>
-			<button class="panelButton">Alarms</button>
-			<button class="panelButton">Timers</button>
-			<button class="panelButton">Calendar</button><br/><br/>
-			<p><strong>Tip:</strong> you cannot change incorrect time information in eXastum as eXastum gets the current time from your browser</p>
-		</div>
+    <div id="timePanel" onmouseover="updateInfoBar('Time Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
+        <div id="analogClock">
+            <img draggable="false" id="hourHand" src="sys/skins/default/ui/hourHand.png" width="125" height="125"/>
+                <img draggable="false" id="minsHand" src="sys/skins/default/ui/minsHand.png" width="125" height="125"/>
+                <img draggable="false" id="secsHand" src="sys/skins/default/ui/secsHand.png" width="125" height="125"/>
+        </div>
+        <table id="miniCal"></table>
+        <button class="panelButton">Alarms</button>
+        <button class="panelButton">Timers</button>
+        <button class="panelButton">Calendar</button><br/><br/>
+        <p><strong>Tip:</strong> you cannot change incorrect time information in eXastum as eXastum gets the current time from your browser</p>
+    </div>
 		
-		<div id="audioPanel" onmouseover="updateInfoBar('Audio Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
-			<div id="audioPanelVisualizer"></div>
-			<button class="panelButton" onclick="testAudio()" id="audioTestButton">Test Audio</button>
-			<button class="panelButton" onclick="testAudio()">Music App</button>
-			<button class="panelButton" onclick="testAudio()">eXastum Studio</button>
-		</div>
+    <div id="audioPanel" onmouseover="updateInfoBar('Audio Panel')" onmouseout="updateInfoBar('eXastum 3.0')">
+        <div id="audioPanelVisualizer"></div>
+        <button class="panelButton" onclick="testAudio()" id="audioTestButton">Test Audio</button>
+        <button class="panelButton" onclick="testAudio()">Music App</button>
+        <button class="panelButton" onclick="testAudio()">eXastum Studio</button>
+    </div>
 		
-		<div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
-			<input id="infoBar" onfocus="this.value='';" class="text" type="text" placeholder="eXastum 3.0"/>
-			<p id="userName" onmouseover="updateInfoBar('Username')" onmouseout="updateInfoBar('eXastum 3.0')">Admin</p>
-		</div>
+    <div id="baseBar" onmouseover="showDock();" onmouseout="hideDock();">
+        <input id="infoBar" onfocus="this.value='';" class="text" type="text" placeholder="eXastum 3.0"/>
+        <p id="userName" onmouseover="updateInfoBar('Username')" onmouseout="updateInfoBar('eXastum 3.0')">Admin</p>
+    </div>
 		
-		<div id="mainMenu">
-			<div id="menuTop">
-				<h1 class="menuTitle">Applications</h1>
-			</div>
-			<ul id="menuAppsList">
-			</ul>
-			<div id="menuBottom">
-				<input id="menuSearch" onmouseover="updateInfoBar('Quick Search')" onmouseout="updateInfoBar('eXastum 3.0')" class="text" type="text" placeholder="Quick Search"/>
-			</div>
-			<div id="menuRight">
-				<img id="menuIconPreview" src="sys/skins/default/icons/music.png" width="108" height="108"/>
-				<div id="menuLinks">
-					<p class="menuTextLink">Installer</p>
-					<p class="menuTextLink">Open File</p>
-					<p class="menuTextLink">System Settings</p>
-					<p class="menuTextLink" onclick="$('abouteXastum').style.display = 'block'">About eXastum</p>
-				</div>
-				<div id="menuPowerButtons">
-					<img onmouseover="this.src='sys/skins/default/icons/reload_over.png'; updateInfoBar('Reload eXastum');" onmouseout="this.src='sys/skins/default/icons/reload.png'; updateInfoBar('eXastum 3.0');" class="powerButtons" src="sys/skins/default/icons/reload.png"/>
-					<img onmouseover="this.src='sys/skins/default/icons/power_over.png'; updateInfoBar('Exit eXastum');"  onmouseout="this.src='sys/skins/default/icons/power.png'; updateInfoBar('eXastum 3.0');"  class="powerButtons" src="sys/skins/default/icons/power.png"/>
-				</div>
-			</div>
-		</div>
+    <div id="mainMenu">
+        <div id="menuTop">
+            <h1 class="menuTitle">Applications</h1>
+        </div>
+        <ul id="menuAppsList"></ul>
+        <div id="menuBottom">
+            <input id="menuSearch" onmouseover="updateInfoBar('Quick Search')" onmouseout="updateInfoBar('eXastum 3.0')" class="text" type="text" placeholder="Quick Search"/>
+        </div>
+        <div id="menuRight">
+        <img id="menuIconPreview" src="sys/skins/default/icons/music.png" width="108" height="108"/>
+        <div id="menuLinks">
+            <p class="menuTextLink">Installer</p>
+            <p class="menuTextLink">Open File</p>
+            <p class="menuTextLink">System Settings</p>
+            <p class="menuTextLink" onclick="$('abouteXastum').style.display = 'block'">About eXastum</p>
+        </div>
+        <div id="menuPowerButtons">
+            <img onmouseover="this.src='sys/skins/default/icons/reload_over.png'; updateInfoBar('Reload eXastum');" onmouseout="this.src='sys/skins/default/icons/reload.png'; updateInfoBar('eXastum 3.0');" class="powerButtons" src="sys/skins/default/icons/reload.png"/>
+            <img onmouseover="this.src='sys/skins/default/icons/power_over.png'; updateInfoBar('Exit eXastum');"  onmouseout="this.src='sys/skins/default/icons/power.png'; updateInfoBar('eXastum 3.0');"  class="powerButtons" src="sys/skins/default/icons/power.png"/>
+        </div>
+    </div>
+    </div>
 		
-		<div id="desktop" onclick="clickDesktop();">
-			<div  id="leftHotspot"></div>
-			<div  id="rightHotspot"></div>
-			<span id="buildNum"></span>
-			<div  id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
-			</div>
-			<div id="dock" onmouseover="showDock();" onmouseout="hideDock();">
-				<img onclick="launchApp('Browser')" onmouseover="updateInfoBar('Browser');"         onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/browser.png"  width="70" height="70" id="dockFirstIcon"/>
-				<img onclick="launchApp('PhotoViewer')" onmouseover="updateInfoBar('Photo Viewer');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/pictures.png" width="70" height="70"/>
-				<img onclick="launchApp('Music')" onmouseover="updateInfoBar('eXastum Music');"   onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/music.png"    width="70" height="70"/>
-				<img onclick="launchApp('VideoPlayer')" onmouseover="updateInfoBar('Video Player');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/video.png"    width="70" height="70"/>
-				<img onclick="launchApp('Tools')" onmouseover="updateInfoBar('Tools & Utils');"   onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/tools.png"    width="70" height="70"/>
-				<img onclick="launchApp('Games')" onmouseover="updateInfoBar('Games Center');"    onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/games.png"    width="70" height="70"/>
-				<img onclick="$('sysSettings').style.display = 'block';" onmouseover="updateInfoBar('System Settings');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/settings.png" width="70" height="70"/>
-			</div>
-		</div>
+    <div id="desktop" onclick="clickDesktop();">
+        <div  id="leftHotspot"></div>
+        <div  id="rightHotspot"></div>
+        <span id="buildNum"></span>
+        <div  id="windowSystem" ondblclick="newWindow(500,281,'Testing...','test.html','horizontal');">
+        </div>
+
+        <div id="dock" onmouseover="showDock();" onmouseout="hideDock();">
+            <img onclick="launchApp('Browser')" onmouseover="updateInfoBar('Browser');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/browser.png" id="dockFirstIcon"/>
+            <img onclick="launchApp('Photos')" onmouseover="updateInfoBar('Photo Viewer');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/pictures.png"/>
+            <img onclick="launchApp('Music')" onmouseover="updateInfoBar('eXastum Music');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/music.png"/>
+            <img onclick="launchApp('VideoPlayer')" onmouseover="updateInfoBar('Video Player');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/video.png"/>
+            <img onclick="launchApp('Tools')" onmouseover="updateInfoBar('Tools & Utils');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/tools.png"/>
+            <img onclick="launchApp('Games')" onmouseover="updateInfoBar('Games Center');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/games.png"/>
+            <img onclick="$('sysSettings').style.display = 'block';" onmouseover="updateInfoBar('System Settings');" onmouseout="updateInfoBar('eXastum 3.0');" class="dockIcon" src="sys/skins/default/icons/settings.png"/>
+        </div>
+    </div>
 		
-	</div>
+    </div>
 </div>
 
 <img id="wallpaper" src="sys/skins/default/wallpapers/wallpaper.jpg" width="100%" height="100%" alt="Desktop Wallpaper"/>
 
 <div id="libs">
-	<!-- eXastum Libs -->
-	<script src="sys/libs/auth.js"></script>
-	<script src="sys/libs/init.js"></script>
-	<script src="sys/libs/macgril.js"></script>
-	<script src="sys/libs/sys.js"></script>
-	<script src="sys/libs/time.js"></script>
-	<script src="sys/libs/audio.js"></script>
-	<script src="sys/libs/js_prompt.js"></script>
-	<script src="sys/libs/windowing.js"></script>
-	<!-- Third Party Libs -->
-	<script src="sys/libs/third_party/three.min.js"></script>
+    
+    <!-- eXastum Libs -->
+    <script src="sys/libs/auth.js"></script>
+    <script src="sys/libs/init.js"></script>
+    <script src="sys/libs/macgril.js"></script>
+    <script src="sys/libs/sys.js"></script>
+    <script src="sys/libs/time.js"></script>
+    <script src="sys/libs/audio.js"></script>
+    <script src="sys/libs/js_prompt.js"></script>
+    <script src="sys/libs/windowing.js"></script>
+    
+    <!-- Third Party Libs -->
+    <script src="sys/libs/third_party/three.min.js"></script>
 </div>
 
 <audio id="testTrack" src="sys/sounds/third_party/Mixro_-_CCmixter.org.ogg"/>

@@ -18,3 +18,7 @@ function install() {
 
 function parseManifest() {
 }
+
+function eXastum() {
+    return true;
+}

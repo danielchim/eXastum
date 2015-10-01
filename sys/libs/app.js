@@ -16,9 +16,20 @@
 function install() {
 }
 
+function uninstall() {
+}
+
 function parseManifest() {
 }
 
 function eXastum() {
     return true;
+}
+
+function launchApp(name) {
+    newWindow();
+}
+
+function getAppList() {
+    return appList;
 }
